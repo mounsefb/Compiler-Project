@@ -1,0 +1,3 @@
+{
+    boolean x = a instanceof A;
+}

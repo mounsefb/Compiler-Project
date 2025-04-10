@@ -1,0 +1,11 @@
+// Description :
+//    Test de la division d'un float par un int
+//
+// Resultats :
+//    Ok
+
+{
+    float x = 10.25 / 2;
+    float y;
+    y = 10.25 / 2;
+}

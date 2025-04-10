@@ -1,0 +1,33 @@
+// Description :
+//    Test de l'opérateur logique "||" (OU logique)
+//
+// Résultats :
+//    2
+//    3
+//    4
+//    5
+
+{
+    float a = 2.0f, b = 3.0f, x = 4.0f, y = 5.0f;
+
+    boolean condition1 = (a > b) && (x < y); 
+    boolean condition2 = !(a == b) || (x >= y); 
+    boolean condition3 = (condition1 && condition2) || (a != b) && !(x <= y); 
+    boolean condition4 = condition3 && (a * b > x + y || !(a / b <= x - y)); 
+    boolean condition5 = condition4 || (a + b * x >= y / a && !(b != 1.1)); 
+    if (condition1){
+        println(1);
+    }
+    if (condition2){
+        println(2);
+    }
+    if (condition3){
+        println(3);
+    }
+    if (condition4){
+        println(4);
+    }
+     if (condition5){
+        println(5);
+    }
+}

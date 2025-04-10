@@ -1,0 +1,11 @@
+class D{
+}
+class A{
+    
+}
+class B extends A{
+    A get(){}
+}
+class C extends B{
+    D get(){}
+}

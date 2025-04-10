@@ -1,0 +1,13 @@
+// Description :
+//    Test invalide : Initialisation incorrecte de variables de différents types
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 8: Incompatible Types Initialization
+{
+    int x = 2.2;    // Ligne 8: Initialisation incorrecte. Attendu : int, Obtenu : float
+    float y = true; // Ligne 9: Initialisation incorrecte. Attendu : float, Obtenu : booléen
+    boolean z = 1;  // Ligne 10: Initialisation incorrecte. Attendu : booléen, Obtenu : int
+    boolean t = 1.1; // Ligne 11: Initialisation incorrecte. Attendu : booléen, Obtenu : float
+    int w = false;  // Ligne 12: Initialisation incorrecte. Attendu : int, Obtenu : booléen
+}

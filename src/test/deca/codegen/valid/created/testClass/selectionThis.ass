@@ -1,0 +1,112 @@
+	TSTO #8
+	BOV stack_overflow_error
+	ADDSP #21
+; Code de la table des méthodes de Object
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 2(GB)
+; code de la table des méthodes de MyClass
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.MyClass.getX, R0
+	STORE R0, 5(GB)
+; start main program
+; Main program
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+init.MyClass:
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 1(R1)
+	LOAD #5, R2
+	LOAD R2, R0
+	LOAD -2(LB), R1
+	STORE R0, 2(R1)
+	RTS
+; code des méthodes
+code.MyClass.getX:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -2(LB), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 1(R2), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.MyClass.getX
+etiq_Fincode.MyClass.getX:
+	WSTR "sortie de la methode getX sans return"
+	WNL
+	ERROR
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

@@ -1,0 +1,10 @@
+// Description :
+//    Test de l'affichage d'une chaîne de caractères avec un double backslash
+//
+// Résultats :
+//    Hello World! je suis \\MrBackslash\\
+
+
+{
+    print("Hello World! je suis \\\\MrBackslash\\\\");
+}

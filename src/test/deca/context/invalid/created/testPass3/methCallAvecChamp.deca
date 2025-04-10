@@ -1,0 +1,13 @@
+// Description : appel de methode avec un champ
+//   
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 11:  NotAMethodException: The identifier is not a method -- it's a field.
+
+class A {
+    int x;
+    void getX(){
+        this.x();
+    }
+}

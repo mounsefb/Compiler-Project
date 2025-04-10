@@ -1,0 +1,12 @@
+// Description :
+//    Test invalide : Déclaration de variable dans une boucle infinie
+//
+// Résultats :
+//    Erreur syntaxique
+//    Ligne 10: no viable alternative at input 'x'
+
+{
+    while(true){
+        int x = 1; // Ligne 10: Variable 'x' is declared in an unreachable code block.
+    }
+}

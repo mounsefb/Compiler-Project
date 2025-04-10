@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : Initialisation d'une variable float avec un nombre trop petit
+//
+// Résultats :
+//    Erreur syntaxique
+//    Ligne 9: missing ';' at '10'
+
+{
+int x 10 = ;
+}

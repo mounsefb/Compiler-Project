@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IntLiteral.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deca Compiler</a> &gt; <a href="index.source.html" class="el_package">fr.ensimag.deca.tree</a> &gt; <span class="el_source">IntLiteral.java</span></div><h1>IntLiteral.java</h1><pre class="source lang-java linenums">package fr.ensimag.deca.tree;
+
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.DecacCompiler;
+ import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.IntType;
+import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.PUSH;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
+
+import java.io.PrintStream;
+
+/**
+ * Integer literal
+ *
+ * @author gl01
+ * @date 01/01/2024
+ */
+public class IntLiteral extends AbstractExpr {
+    public int getValue() {
+<span class="fc" id="L26">        return value;</span>
+    }
+
+    private int value;
+
+<span class="fc" id="L31">    public IntLiteral(int value) {</span>
+<span class="fc" id="L32">        this.value = value;</span>
+<span class="fc" id="L33">    }</span>
+
+    @Override
+    public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
+            ClassDefinition currentClass) throws ContextualError {
+        
+<span class="fc" id="L39">                Type t = new IntType(compiler.symbolTable.create(&quot;int&quot;));</span>
+<span class="fc" id="L40">                this.setType(t);</span>
+<span class="fc" id="L41">                return t;</span>
+
+    }
+
+
+    @Override
+    String prettyPrintNode() {
+<span class="fc" id="L48">        return &quot;Int (&quot; + getValue() + &quot;)&quot;;</span>
+    }
+
+    @Override
+    public void decompile(IndentPrintStream s) {
+<span class="nc" id="L53">        s.print(Integer.toString(value));</span>
+<span class="nc" id="L54">    }</span>
+
+    @Override
+    protected void iterChildren(TreeFunction f) {
+        // leaf node =&gt; nothing to do
+<span class="fc" id="L59">    }</span>
+
+    @Override
+    protected void prettyPrintChildren(PrintStream s, String prefix) {
+        // leaf node =&gt; nothing to do
+<span class="fc" id="L64">    }</span>
+    @Override
+    protected void codeGenInst(DecacCompiler compiler){
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">    if (compiler.getHandleMemory().getfull()+1&gt;compiler.getHandleMemory().getMaxFull()){</span>
+<span class="nc" id="L68">        compiler.addInstruction(new PUSH(Register.getR(compiler.getHandleMemory().getfull()))); </span>
+<span class="nc" id="L69">        compiler.getHandleMemory().incrementerpush();</span>
+<span class="nc" id="L70">        compiler.getHandleMemory().registerLiberate();</span>
+    }
+<span class="fc" id="L72">    compiler.addInstruction(new LOAD(new ImmediateInteger(value), Register.getR(compiler.getHandleMemory().registreToUse())));</span>
+
+<span class="fc" id="L74">    }</span>
+
+    @Override
+    public void codeGenPrint(DecacCompiler compiler) {
+<span class="nc" id="L78">        compiler.addInstruction(new LOAD(value,Register.getR(1)));</span>
+<span class="nc" id="L79">        compiler.addInstruction(new WINT());</span>
+<span class="nc" id="L80">    }</span>
+    @Override
+    public void codeGenPrintX(DecacCompiler compiler) {
+<span class="nc" id="L83">        compiler.addInstruction(new LOAD(value,Register.getR(1)));</span>
+<span class="nc" id="L84">        compiler.addInstruction(new WINT());</span>
+<span class="nc" id="L85">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,22 @@
+class Point {
+    int x;
+    int y;
+
+    void set(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+class MyClass {
+    void myMethod() {
+        Point point = new Point();
+        point.set(5,8);
+        println("Coordinates: x =", point.x, ", y =", point.y);
+    }
+}
+
+{
+    MyClass myObject = new MyClass();
+    myObject.myMethod();
+}

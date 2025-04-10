@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : un if sans block d'execution
+//
+// Résultats :
+//    Erreur Syntaxique
+//    Ligne 10: missing '{' at '}'
+
+{
+    if (cond) 
+}

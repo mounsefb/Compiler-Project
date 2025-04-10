@@ -1,0 +1,12 @@
+class A{
+    void setX(){}
+    int x;
+    float y;
+    void setY(){}
+
+}
+class B extends A{
+    int x;
+    int y;
+    void setY(){}
+}

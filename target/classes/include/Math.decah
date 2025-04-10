@@ -1,0 +1,269 @@
+class Math {
+
+    float floatMaxValue = 3.4028235f * _pow(10, 38);
+    float PI = 3.141592653589793f;
+
+    int biais = 127;
+    int mantissaSize = 23;
+
+    float _mod(float x, float y){
+        float res;
+        if(y == 0) {
+            println(" IllegalArgumentException(\" y = 0 impossible \") ");
+            return -1;
+        }
+        res = x / y;
+        return (x - (int)(res) * y);
+    }
+
+    int _occurrence(float x, float y){
+        if (y == 0 ){
+            println(" IllegalArgumentException(\" the second argument must be different from y = 0 \") ");
+            return -1;
+        } 
+        return (int) (y/x);
+    }
+
+    float _abs(float f){
+        if(f<0){
+            return -f;
+        }
+        return f;
+    }
+
+    float _pow(float base, int exponent) {
+        // Base case: any number raised to the power of 0 is 1
+        float halfPow;
+        if (exponent == 0) {
+            return 1;
+        }
+    
+        // Handle negative exponent by inverting the base and making the exponent positive
+        if (exponent < 0) {
+            base = 1 / base;
+            exponent = -exponent;
+        }
+    
+        halfPow = _pow(base, exponent / 2);
+    
+        // If the exponent is even
+        if (_mod(exponent, 2) == 0) {
+            return halfPow * halfPow;
+        } else {
+            // Else if the exponent is odd
+            return base * halfPow * halfPow;
+        }
+    }
+    
+    // Utilisation of Héron method to approximate square root fonction 
+    float _sqrt(float f){
+        float epsilon;
+        float x0, x1;
+        if(f<0){
+            println(" IllegalArgumentException(\" tout nombre passé à la racine carrée doit être positif \") ");
+            return -1;
+        } 
+        epsilon = _pow(10, -5);
+        x0 = f / 2.0f;
+        x1 = f / 2.0f;
+        x0 = x1;
+        x1 = (x0 + f / x0) / 2.0f; 
+        while ( _abs(x0 - x1) > epsilon ){
+            x0 = x1;
+            x1 = (x0 + f / x0) / 2.0f; 
+        }
+        return x1;
+    }
+
+    int _fact(int x){
+        if (x==1 || x==0){
+            return 1;
+        }
+        return x*_fact(x-1);
+    }
+
+    float _taylor(int whichOne, int order, float f){
+        float res;
+        int n;
+        if(_abs(f)>1){
+            println(" IllegalArgumentException(\" Taylor Development available only between -1 and 1 strictly \") ");
+            return -1;
+        }  
+        if(order<0){
+            println(" IllegalArgumentException(\" Order need to be greater than 0 \") ");
+            return -1;
+        }  
+        if(whichOne>3 || whichOne<0){
+            println(" IllegalArgumentException(\" WhichOne must be between 0 and 3 \") ");
+            return -1;
+        }  
+        res=0;
+        n = 0;
+        // whichOne = 0 is the case of sin
+        if (whichOne == 0){
+            while (2*n+1<=order){
+                res = res + ( _pow(-1, (int)(_mod(n,2))) * _pow(f, 2*n+1) ) / _fact(2*n+1);
+                // System.out.println("res = " + res);
+                n = n+1;
+            }
+        }
+        // whichOne = 1 is the case of cos
+        else if (whichOne == 1){
+            while (2*n<=order){
+                res = res + ( _pow(-1, (int)(_mod(n,2))) * _pow(f, 2*n) ) / _fact(2*n);
+                n = n+1;
+            }
+        }
+        // whichOne = 2 is the case of asin
+        else if (whichOne == 2){
+            while (2*n+1<=order){
+                res = res + ( _fact(2*n) * _pow(f, 2*n+1) ) / ( _pow(2, 2*n) * _pow(_fact(n),2) * (2*n+1));
+                n = n+1;
+            }
+        }
+        // whichOne = 3 is the case of atan
+        else if (whichOne == 3){
+            while (2*n+1<=order){
+                res = res + ( _pow(-1, (int)(_mod(n,2))) * _pow(f, 2*n+1) ) / (2*n+1);
+                n = n+1;
+            }
+        }
+        return res;
+    }
+
+
+    // Division by 2 and Modulo PI can cause accuracy problems... PI is the float approximation of the real PI
+    float sin(float f) {
+        float res;
+        if(_abs(f)<0.5){
+            return _taylor(0, 20, f);
+        }
+        else if(_abs(PI - f)<0.3){
+            return cos(f-PI/2);
+        }
+        res = 2 * sin( f/2 ) * cos( f/2 );
+        return res;
+    }
+
+    float cos(float f) {
+        float res;
+
+        if(_abs(f)<0.5){
+            return _taylor(1, 20, f);
+        }
+       
+        res = 2 * _pow(cos(f/2), 2) - 1;
+
+        return res;
+    }
+
+    float asin(float f) {
+        if(_abs(f)<0.3){
+            return _taylor(2, 30, f);
+        }
+        else if(_abs(f)<1) {
+            return 2 * atan(f / (1 + _sqrt(1-f*f)));
+        }
+        println(" IllegalArgumentException(\" Asin definition domain is restricted to ]-1, 1[ \") ");
+        return -1;
+    }
+
+    float atan(float f) {
+        if (_abs(_abs(f)-1)<=0.3){
+            return asin(f / _sqrt(1+_pow(f, 2)));
+        }
+        else if(_abs(f)<=1){
+            return _taylor(3, 50, f);
+        }
+        return PI/2 - atan(1/f);
+    }
+
+    
+
+
+    /*  Utility fonction in order to convert a float to his binary equivalent
+    * i.d., according to the IEEE 754 standard displaying float in 32 bits : 
+    *  float = (-1)^(sign) * exponent * mantissa
+    * we will assume the biais is 127 
+    */
+    int _overOneFloatToBinary(float toBeConverted) {
+        int copyToBeConverted = (int)(toBeConverted);
+        int hasBeenConverted = 0;
+        int parcours = 1;
+        int counter = 0;
+        int sign = 0;
+        int tmpCounter, decrement, mantisse;
+        int exponent;
+       
+
+        // Sign gestion
+        if(copyToBeConverted<0){
+            sign = 1;
+            copyToBeConverted = -copyToBeConverted;
+        }
+
+        // Construction of floor part
+        while (copyToBeConverted != 0) {
+            if (_mod(copyToBeConverted, 2) == 1) {
+                hasBeenConverted = hasBeenConverted + parcours;
+            }
+            copyToBeConverted = copyToBeConverted / 2;
+            parcours = parcours * 2;
+            counter = counter + 1;
+        }
+        tmpCounter = counter;
+
+        // Construction of mantissa 
+        decrement = 23;
+        mantisse = 0;
+        parcours = parcours / 2;
+        counter = counter - 1;
+        while (decrement != 0  && parcours != 1){
+            decrement = decrement - 1;
+            counter = counter - 1;
+            parcours = parcours / 2;
+
+            if(_mod((int)(hasBeenConverted / parcours), 2) == 1){
+                mantisse = mantisse + (int)(_pow(2, decrement));
+            }
+        }
+        hasBeenConverted = mantisse;
+
+        // Construction of exponent
+        exponent = 127 + tmpCounter - 1;
+        hasBeenConverted = hasBeenConverted + (int)(exponent * _pow(2, 23));
+
+        // Add the sign part
+        hasBeenConverted = hasBeenConverted + (int)(sign * _pow(2, 32));
+
+        return hasBeenConverted;
+    }
+
+    int _belowOneFloatToBinary(float toBeConverted){
+        float copyToBeConverted = toBeConverted;
+        int exponent = -1;
+        while ((int)(copyToBeConverted / 2) == 0){
+            copyToBeConverted = copyToBeConverted * 2;
+            exponent = exponent + 1;
+        }
+        exponent = (-exponent + 127) * (int)(_pow(2, 23));
+        return exponent;
+    }
+
+    float ulp(float f) {
+        int fBin;
+        int exponent;
+        f=_abs(f);
+        if(f == floatMaxValue || f == 0){
+            return _abs(f);
+        }
+        if (f>=1) {
+            fBin = _overOneFloatToBinary(f);
+        }
+        else {
+            fBin = _belowOneFloatToBinary(f);
+        }
+        exponent = (int)(_mod((int)(fBin / _pow(2, 23)), (_pow(2, 8))));
+        return _pow(2, exponent - biais - mantissaSize); 
+    }
+}

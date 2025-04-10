@@ -1,0 +1,15 @@
+// Description :
+//    Test d'une boucle infinie avec une instruction if-else à l'intérieur
+//
+// Résultats :
+//     Ce programme entraînera une boucle infinie, il ne termine pas.
+
+{
+    int x = 1;
+    while (true) {
+        if (x == 1) {
+            print(x);
+        }
+    }
+}
+

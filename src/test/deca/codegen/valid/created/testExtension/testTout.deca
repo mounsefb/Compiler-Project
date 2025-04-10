@@ -1,0 +1,67 @@
+#include "Math.decah"
+
+{
+    Math customMath = new Math();
+    
+    float value1 = 3.14f;
+    float value2 = 1.0f;
+    float value3 = 0.0f;
+    float value4 = customMath.floatMaxValue;
+
+    float x;
+    float y;
+    float equationResult;
+    int whichOne;
+    int order;
+    float f;
+    float base;
+    int exponent;
+    float res;
+    int xint;
+
+
+    println("ulp(", value1, ") = ", customMath.ulp(value1));
+    println("ulp(", value2, ") = ", customMath.ulp(value2));
+    // println("ulp(", value3, ") = ", customMath.ulp(value3));
+    // println("ulp(", value4, ") = ", customMath.ulp(value4));
+
+    x = 1.0f;
+    y = 0.5f;
+
+    equationResult = customMath.cos(x) + customMath.sin(y) * customMath.atan(x + y) - customMath.asin(1/customMath._sqrt(x * x + y * y));
+
+    println("Résultat de l'équation : ", equationResult);
+
+    whichOne = 0;
+    order = 10;
+    f = 0.5f;
+
+    println("_taylor(", whichOne, ", ", order, ", ", f, ") = ", customMath._taylor(whichOne, order, f));
+
+    f = 16.0f;
+
+    println("_sqrt(", f, ") = ", customMath._sqrt(f));
+
+    base = 2.0f;
+    exponent = 3;
+
+    println("_pow(", base, ", ", exponent, ") = ", customMath._pow(base, exponent));
+
+    x = 2.0f;
+    y = 8.0f;
+
+    println("_occurrence(", x , ", " , y , ") = " , customMath._occurrence(x, y));
+
+    x = 10.0f;
+    y = 3.0f;
+    res = customMath._mod(x, y);
+    println("_mod(", x, ", ", y, ") = ", res);
+
+    xint = 5;
+
+    println("_fact(", x, ") = ", customMath._fact(xint));
+
+    f = -5.0f;
+
+    println("_abs(", f, ") = " , customMath._abs(f));
+}

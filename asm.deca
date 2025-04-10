@@ -1,0 +1,10 @@
+class A {
+   void error() asm("ERROR"); 
+}
+
+{
+   A a = new A();
+   a.error();
+   println("Erreur");
+}
+

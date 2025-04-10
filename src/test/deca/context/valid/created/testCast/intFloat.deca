@@ -1,0 +1,10 @@
+// Description :
+//    Faire un cast de float --> int
+//
+// Résultats :
+//   OK
+
+class A{
+    float x = 1.0;
+    int y = (int) (x);
+}

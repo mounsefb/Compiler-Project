@@ -1,0 +1,6 @@
+class A{
+    boolean isTrue(){}
+}
+class B extends A{
+    boolean isTrue(int x){}
+}

@@ -1,0 +1,10 @@
+// Description :
+//    Test de l'affichage de int et float avec printx
+//
+// Résultats :
+//    20x1.6cccccp+2
+{
+    int x = 2;
+    printx(x);
+    printx(5.7);
+} 

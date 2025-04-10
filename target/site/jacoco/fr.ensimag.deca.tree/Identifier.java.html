@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Identifier.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deca Compiler</a> &gt; <a href="index.source.html" class="el_package">fr.ensimag.deca.tree</a> &gt; <span class="el_source">Identifier.java</span></div><h1>Identifier.java</h1><pre class="source lang-java linenums">package fr.ensimag.deca.tree;
+
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.Definition;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.ExpDefinition;
+import fr.ensimag.deca.context.FieldDefinition;
+import fr.ensimag.deca.context.MethodDefinition;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.TypeDefinition;
+import fr.ensimag.deca.context.VariableDefinition;
+import fr.ensimag.deca.tools.DecacInternalError;
+import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.ima.pseudocode.NullOperand;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.PUSH;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
+
+import java.io.PrintStream;
+import org.apache.commons.lang.Validate;
+
+
+
+/**
+ * Deca Identifier
+ *
+ * @author gl01
+ * @date 01/01/2024
+ */
+public class Identifier extends AbstractIdentifier {
+    
+    @Override
+    protected void checkDecoration() {
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (getDefinition() == null) {</span>
+<span class="nc" id="L42">            throw new DecacInternalError(&quot;Identifier &quot; + this.getName() + &quot; has no attached Definition&quot;);</span>
+        }
+<span class="nc" id="L44">    }</span>
+
+    @Override
+    public Definition getDefinition() {
+<span class="fc" id="L48">        return definition;</span>
+    }
+
+    /**
+     * Like {@link #getDefinition()}, but works only if the definition is a
+     * ClassDefinition.
+     * 
+     * This method essentially performs a cast, but throws an explicit exception
+     * when the cast fails.
+     * 
+     * @throws DecacInternalError
+     *             if the definition is not a class definition.
+     */
+    @Override
+    public ClassDefinition getClassDefinition() {
+        try {
+<span class="nc" id="L64">            return (ClassDefinition) definition;</span>
+<span class="nc" id="L65">        } catch (ClassCastException e) {</span>
+<span class="nc" id="L66">            throw new DecacInternalError(</span>
+<span class="nc" id="L67">                    &quot;Identifier &quot;</span>
+<span class="nc" id="L68">                            + getName()</span>
+<span class="nc" id="L69">                            + &quot; is not a class identifier, you can't call getClassDefinition on it&quot;);</span>
+        }
+    }
+
+    /**
+     * Like {@link #getDefinition()}, but works only if the definition is a
+     * MethodDefinition.
+     * 
+     * This method essentially performs a cast, but throws an explicit exception
+     * when the cast fails.
+     * 
+     * @throws DecacInternalError
+     *             if the definition is not a method definition.
+     */
+    @Override
+    public MethodDefinition getMethodDefinition() {
+        try {
+<span class="fc" id="L86">            return (MethodDefinition) definition;</span>
+<span class="nc" id="L87">        } catch (ClassCastException e) {</span>
+<span class="nc" id="L88">            throw new DecacInternalError(</span>
+<span class="nc" id="L89">                    &quot;Identifier &quot;</span>
+<span class="nc" id="L90">                            + getName()</span>
+<span class="nc" id="L91">                            + &quot; is not a method identifier, you can't call getMethodDefinition on it&quot;);</span>
+        }
+    }
+
+    /**
+     * Like {@link #getDefinition()}, but works only if the definition is a
+     * FieldDefinition.
+     * 
+     * This method essentially performs a cast, but throws an explicit exception
+     * when the cast fails.
+     * 
+     * @throws DecacInternalError
+     *             if the definition is not a field definition.
+     */
+    @Override
+    public FieldDefinition getFieldDefinition() {
+        try {
+<span class="nc" id="L108">            return (FieldDefinition) definition;</span>
+<span class="nc" id="L109">        } catch (ClassCastException e) {</span>
+<span class="nc" id="L110">            throw new DecacInternalError(</span>
+<span class="nc" id="L111">                    &quot;Identifier &quot;</span>
+<span class="nc" id="L112">                            + getName()</span>
+<span class="nc" id="L113">                            + &quot; is not a field identifier, you can't call getFieldDefinition on it&quot;);</span>
+        }
+    }
+
+    /**
+     * Like {@link #getDefinition()}, but works only if the definition is a
+     * VariableDefinition.
+     * 
+     * This method essentially performs a cast, but throws an explicit exception
+     * when the cast fails.
+     * 
+     * @throws DecacInternalError
+     *             if the definition is not a field definition.
+     */
+    @Override
+    public VariableDefinition getVariableDefinition() {
+        try {
+<span class="nc" id="L130">            return (VariableDefinition) definition;</span>
+<span class="nc" id="L131">        } catch (ClassCastException e) {</span>
+<span class="nc" id="L132">            throw new DecacInternalError(</span>
+<span class="nc" id="L133">                    &quot;Identifier &quot;</span>
+<span class="nc" id="L134">                            + getName()</span>
+<span class="nc" id="L135">                            + &quot; is not a variable identifier, you can't call getVariableDefinition on it&quot;);</span>
+        }
+    }
+
+    /**
+     * Like {@link #getDefinition()}, but works only if the definition is a ExpDefinition.
+     * 
+     * This method essentially performs a cast, but throws an explicit exception
+     * when the cast fails.
+     * 
+     * @throws DecacInternalError
+     *             if the definition is not a field definition.
+     */
+    @Override
+    public ExpDefinition getExpDefinition() {
+        try {
+<span class="nc" id="L151">            return (ExpDefinition) definition;</span>
+<span class="nc" id="L152">        } catch (ClassCastException e) {</span>
+<span class="nc" id="L153">            throw new DecacInternalError(</span>
+<span class="nc" id="L154">                    &quot;Identifier &quot;</span>
+<span class="nc" id="L155">                            + getName()</span>
+<span class="nc" id="L156">                            + &quot; is not a Exp identifier, you can't call getExpDefinition on it&quot;);</span>
+        }
+    }
+
+    @Override
+    public void setDefinition(Definition definition) {
+<span class="fc" id="L162">        this.definition = definition;</span>
+<span class="fc" id="L163">    }</span>
+
+    @Override
+    public Symbol getName() {
+<span class="fc" id="L167">        return name;</span>
+    }
+
+    private Symbol name;
+
+<span class="fc" id="L172">    public Identifier(Symbol name) {</span>
+<span class="fc" id="L173">        Validate.notNull(name);</span>
+<span class="fc" id="L174">        this.name = name;</span>
+<span class="fc" id="L175">    }</span>
+
+    @Override
+    public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError {
+        
+<span class="fc" id="L180">        ExpDefinition ty =  localEnv.get(name);</span>
+
+<span class="fc bfc" id="L182" title="All 2 branches covered.">        if (ty==null){</span>
+<span class="fc" id="L183">            throw new ContextualError(&quot; The idenfitifier wasnt declared before&quot;, getLocation());</span>
+        }else{
+<span class="fc" id="L185">            this.setDefinition(ty);</span>
+<span class="fc" id="L186">            this.setType(ty.getType());</span>
+<span class="fc" id="L187">            return this.getType();</span>
+            }
+        
+    }
+
+    /**
+     * Implements non-terminal &quot;type&quot; of [SyntaxeContextuelle] in the 3 passes
+     * @param compiler contains &quot;env_types&quot; attribute
+     */
+
+    @Override
+    public Type verifyType(DecacCompiler compiler) throws ContextualError {
+        //throw new UnsupportedOperationException(&quot;not yet implemented&quot;);
+        
+        
+<span class="fc" id="L202">        TypeDefinition ty =  compiler.environmentType.defOfType(this.getName());</span>
+
+<span class="fc bfc" id="L204" title="All 2 branches covered.">        if (ty==null){</span>
+<span class="fc" id="L205">            throw new ContextualError(&quot;UnknownTypeException: The type does not exist in Deca. &quot;, getLocation());</span>
+        }else{
+<span class="fc" id="L207">            return compiler.environmentType.defOfType(this.getName()).getType();</span>
+        }
+    }
+    
+    
+    private Definition definition;
+
+
+    @Override
+    protected void iterChildren(TreeFunction f) {
+        // leaf node =&gt; nothing to do
+<span class="nc" id="L218">    }</span>
+
+    @Override
+    protected void prettyPrintChildren(PrintStream s, String prefix) {
+        // leaf node =&gt; nothing to do
+<span class="fc" id="L223">    }</span>
+
+    @Override
+    public void decompile(IndentPrintStream s) {
+<span class="nc" id="L227">        s.print(name.toString());</span>
+<span class="nc" id="L228">    }</span>
+
+    @Override
+    String prettyPrintNode() {
+<span class="fc" id="L232">        return &quot;Identifier (&quot; + getName() + &quot;)&quot;;</span>
+    }
+
+    @Override
+    protected void prettyPrintType(PrintStream s, String prefix) {
+<span class="fc" id="L237">        Definition d = getDefinition();</span>
+<span class="fc bfc" id="L238" title="All 2 branches covered.">        if (d != null) {</span>
+<span class="fc" id="L239">            s.print(prefix);</span>
+<span class="fc" id="L240">            s.print(&quot;definition: &quot;);</span>
+<span class="fc" id="L241">            s.print(d);</span>
+<span class="fc" id="L242">            s.println();</span>
+        }
+<span class="fc" id="L244">    }</span>
+    @Override
+    protected void codeGenPrint(DecacCompiler compiler) {
+<span class="nc bnc" id="L247" title="All 2 branches missed.">        if(definition.isField()){</span>
+<span class="nc" id="L248">            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(0)));</span>
+<span class="nc" id="L249">            compiler.addInstruction(new LOAD(new RegisterOffset(this.getFieldDefinition().getIndex(), Register.R0), Register.getR(1)));</span>
+
+<span class="nc" id="L251">        }else {</span>
+<span class="nc" id="L252">        compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(),Register.getR(1)));</span>
+        }
+<span class="nc" id="L254">        definition.getType().codeGenPrint(compiler);</span>
+
+<span class="nc" id="L256">    }</span>
+
+    @Override
+    protected void codeGenPrintX(DecacCompiler compiler) {
+<span class="nc bnc" id="L260" title="All 2 branches missed.">        if(definition.isField()){</span>
+<span class="nc" id="L261">            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(0)));</span>
+<span class="nc" id="L262">            compiler.addInstruction(new LOAD(new RegisterOffset(this.getFieldDefinition().getIndex(), Register.R0), Register.getR(1)));</span>
+
+<span class="nc" id="L264">        }else {</span>
+<span class="nc" id="L265">        compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(),Register.getR(1)));</span>
+        }
+<span class="nc" id="L267">        definition.getType().codeGenPrintX(compiler);</span>
+
+<span class="nc" id="L269">    }</span>
+
+
+    
+    @Override
+    protected void codeGenInst(DecacCompiler compiler) {
+<span class="nc bnc" id="L275" title="All 2 branches missed.">        if(definition.isField()){</span>
+<span class="nc" id="L276">            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(0)));</span>
+<span class="nc" id="L277">            compiler.addInstruction(new LOAD(new RegisterOffset(this.getFieldDefinition().getIndex(), Register.R0), Register.getR(compiler.getHandleMemory().registreToUse())));</span>
+
+<span class="nc" id="L279">        }else {</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">        if (compiler.getHandleMemory().getfull()+1&gt;compiler.getHandleMemory().getMaxFull()){</span>
+<span class="nc" id="L281">            compiler.addInstruction(new PUSH(Register.getR(compiler.getHandleMemory().getfull()))); </span>
+<span class="nc" id="L282">            compiler.getHandleMemory().incrementerpush();</span>
+<span class="nc" id="L283">            compiler.getHandleMemory().registerLiberate();</span>
+        }
+<span class="nc" id="L285">        compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(),Register.getR(compiler.getHandleMemory().registreToUse())));</span>
+    }
+<span class="nc" id="L287">    }</span>
+
+
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

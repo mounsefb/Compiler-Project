@@ -1,0 +1,11 @@
+// Description :
+//    Test invalide : Utilisation de l'instruction print avec un booléen
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 10: InstanceOfIncompatibilityException: The instanceof operation cannot be performed because the types are not compatible (Not of type class or null).
+
+{
+    int x;
+    boolean instance = x instanceof int;
+}

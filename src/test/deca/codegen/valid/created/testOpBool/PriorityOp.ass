@@ -1,0 +1,288 @@
+	TSTO #14
+	BOV stack_overflow_error
+	ADDSP #27
+; start main program
+; Main program
+; Beginning of main instructions:
+	LOAD #0x1.0p1, R2
+	STORE R2, 1(GB)
+	LOAD #0x1.8p1, R2
+	STORE R2, 2(GB)
+	LOAD #0x1.0p2, R2
+	STORE R2, 3(GB)
+	LOAD #0x1.4p2, R2
+	STORE R2, 4(GB)
+	LOAD 1(GB), R2
+	LOAD 2(GB), R3
+	CMP R3, R2
+	BGT greater1
+	LOAD #0, R2
+	BRA notGreater1
+greater1:
+	LOAD #1, R2
+notGreater1:
+	LOAD 3(GB), R3
+	LOAD 4(GB), R4
+	CMP R4, R3
+	BLT lower2
+	LOAD #0, R3
+	BRA notLower2
+lower2:
+	LOAD #1, R3
+notLower2:
+	MUL R3, R2
+	STORE R2, 5(GB)
+	LOAD 1(GB), R2
+	LOAD 2(GB), R3
+	CMP R3, R2
+	BEQ eq5
+	LOAD #0, R2
+	BRA not_eq5
+eq5:
+	LOAD #1, R2
+not_eq5:
+	CMP #0, R2
+	BEQ debutNot4
+	LOAD #0, R2
+	BRA endnot4
+debutNot4:
+	LOAD #1, R2
+endnot4:
+	LOAD 3(GB), R3
+	LOAD 4(GB), R4
+	CMP R4, R3
+	BGE greater_or_eq6
+	LOAD #0, R3
+	BRA not_greater_or_eq6
+greater_or_eq6:
+	LOAD #1, R3
+not_greater_or_eq6:
+	ADD R3, R2
+	CMP #2, R2
+	BEQ equal_or3
+	BRA notequal_or3
+equal_or3:
+	SUB #1, R2
+notequal_or3:
+	STORE R2, 6(GB)
+	LOAD 5(GB), R2
+	LOAD 6(GB), R3
+	MUL R3, R2
+	LOAD 1(GB), R3
+	LOAD 2(GB), R4
+	CMP R4, R3
+	BNE not_equal8
+	LOAD #0, R3
+	BRA equal8
+not_equal8:
+	LOAD #1, R3
+equal8:
+	LOAD 3(GB), R4
+	LOAD 4(GB), R5
+	CMP R5, R4
+	BLE lower_or_equal10
+	LOAD #0, R4
+	BRA not_lower_or_eq10
+lower_or_equal10:
+	LOAD #1, R4
+not_lower_or_eq10:
+	CMP #0, R4
+	BEQ debutNot9
+	LOAD #0, R4
+	BRA endnot9
+debutNot9:
+	LOAD #1, R4
+endnot9:
+	MUL R4, R3
+	ADD R3, R2
+	CMP #2, R2
+	BEQ equal_or7
+	BRA notequal_or7
+equal_or7:
+	SUB #1, R2
+notequal_or7:
+	STORE R2, 7(GB)
+	LOAD 7(GB), R2
+	LOAD 1(GB), R3
+	LOAD 2(GB), R4
+	MUL R4, R3
+	BOV overflow_error
+	LOAD 3(GB), R4
+	LOAD 4(GB), R5
+	ADD R5, R4
+	BOV overflow_error
+	CMP R4, R3
+	BGT greater12
+	LOAD #0, R3
+	BRA notGreater12
+greater12:
+	LOAD #1, R3
+notGreater12:
+	LOAD 1(GB), R4
+	LOAD 2(GB), R5
+	DIV R5, R4
+	BOV overflow_error
+	LOAD 3(GB), R5
+	LOAD 4(GB), R6
+	SUB R6, R5
+	BOV overflow_error
+	CMP R5, R4
+	BLE lower_or_equal14
+	LOAD #0, R4
+	BRA not_lower_or_eq14
+lower_or_equal14:
+	LOAD #1, R4
+not_lower_or_eq14:
+	CMP #0, R4
+	BEQ debutNot13
+	LOAD #0, R4
+	BRA endnot13
+debutNot13:
+	LOAD #1, R4
+endnot13:
+	ADD R4, R3
+	CMP #2, R3
+	BEQ equal_or11
+	BRA notequal_or11
+equal_or11:
+	SUB #1, R3
+notequal_or11:
+	MUL R3, R2
+	STORE R2, 8(GB)
+	LOAD 8(GB), R2
+	LOAD 1(GB), R3
+	LOAD 2(GB), R4
+	LOAD 3(GB), R5
+	MUL R5, R4
+	BOV overflow_error
+	ADD R4, R3
+	BOV overflow_error
+	LOAD 4(GB), R4
+	LOAD 1(GB), R5
+	DIV R5, R4
+	BOV overflow_error
+	CMP R4, R3
+	BGE greater_or_eq16
+	LOAD #0, R3
+	BRA not_greater_or_eq16
+greater_or_eq16:
+	LOAD #1, R3
+not_greater_or_eq16:
+	LOAD 2(GB), R4
+	LOAD #0x1.19999ap0, R5
+	CMP R5, R4
+	BNE not_equal18
+	LOAD #0, R4
+	BRA equal18
+not_equal18:
+	LOAD #1, R4
+equal18:
+	CMP #0, R4
+	BEQ debutNot17
+	LOAD #0, R4
+	BRA endnot17
+debutNot17:
+	LOAD #1, R4
+endnot17:
+	MUL R4, R3
+	ADD R3, R2
+	CMP #2, R2
+	BEQ equal_or15
+	BRA notequal_or15
+equal_or15:
+	SUB #1, R2
+notequal_or15:
+	STORE R2, 9(GB)
+	LOAD 5(GB), R2
+	CMP #1, R2
+	BNE else19
+then19:
+	LOAD #1, R1
+	WINT
+	WNL
+	BRA end_If19
+else19:
+end_If19:
+	LOAD 6(GB), R2
+	CMP #1, R2
+	BNE else20
+then20:
+	LOAD #2, R1
+	WINT
+	WNL
+	BRA end_If20
+else20:
+end_If20:
+	LOAD 7(GB), R2
+	CMP #1, R2
+	BNE else21
+then21:
+	LOAD #3, R1
+	WINT
+	WNL
+	BRA end_If21
+else21:
+end_If21:
+	LOAD 8(GB), R2
+	CMP #1, R2
+	BNE else22
+then22:
+	LOAD #4, R1
+	WINT
+	WNL
+	BRA end_If22
+else22:
+end_If22:
+	LOAD 9(GB), R2
+	CMP #1, R2
+	BNE else23
+then23:
+	LOAD #5, R1
+	WINT
+	WNL
+	BRA end_If23
+else23:
+end_If23:
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+; code des méthodes
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

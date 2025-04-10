@@ -1,0 +1,18 @@
+// Description :
+//    declaration d'une classe et Instanciation d'un objet et application d'une méthode :
+//
+// Résultats :
+//    ok
+
+
+class Person {
+
+    void introduce() {
+        print("Je m'appelle Alice et j'ai 22 ans.");
+    }
+}
+
+{
+    person = new Person();
+    person.introduce();
+}

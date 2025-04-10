@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : Déclaration de type de retour de fonction invalide regle (0.2)
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 9: InvalidTypeDeclarationException: Cannot declare a variable of type void.
+
+{
+    void t;
+}

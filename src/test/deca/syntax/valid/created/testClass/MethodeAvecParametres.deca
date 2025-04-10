@@ -1,0 +1,19 @@
+// Description :
+//    Méthode d'une classe ave paramètres 
+//
+// Résultats :
+//    ok
+
+
+class Point2D {
+
+     float x;
+     float y;
+
+
+    void translate (int a , float b){
+        x = x + a;
+        y = y + b;
+    }
+    
+}

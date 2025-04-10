@@ -1,0 +1,11 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 10: DoubleMethodDeclarationException: The method couldn't be declared because it has already been defined.
+
+class A{
+    int getX(){}
+    int getX(){}
+}

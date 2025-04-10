@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : Tentative de déclaration d'une variable de type STRING regle (0.2)
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 9: UnknownTypeException: The type does not exist in Deca.
+
+{
+    string z;
+}

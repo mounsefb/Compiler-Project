@@ -1,0 +1,12 @@
+class MyClass {
+    int x;
+    int y=5;
+    void printvar() {
+        //println(x);
+        //println(y);
+        }
+}
+{
+    MyClass myObject = new MyClass();
+    //myObject.print();
+}

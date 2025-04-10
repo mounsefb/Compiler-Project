@@ -1,0 +1,13 @@
+// Description :
+//    Test de l'affichage d'une variable float résultant d'une opération arithmétique
+//
+// Résultats :
+//    OK
+
+
+{
+    float y = -5.3 * 7;
+    println(y);
+}
+
+

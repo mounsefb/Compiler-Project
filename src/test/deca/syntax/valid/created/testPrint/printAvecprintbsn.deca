@@ -1,0 +1,9 @@
+// Description :
+//    Test de l'affichage d'une chaîne de caractères avec un double backslash n
+//
+// Résultats :
+//    ok
+
+{
+    print("\\n");
+}

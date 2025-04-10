@@ -1,0 +1,202 @@
+; start main program
+	TSTO #6
+	BOV stack_overflow_error
+	ADDSP #6
+; Main program
+; Beginning of main instructions:
+	LOAD #0x0.0p0, R2
+	STORE R2, 1(GB)
+	LOAD #0x1.0p0, R2
+	STORE R2, 2(GB)
+	LOAD #0x1.0p0, R2
+	OPP R2, R2
+	STORE R2, 3(GB)
+	LOAD #0x1.6fc2ecp-1, R2
+	STORE R2, 4(GB)
+Debut_while1:
+	LOAD 2(GB), R2
+	LOAD 1(GB), R3
+	PUSH R3
+	LOAD #0x1.0p-23, R3
+	ADD 0(SP), R3
+	BOV overflow_error
+	POP R0
+	CMP R3, R2
+	BGE greater_or_eq2
+	LOAD #0, R2
+	BRA not_greater_or_eq2
+greater_or_eq2:
+	LOAD #1, R2
+not_greater_or_eq2:
+	CMP #0, R2
+	BEQ Fin_while1
+	LOAD 1(GB), R2
+	LOAD 2(GB), R3
+	ADD R3, R2
+	BOV overflow_error
+	LOAD #0x1.0p1, R3
+	DIV R3, R2
+	BOV overflow_error
+	STORE R2, 5(GB)
+	LOAD 5(GB), R2
+	LOAD 5(GB), R3
+	PUSH R3
+	LOAD 5(GB), R3
+	PUSH R3
+	LOAD 5(GB), R3
+	PUSH R3
+	LOAD 5(GB), R3
+	PUSH R3
+	LOAD 5(GB), R3
+	PUSH R3
+	LOAD 5(GB), R3
+	PUSH R3
+	LOAD #0x1.0p0, R3
+	PUSH R3
+	LOAD #0x1.3bp12, R3
+	PUSH R3
+	LOAD -1(SP), R3
+	DIV 0(SP), R3
+	BOV overflow_error
+	POP R0
+	POP R0
+	MUL 0(SP), R3
+	BOV overflow_error
+	POP R0
+	PUSH R3
+	LOAD #0x1.0p0, R3
+	PUSH R3
+	LOAD #0x1.68p9, R3
+	PUSH R3
+	LOAD -1(SP), R3
+	DIV 0(SP), R3
+	BOV overflow_error
+	POP R0
+	POP R0
+	ADD 0(SP), R3
+	BOV overflow_error
+	POP R0
+	MUL 0(SP), R3
+	BOV overflow_error
+	POP R0
+	PUSH R3
+	LOAD #0x1.0p0, R3
+	PUSH R3
+	LOAD #0x1.ep6, R3
+	PUSH R3
+	LOAD -1(SP), R3
+	DIV 0(SP), R3
+	BOV overflow_error
+	POP R0
+	POP R0
+	ADD 0(SP), R3
+	BOV overflow_error
+	POP R0
+	MUL 0(SP), R3
+	BOV overflow_error
+	POP R0
+	PUSH R3
+	LOAD #0x1.0p0, R3
+	PUSH R3
+	LOAD #0x1.8p4, R3
+	PUSH R3
+	LOAD -1(SP), R3
+	DIV 0(SP), R3
+	BOV overflow_error
+	POP R0
+	POP R0
+	ADD 0(SP), R3
+	BOV overflow_error
+	POP R0
+	MUL 0(SP), R3
+	BOV overflow_error
+	POP R0
+	PUSH R3
+	LOAD #0x1.0p0, R3
+	PUSH R3
+	LOAD #0x1.8p2, R3
+	PUSH R3
+	LOAD -1(SP), R3
+	DIV 0(SP), R3
+	BOV overflow_error
+	POP R0
+	POP R0
+	ADD 0(SP), R3
+	BOV overflow_error
+	POP R0
+	MUL 0(SP), R3
+	BOV overflow_error
+	POP R0
+	PUSH R3
+	LOAD #0x1.0p0, R3
+	PUSH R3
+	LOAD #0x1.0p1, R3
+	PUSH R3
+	LOAD -1(SP), R3
+	DIV 0(SP), R3
+	BOV overflow_error
+	POP R0
+	POP R0
+	ADD 0(SP), R3
+	BOV overflow_error
+	POP R0
+	MUL 0(SP), R3
+	BOV overflow_error
+	POP R0
+	PUSH R3
+	LOAD #0x1.0p0, R3
+	ADD 0(SP), R3
+	BOV overflow_error
+	POP R0
+	MUL R3, R2
+	BOV overflow_error
+	LOAD #1, R3
+	FLOAT R3, R3
+	SUB R3, R2
+	BOV overflow_error
+	STORE R2, 6(GB)
+	LOAD 6(GB), R2
+	LOAD #0x0.0p0, R3
+	CMP R3, R2
+	BGT greater4
+	LOAD #0, R2
+	BRA notGreater4
+greater4:
+	LOAD #1, R2
+notGreater4:
+	CMP #1, R2
+	BNE else4
+then4:
+	LOAD 5(GB), R2
+	STORE R2, 2(GB)
+	LOAD 6(GB), R2
+	STORE R2, 4(GB)
+	BRA end_If4
+else4:
+	LOAD 5(GB), R2
+	STORE R2, 1(GB)
+	LOAD 6(GB), R2
+	STORE R2, 3(GB)
+end_If4:
+	BRA Debut_while1
+Fin_while1:
+	LOAD 1(GB), R1
+	WFLOAT
+	WSTR " = "
+	LOAD 1(GB), R1
+	WFLOATX
+	WNL
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR

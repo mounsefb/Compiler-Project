@@ -1,0 +1,14 @@
+// Description :
+//    Test de la valeur absolue de f
+//
+// Resultats :
+//    5.0
+
+#include "Math.decah"
+
+{
+    Math customMath = new Math();
+    float f = -5.0f;
+
+    println("_abs(", f, ") = " , customMath._abs(f));
+}

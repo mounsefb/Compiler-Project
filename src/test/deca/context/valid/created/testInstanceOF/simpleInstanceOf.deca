@@ -1,0 +1,16 @@
+// Description :
+//    Test d'iinstanceOf
+//
+// Résultats :
+//    ok
+
+class A{}
+{
+    A x = null;
+    if(x instanceof A){
+        println("OK");
+    }
+    else{
+        println("Oups");
+    }
+}

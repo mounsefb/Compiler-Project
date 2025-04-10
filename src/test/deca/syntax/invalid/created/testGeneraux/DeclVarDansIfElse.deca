@@ -1,0 +1,14 @@
+// Description :
+//    Test invalide : Déclaration de variable dans une portée inexistante
+//
+// Résultats :
+//    Erreur syntaxique
+//    Ligne 12: no viable alternative at input 'z'
+
+{
+    int x;
+    x = readInt();
+    if(x == 1){
+        int z = 1; // Ligne 6: Variable 'z' is declared in an unreachable code block.
+    }
+}

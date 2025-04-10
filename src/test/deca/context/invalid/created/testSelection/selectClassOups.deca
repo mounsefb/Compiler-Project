@@ -1,0 +1,17 @@
+// Description :
+//    Test invalide : Utilisation de l'instruction print avec un booléen
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 12: NonClassObjectSelectionException: The selected object is not a class.
+
+class A{
+    int x;
+    A y;
+    void setA(A a){
+        x.y = a;
+    }
+}
+
+{ 
+}

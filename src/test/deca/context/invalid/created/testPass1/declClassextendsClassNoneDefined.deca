@@ -1,0 +1,8 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 8: UnknownTypeException: The type does not exist in Deca.
+
+class A extends B{}

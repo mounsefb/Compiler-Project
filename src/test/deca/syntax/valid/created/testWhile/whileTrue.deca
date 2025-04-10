@@ -1,0 +1,13 @@
+// Description :
+//    Test d'une boucle while avec une condition toujours vraie (boucle infinie)
+//
+// Résultats :
+//    Ok
+
+{
+    int x;
+    x = 2;
+    while (true) {
+        x = x - 1;
+    }
+}

@@ -1,0 +1,12 @@
+// Description :
+//    Test des opérations arithmétiques avec des valeurs de type float et assignation à une variable de type float
+//
+// Resultats :
+//    Ok
+
+{
+    float y = 1.0 + 2 - 2.5 - 1 + 10 * 5.2 / 10;
+    float x;
+    x = 1.0 + 2 - 2.5 - 1 + 10 * 5.2 / 10;
+    println(x);
+}

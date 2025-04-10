@@ -1,0 +1,14 @@
+// Description :
+//    Test de l'opérateur de comparaison ==
+//    Meme chose pour != 
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 13: IncompatibleTypesException: Cannot compare elements with different types. Ensure that the operands have the same type for the comparison operation. 
+
+
+{
+    int x = 1;
+    int y = 2;
+    boolean z1 = 1 == x == y == 2;
+}

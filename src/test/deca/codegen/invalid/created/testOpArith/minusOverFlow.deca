@@ -1,0 +1,12 @@
+// Description:
+//    Affectation et typage
+//
+// Resultats:
+//    Ligne 12: Error: Overflow during arithmetic operation
+// 
+
+
+{
+    int alpha  = -2147483647; 
+    int gamma = alpha-2 ;
+}

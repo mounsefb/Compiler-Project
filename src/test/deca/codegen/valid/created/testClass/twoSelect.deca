@@ -1,0 +1,23 @@
+class B {
+    int value;
+
+    void method2() {
+        println("Inside method2");
+    }
+}
+
+class A {
+    B objB;
+
+    void method1() {
+        println("Inside method1");
+        objB = new B();
+    }
+}
+
+
+{
+    A objA = new A();
+    objA.method1();
+    objA.objB.method2();
+}

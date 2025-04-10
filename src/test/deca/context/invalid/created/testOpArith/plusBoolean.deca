@@ -1,0 +1,12 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 11: IncompatibleTypesException: Only float or int types are accepted for this operation.
+
+{
+    boolean a = false; 
+    boolean b = true;
+    b = a + b;  // Opération d'addition sur des booléens non autorisée
+}

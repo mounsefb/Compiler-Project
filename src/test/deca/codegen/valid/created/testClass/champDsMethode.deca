@@ -1,0 +1,7 @@
+class MyClass {
+    int x;
+
+    void myMethod() {
+        x = 42;
+    }
+}

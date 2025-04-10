@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : Utilisation de l'instruction print avec une variable non initialisée
+//
+// Résultats :
+//    ok
+
+{
+    int x;
+    print(x);  
+}

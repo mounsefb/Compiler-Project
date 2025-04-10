@@ -1,0 +1,34 @@
+// Description :
+//    test du Override d'une methode 
+//
+// Résultats :
+//    ok
+
+
+
+
+class Animal {
+    void crier() {
+        println("Certains animaux font du bruit.");
+    }
+}
+
+class Chien extends Animal {
+    // On n'ecrit pas @Override comme en Java
+    void crier() {
+        println("Le chien aboie.");
+    }
+
+}
+
+ {
+    
+        Animal animal = new Animal();
+        Chien chien = new Chien();
+        Animal animalPolymorphe = new Chien();
+
+        animal.crier(); 
+        chien.crier(); 
+        animalPolymorphe.crier(); 
+    
+}

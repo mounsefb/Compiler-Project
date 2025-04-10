@@ -1,0 +1,140 @@
+	TSTO #11
+	BOV stack_overflow_error
+	ADDSP #24
+; start main program
+; Main program
+; Beginning of main instructions:
+	LOAD #0, R2
+	STORE R2, 2(GB)
+	LOAD #1, R2
+	STORE R2, 3(GB)
+	LOAD #2, R2
+	STORE R2, 4(GB)
+	LOAD #1, R2
+	STORE R2, 6(GB)
+Debut_while1:
+	LOAD 6(GB), R2
+	CMP #0, R2
+	BEQ Fin_while1
+	LOAD #43, R2
+	STORE R2, 1(GB)
+	LOAD 1(GB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BLT lower3
+	LOAD #0, R2
+	BRA notLower3
+lower3:
+	LOAD #1, R2
+notLower3:
+	CMP #1, R2
+	BNE else3
+then3:
+	WSTR "Erreur "
+	WNL
+	WSTR "Re entrer un entier non nul"
+	BRA end_If3
+else3:
+	LOAD 1(GB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BEQ eq5
+	LOAD #0, R2
+	BRA not_eq5
+eq5:
+	LOAD #1, R2
+not_eq5:
+	CMP #1, R2
+	BNE else5
+then5:
+	WSTR "Le "
+	LOAD 1(GB), R1
+	WINT
+	WSTR " element de la suite de fibo est 0"
+	WNL
+	LOAD #0, R2
+	STORE R2, 6(GB)
+	BRA end_If5
+else5:
+	LOAD #0, R2
+	STORE R2, 6(GB)
+Debut_while6:
+	LOAD 4(GB), R2
+	LOAD 1(GB), R3
+	CMP R3, R2
+	BLE lower_or_equal7
+	LOAD #0, R2
+	BRA not_lower_or_eq7
+lower_or_equal7:
+	LOAD #1, R2
+not_lower_or_eq7:
+	CMP #0, R2
+	BEQ Fin_while6
+	LOAD 2(GB), R2
+	LOAD 3(GB), R3
+	ADD R3, R2
+	STORE R2, 5(GB)
+	LOAD 3(GB), R2
+	STORE R2, 2(GB)
+	LOAD 5(GB), R2
+	STORE R2, 3(GB)
+	LOAD 4(GB), R2
+	LOAD #1, R3
+	ADD R3, R2
+	STORE R2, 4(GB)
+	BRA Debut_while6
+Fin_while6:
+	WSTR "Le "
+	LOAD 1(GB), R1
+	WINT
+	WSTR " de la suite de Fibo est: \n"
+	LOAD 3(GB), R1
+	WINT
+	WNL
+end_If5:
+end_If3:
+	BRA Debut_while1
+Fin_while1:
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+; code des méthodes
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

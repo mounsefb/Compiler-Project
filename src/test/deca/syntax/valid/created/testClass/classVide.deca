@@ -1,0 +1,10 @@
+// Description :
+//    Test d'une classe sans attributs ni méthodes et n'hérite aucune autre classe
+//
+// Résultats :
+//    ok
+
+
+class A{
+    
+}

@@ -1,0 +1,10 @@
+// Description :
+//    Class vide sans methodes ni attributs 
+//
+// Résultats :
+//    ok
+
+
+class A{
+    
+}

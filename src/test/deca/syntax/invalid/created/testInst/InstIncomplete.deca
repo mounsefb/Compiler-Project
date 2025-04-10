@@ -1,0 +1,11 @@
+// Description :
+//    Test invalide : Programme incorrect lexicalement (chaîne non terminée)
+//
+// Résultats :
+//    Erreur syntaxique
+//    Ligne 9: missing ')' at ';'
+
+{
+    println(;
+}
+

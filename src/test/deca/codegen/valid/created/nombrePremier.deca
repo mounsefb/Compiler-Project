@@ -1,0 +1,81 @@
+// Description :
+//    Le programme principal crée une instance de Prime et teste la primalité de deux nombres, 
+//    affichant des messages appropriés en conséquence.
+//
+// Résultats :
+//    OK
+
+#include "Math.decah"
+
+/*
+class Math{
+    float customAbs(float num) {
+        if (num >= 0) {
+            return num;
+        } else {
+            return -num;
+        }
+    }
+    float sqrt(int num){
+        float guess = num/2.0f;
+        float epsilon = 1.0e-7f; // Tolérance pour la précision
+        while (customAbs(guess * guess - num) > epsilon * guess) {
+            guess = (num / guess + guess) / 2.0f;
+        }
+        return guess;
+    }
+}*/
+
+class Prime {
+    Math customMath = new Math();
+    int num;
+    void setNum(int x){
+        this.num = x;
+    }
+    int getNum(){
+        return num;
+    }
+    boolean isPrime(){
+        int i = 2;
+        if (num < 2) {
+        return false;
+        }
+        while (i <= customMath._sqrt(num)) {
+            if (num % i == 0) {
+                return false;
+            }
+            i = i + 1;
+        }
+        return true;
+    }
+}
+
+{
+    Prime primeNumber = new Prime();
+    primeNumber.setNum(10);
+    if(primeNumber.isPrime()){
+        println("Ohoh ", primeNumber.getNum(), " Is not a prime number");
+    }
+    else{
+        println("Super ", primeNumber.getNum(), " Is not a prime number");
+    }
+    primeNumber.setNum(2297);
+        if(!primeNumber.isPrime()){
+        println("Ohoh ", primeNumber.getNum(), " Is a prime number");
+    }
+    else{
+        println("Super ", primeNumber.getNum(), " Is a prime number");
+    }
+    while(primeNumber.getNum()>0){
+    primeNumber.setNum(readInt());
+        if(!primeNumber.isPrime()){
+        println("Ohoh ", primeNumber.getNum(), " Is a prime number");
+    }
+    else{
+        println("Super ", primeNumber.getNum(), " Is a prime number");
+    }
+    }
+
+
+    
+}

@@ -1,0 +1,13 @@
+// Description :
+//    Teste de la conversion au type float pour l'affectation
+//
+// Résultats :
+//    ok
+
+{
+    int a;
+    float b;
+    a = 1;
+    b = a;
+}
+

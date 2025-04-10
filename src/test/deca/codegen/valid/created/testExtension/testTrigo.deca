@@ -1,0 +1,17 @@
+// Description :
+//    Test d'une équation complexe impliquant cos, sin, atan, et asin
+//
+// Résultats attendus :
+//    Résultat de l'équation
+
+#include "Math.decah"
+
+{
+    Math customMath = new Math();
+    float x = 1.0f;
+    float y = 0.5f;
+
+    float equationResult = customMath.cos(x) + customMath.sin(y) * customMath.atan(x + y) - customMath.asin(1/customMath._sqrt(x * x + y * y));
+
+    println("Résultat de l'équation : ", equationResult);
+}

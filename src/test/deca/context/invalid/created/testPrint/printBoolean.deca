@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : Utilisation de l'instruction print avec un booléen
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 9: InvalidPrintTypeException: The type provided as an argument to the print function is invalid. Only int, string, or float types are allowed.
+
+{
+    print(true); 
+}

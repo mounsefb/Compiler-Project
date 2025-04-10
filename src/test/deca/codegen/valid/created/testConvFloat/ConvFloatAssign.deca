@@ -1,0 +1,17 @@
+// Description :
+//    Teste de la conversion au type float pour l'affectation
+//
+// Résultats :
+//    1
+//    1.00000e+00
+
+
+{
+    int a;
+    float b;
+    a = 1;
+    b = a;
+    println(a);
+    println(b);
+}
+

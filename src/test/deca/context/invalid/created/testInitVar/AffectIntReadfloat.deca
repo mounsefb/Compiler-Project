@@ -1,0 +1,11 @@
+// Description :
+//    Test invalide : Tentative de déclaration d'une variable de type STRING
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 9: Incompatibilité de type lors de l'assignation. Type attendu : int, Type obtenu : Float
+
+
+{
+    int x = readFloat();
+}

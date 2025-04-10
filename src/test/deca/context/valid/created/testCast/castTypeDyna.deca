@@ -1,0 +1,13 @@
+// Description :
+//    Faire une conversion de type sans que le type statique ou dynamique ne soit compatible -- Ca doit passer la compilation 
+//
+// Résultats :
+//   OK
+
+class UneClasse {}
+class DeuxClasses  {}
+
+{
+    Object v = new UneClasse(); // Supposons que v soit de type Object
+    DeuxClasses result = (DeuxClasses) (v);
+}

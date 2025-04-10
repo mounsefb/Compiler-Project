@@ -1,0 +1,10 @@
+/home/mounsef/Documents/PhelmaS7/Projet_GL/gl01/src/test/java/fr/ensimag/deca/tree/ManualTestInitialGencode.java
+/home/mounsef/Documents/PhelmaS7/Projet_GL/gl01/src/test/java/fr/ensimag/deca/syntax/ManualTestSynt.java
+/home/mounsef/Documents/PhelmaS7/Projet_GL/gl01/src/test/java/fr/ensimag/deca/context/ManualTestContext.java
+/home/mounsef/Documents/PhelmaS7/Projet_GL/gl01/src/test/java/fr/ensimag/deca/context/TestPlusWithoutMock.java
+/home/mounsef/Documents/PhelmaS7/Projet_GL/gl01/src/test/java/fr/ensimag/deca/tools/EnvironnementExpTest.java
+/home/mounsef/Documents/PhelmaS7/Projet_GL/gl01/src/test/java/fr/ensimag/deca/syntax/ManualTestLex.java
+/home/mounsef/Documents/PhelmaS7/Projet_GL/gl01/src/test/java/fr/ensimag/deca/context/TestPlusPlain.java
+/home/mounsef/Documents/PhelmaS7/Projet_GL/gl01/src/test/java/fr/ensimag/deca/context/TestPlusAdvanced.java
+/home/mounsef/Documents/PhelmaS7/Projet_GL/gl01/src/test/java/fr/ensimag/deca/tools/ManualTestSymbol.java
+/home/mounsef/Documents/PhelmaS7/Projet_GL/gl01/src/test/java/fr/ensimag/deca/tools/SymbolTest.java

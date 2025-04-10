@@ -1,0 +1,6 @@
+class A{
+    void setX(){}
+}
+class B extends A{
+    void setX(int x)
+}

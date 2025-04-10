@@ -1,0 +1,11 @@
+// Description :
+//    Vérification pour s'assurer que d a une place en mémoire même sans initialisation explicite
+//
+// Résultats :
+//    ok
+
+{
+    int a = 1;  
+    int d;
+    int c = 5;
+}

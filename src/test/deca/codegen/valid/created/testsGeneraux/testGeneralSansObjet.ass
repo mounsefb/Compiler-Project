@@ -1,0 +1,163 @@
+	TSTO #9
+	BOV stack_overflow_error
+	ADDSP #22
+; start main program
+; Main program
+; Beginning of main instructions:
+	LOAD #5, R2
+	STORE R2, 1(GB)
+	LOAD #10, R2
+	STORE R2, 2(GB)
+	LOAD #1, R2
+	STORE R2, 3(GB)
+	LOAD #0x1.91eb86p1, R2
+	STORE R2, 4(GB)
+	LOAD 1(GB), R1
+	WINT
+	WNL
+	LOAD 2(GB), R1
+	WINT
+	WNL
+	LOAD 4(GB), R1
+	WFLOAT
+	WNL
+Debut_while1:
+	LOAD 1(GB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BGT greater2
+	LOAD #0, R2
+	BRA notGreater2
+greater2:
+	LOAD #1, R2
+notGreater2:
+	CMP #0, R2
+	BEQ Fin_while1
+	LOAD 1(GB), R1
+	WINT
+	WNL
+	LOAD 1(GB), R2
+	LOAD #1, R3
+	SUB R3, R2
+	STORE R2, 1(GB)
+	BRA Debut_while1
+Fin_while1:
+	LOAD 2(GB), R2
+	LOAD #5, R3
+	CMP R3, R2
+	BGT greater4
+	LOAD #0, R2
+	BRA notGreater4
+greater4:
+	LOAD #1, R2
+notGreater4:
+	CMP #1, R2
+	BNE else4
+then4:
+	WSTR "b est supérieur à 5"
+	WNL
+	BRA end_If4
+else4:
+	WSTR "b n'est pas supérieur à 5"
+	WNL
+end_If4:
+	LOAD 2(GB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BLT lower6
+	LOAD #0, R2
+	BRA notLower6
+lower6:
+	LOAD #1, R2
+notLower6:
+	CMP #1, R2
+	BNE else6
+then6:
+	WSTR "b est inférieur à 0"
+	WNL
+	BRA end_If6
+else6:
+	WSTR "b est positif"
+	WNL
+end_If6:
+	LOAD 2(GB), R2
+	LOAD #17, R3
+	CMP R3, R2
+	BGT greater8
+	LOAD #0, R2
+	BRA notGreater8
+greater8:
+	LOAD #1, R2
+notGreater8:
+	CMP #1, R2
+	BNE else8
+then8:
+	WSTR "b est supérieur à 17"
+	WNL
+	BRA end_If8
+else8:
+	LOAD 2(GB), R2
+	LOAD #10, R3
+	CMP R3, R2
+	BEQ eq10
+	LOAD #0, R2
+	BRA not_eq10
+eq10:
+	LOAD #1, R2
+not_eq10:
+	CMP #1, R2
+	BNE else10
+then10:
+	WSTR "b est égale à "
+	LOAD 2(GB), R1
+	WINT
+	WNL
+	BRA end_If10
+else10:
+	WSTR "b n'est pas supérieur à 17"
+	WNL
+end_If10:
+end_If8:
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+; code des méthodes
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

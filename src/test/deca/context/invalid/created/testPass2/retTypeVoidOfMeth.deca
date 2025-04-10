@@ -1,0 +1,19 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 17: VoidReturnTypeException: The return type of the method cannot be void.
+
+class A{
+    int x;
+    void setX(int x){
+        this.x=x;
+    }
+    int getX(){
+        return 10;
+    }
+    void ShouldntReturn(){
+        return 10;
+    }
+}

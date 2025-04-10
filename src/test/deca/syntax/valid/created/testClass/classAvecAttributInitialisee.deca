@@ -1,0 +1,14 @@
+// Description :
+//    Test d'une classe sans attributs ni méthodes hérite Object explicitement
+//
+// Résultats :
+//    ok
+
+
+class gl01 {
+
+    float x = 3.14;
+    protected int r ;
+    boolean q = false;
+
+}

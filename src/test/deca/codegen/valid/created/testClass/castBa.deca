@@ -1,0 +1,28 @@
+class A {
+    void printclass() {
+        println("Class A");
+    }
+}
+
+class B extends A {
+    void printclass() {
+        println("Class B");
+    }
+}
+
+class C extends B {
+    void printclass() {
+        println("Class C");
+    }
+}
+{
+    B b = new B();
+    C c = new C();
+
+    A a = (A) (b);
+    B b1 = (B) (c);
+
+    a.printclass();
+    //objC.printclass();
+
+}

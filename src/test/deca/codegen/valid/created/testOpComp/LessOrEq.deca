@@ -1,0 +1,13 @@
+// Description :
+//    Test de l'opérateur de comparaison <=
+//
+// Résultats :
+//    
+
+
+{
+    int x = 8;
+    int y = 12;
+    boolean z1 = x <= y;
+    boolean z2 = y <= 12;
+}

@@ -1,0 +1,8 @@
+// Description :
+// on teste un grand nombre d'oprations 
+// Résultats :
+//    -9.45380e+03
+{
+    float x =  1.2 + 25 - 69 * 52 / 56 * 2 + 65 - 95 * 52 / 85 + 62 - 95 * 52 / 52 / 88 - 95 * 56 + 325 / 522 * 6500 - 820 * 100 / 20;
+    println(x);
+}

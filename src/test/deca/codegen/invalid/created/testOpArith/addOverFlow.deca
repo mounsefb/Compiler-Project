@@ -1,0 +1,15 @@
+// Description:
+//    Affectation et typage
+//
+// Resultats:
+//    Ligne 13:  Error: Overflow during arithmetic operation
+// 
+
+
+{
+    int alpha = 2147483647; 
+    // entier limite de ce qu'on peut coder sur 32 bits 
+    int gamma = alpha + 1; // Cette ligne générera un avertissement pour dépassement de 32 bits
+}
+
+

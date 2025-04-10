@@ -1,0 +1,28 @@
+// Description :
+//    initialisation d'un object dans le main  
+//
+// Résultats :
+//    ok
+
+
+class A {
+    int eins;
+
+
+    void delacer (int tr){
+        eins = eins + tr;
+    }
+}
+
+class B extends A{
+    int zwei ;
+    
+    void amplifier ( float z){
+        zwei = zwei + eins*z;
+    }
+}
+
+{
+    A monObjet = new A();
+    A mySpecial = new B();
+}

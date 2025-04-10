@@ -1,0 +1,12 @@
+// Description :
+//    Test de l'opérateur logique "!" (non logique)
+//
+// Résultats :
+//    ok
+
+
+{
+    boolean x = true;
+    boolean z = !x;
+}
+

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Selection.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deca Compiler</a> &gt; <a href="index.source.html" class="el_package">fr.ensimag.deca.tree</a> &gt; <span class="el_source">Selection.java</span></div><h1>Selection.java</h1><pre class="source lang-java linenums">package fr.ensimag.deca.tree;
+
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ClassType;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.Definition;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.ExpDefinition;
+import fr.ensimag.deca.context.FieldDefinition;
+import fr.ensimag.deca.context.MethodDefinition;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.VariableDefinition;
+import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.NullOperand;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
+import net.bytebuddy.jar.asm.Label;
+
+import java.io.PrintStream;
+import org.apache.commons.lang.Validate;
+
+
+
+public class Selection extends AbstractLValue{
+
+    AbstractExpr objet;
+    AbstractIdentifier ident;
+
+<span class="fc" id="L34">    public Selection(AbstractExpr selectExpr, AbstractIdentifier ident){</span>
+<span class="fc" id="L35">        Validate.notNull(selectExpr, &quot;The select expression shouldnt be null&quot;);</span>
+<span class="fc" id="L36">        Validate.notNull(ident, &quot;A methode or a Field shouldeclared&quot;);</span>
+<span class="fc" id="L37">        this.objet = selectExpr;</span>
+<span class="fc" id="L38">        this.ident = ident;</span>
+<span class="fc" id="L39">    }</span>
+    public AbstractIdentifier getIdent(){
+<span class="nc" id="L41">        return ident;</span>
+    }
+
+    @Override
+    public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
+            throws ContextualError {
+                
+
+                //On verifie l'expression de la selection
+<span class="fc" id="L50">                ClassType typeClass2 = this.objet.verifyExpr(compiler, localEnv, currentClass).asClassType(&quot;l'objet de selection n'est pas une classe&quot;, getLocation());</span>
+
+<span class="fc" id="L52">                EnvironmentExp envExp2 = compiler.environmentType.defOfClass(typeClass2.getName()).getMembers();</span>
+
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">                if(envExp2.get(this.ident.getName()) == null)throw  new ContextualError(&quot;There is no such field&quot;, getLocation());</span>
+
+<span class="fc" id="L56">                FieldDefinition defField = envExp2.get(this.ident.getName()).asFieldDefinition(&quot;Isnt a field&quot;, getLocation());</span>
+
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">                if(defField == null)throw new ContextualError(&quot;the field is unkown&quot;, getLocation());</span>
+
+<span class="fc" id="L60">                this.ident.setDefinition(defField);</span>
+
+<span class="fc" id="L62">                Type fieldType = defField.getType();</span>
+
+<span class="fc" id="L64">                this.ident.setType(fieldType);</span>
+
+<span class="fc bfc" id="L66" title="All 2 branches covered.">                if(defField.getVisibility() == Visibility.PROTECTED){</span>
+<span class="pc bpc" id="L67" title="2 of 4 branches missed.">                    boolean condVis = compiler.environmentType.isSubType(typeClass2, currentClass.getType()) &amp;&amp; compiler.environmentType.isSubType(currentClass.getType(), defField.getContainingClass().getType());</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">                    if(! condVis)throw new ContextualError(&quot;J'ia pas acces a cet attribut car protected&quot;, getLocation());</span>
+                }
+
+<span class="fc" id="L71">                this.setType(fieldType);</span>
+                
+<span class="fc" id="L73">                return fieldType;</span>
+
+            }
+
+    @Override
+    public void decompile(IndentPrintStream s) {
+        // TODO Auto-generated method stub
+<span class="nc" id="L80">        this.objet.decompile(s);</span>
+<span class="nc" id="L81">        s.print(&quot;.&quot;);</span>
+<span class="nc" id="L82">        this.ident.decompile(s);</span>
+<span class="nc" id="L83">    }</span>
+
+    @Override
+    protected void prettyPrintChildren(PrintStream s, String prefix) {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException(&quot;Unimplemented method 'prettyPrintChildren'&quot;);
+<span class="fc" id="L89">        objet.prettyPrint(s, prefix, false);</span>
+<span class="fc" id="L90">        ident.prettyPrint(s, prefix, true);</span>
+<span class="fc" id="L91">    }</span>
+
+    @Override
+    protected void iterChildren(TreeFunction f) {
+<span class="nc" id="L95">        objet.iter(f);</span>
+<span class="nc" id="L96">        ident.iter(f);</span>
+<span class="nc" id="L97">    }</span>
+
+    //added
+    @Override
+    public void codeGenInst(DecacCompiler compiler) {
+<span class="nc" id="L102">        codeGenInstasssign(compiler, false);</span>
+<span class="nc" id="L103">    }</span>
+
+    public void codeGenInstasssign(DecacCompiler compiler, boolean assign) {
+<span class="nc" id="L106">        objet.codeGenInst(compiler);// à voir la selection d'un field et où le mettre         </span>
+<span class="nc" id="L107">        compiler.addInstruction(new CMP(new NullOperand(),Register.getR(compiler.getHandleMemory().getfull())));</span>
+<span class="nc" id="L108">        compiler.addInstruction(new BEQ(compiler.getDn()));</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        if (!assign){</span>
+<span class="nc" id="L110">        compiler.addInstruction(new LOAD(new RegisterOffset(ident.getFieldDefinition().getIndex(), Register.getR(compiler.getHandleMemory().getfull())),Register.getR(compiler.getHandleMemory().getfull())));</span>
+        //il s'agit bien d'un code reccursif , en cas de selection successives  ex : A.x.y.z ( A un objet  et x,y et z des attributs)
+        }
+<span class="nc" id="L113">    }</span>
+    @Override
+    protected void codeGenPrint(DecacCompiler compiler) {
+<span class="nc" id="L116">        codeGenInst(compiler);</span>
+<span class="nc" id="L117">        compiler.addInstruction(new LOAD(Register.getR(compiler.getHandleMemory().getfull()),Register.R1));</span>
+<span class="nc" id="L118">        ident.getDefinition().getType().codeGenPrint(compiler);</span>
+<span class="nc" id="L119">        compiler.getHandleMemory().registerLiberate();</span>
+
+<span class="nc" id="L121">    }</span>
+    }
+    
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

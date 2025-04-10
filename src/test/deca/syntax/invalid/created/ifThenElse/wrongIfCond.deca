@@ -1,0 +1,12 @@
+// Description :
+//    Test invalide : un if sans () pour la cond
+//
+// Résultats :
+//    Erreur Syntaxique
+//    Ligne 9: missing '(' at 'ohoh'
+
+{
+    if ohoh {
+
+    }
+}

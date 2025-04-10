@@ -1,0 +1,27 @@
+// Description :
+//    Test des opérations arithmétiques
+//
+// Résultats :
+//    4
+//    2.00000e+00
+//    5.00000e+00
+//    2.00000e+00
+
+
+
+{
+    int res = 20 / 5;
+    float res2 = 10.0 / 5;
+    float res3 = 45 / 9.0;
+    float res4 = 50.0 / 25.0;
+    //println(res, "\n" , res2 ,"\n" , res3 ,"\n" , res4 );
+    println(res);    
+    println(res2);
+    println(res3);
+    println(res4);
+
+
+
+}
+
+

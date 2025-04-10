@@ -1,0 +1,8 @@
+// Description :
+//    Test invalide : Commentaire non terminé
+//
+// Résultats :
+//    Erreur syntaxique
+//    Ligne 8: no viable alternative at input '/'
+
+/* this is a commantary that is not complete 

@@ -1,0 +1,17 @@
+// Description :
+//    Teste de la conversion au type float dans les operations boolean
+//
+// Résultats :
+//    ok
+{
+    int x = 1;
+    float y = 2.25;
+    float z = 1.0;
+    if (x == z){
+        println("La conversion de x = " , x , " en flotant c'est bien passer et ca valeur devient 1.0 qui est egale a z = ",z);
+    }
+    else if(x>y){
+        println("Mauvaise gestion car y > x");
+    }
+
+}

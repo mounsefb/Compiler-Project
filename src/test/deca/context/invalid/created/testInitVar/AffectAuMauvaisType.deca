@@ -1,0 +1,11 @@
+// Description :
+//    Test invalide : Tentative d'affectation d'un booléen à une variable de type float
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 10: Incompatibilité de type lors de l'assignation. Type attendu : float, Type obtenu : boolean
+
+
+{
+    float x = true;
+}

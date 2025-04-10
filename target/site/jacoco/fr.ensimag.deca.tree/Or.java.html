@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Or.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deca Compiler</a> &gt; <a href="index.source.html" class="el_package">fr.ensimag.deca.tree</a> &gt; <span class="el_source">Or.java</span></div><h1>Or.java</h1><pre class="source lang-java linenums">package fr.ensimag.deca.tree;
+
+import fr.ensimag.deca.DecacCompiler;
+ import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.ADD;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
+import fr.ensimag.ima.pseudocode.instructions.POP;
+import fr.ensimag.ima.pseudocode.instructions.SUB;
+
+/**
+ *
+ * @author gl01
+ * @date 01/01/2024
+ */
+public class Or extends AbstractOpBool {
+
+
+
+    public Or(AbstractExpr leftOperand, AbstractExpr rightOperand) {
+<span class="fc" id="L25">        super(leftOperand, rightOperand);</span>
+<span class="fc" id="L26">    }</span>
+
+    @Override
+    protected String getOperatorName() {
+<span class="nc" id="L30">        return &quot;||&quot;;</span>
+    }
+    @Override
+    public void codeGenInst(DecacCompiler compiler) {
+<span class="nc" id="L34">        compiler.incrementerLabelCompteur();</span>
+<span class="nc" id="L35">        int compteurOrCourrant =  compiler.getLabelCompteur();</span>
+<span class="nc" id="L36">        super.getLeftOperand().codeGenInst(compiler);</span>
+<span class="nc" id="L37">        super.getRightOperand().codeGenInst(compiler);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if(compiler.getHandleMemory().getPushIndex()!=1){</span>
+<span class="nc" id="L39">            RegisterOffset reg= new RegisterOffset(0,Register.SP);</span>
+<span class="nc" id="L40">            compiler.addInstruction(new ADD(reg,Register.getR(compiler.getHandleMemory().getfull())));</span>
+<span class="nc" id="L41">            compiler.addInstruction( new POP(Register.R0));</span>
+<span class="nc" id="L42">            compiler.getHandleMemory().decrementerpush();</span>
+
+
+<span class="nc" id="L45">        }else{</span>
+<span class="nc" id="L46">        compiler.addInstruction(new ADD(Register.getR(compiler.getHandleMemory().getfull()),Register.getR(compiler.getHandleMemory().getfull()-1)));</span>
+<span class="nc" id="L47">        compiler.getHandleMemory().registerLiberate();</span>
+
+        }       
+<span class="nc" id="L50">        compiler.addInstruction(new CMP(new ImmediateInteger(2), Register.getR(compiler.getHandleMemory().getfull())));</span>
+<span class="nc" id="L51">        Label equal =new Label(&quot;equal_or&quot;+compteurOrCourrant);</span>
+<span class="nc" id="L52">        Label notequal =new Label(&quot;notequal_or&quot;+compteurOrCourrant);</span>
+<span class="nc" id="L53">        compiler.addInstruction(new BEQ(equal));</span>
+<span class="nc" id="L54">        compiler.addInstruction(new BRA(notequal));</span>
+<span class="nc" id="L55">        compiler.addLabel(equal);</span>
+<span class="nc" id="L56">        compiler.addInstruction(new SUB(new ImmediateInteger(1), Register.getR(compiler.getHandleMemory().getfull())));</span>
+<span class="nc" id="L57">        compiler.addLabel(notequal);</span>
+        //compiler.getHandleMemory().registerLiberate();
+
+        
+<span class="nc" id="L61">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

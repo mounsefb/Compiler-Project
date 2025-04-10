@@ -1,0 +1,26 @@
+// Description:
+//    champs et methodes simples
+//
+// Resultats:
+//    100
+//
+
+
+class Calculator {
+    int multiply(int x, int y) {
+        return x * y;
+    }
+}
+
+class Example {
+    int multiply(int a, int b) {
+        return new Calculator().multiply(a, b);
+    }
+}
+
+
+{
+    Example sos = new Example();
+    println(sos.multiply(20,5));
+}
+

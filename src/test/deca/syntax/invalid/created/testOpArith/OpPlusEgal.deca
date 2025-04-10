@@ -1,0 +1,13 @@
+// Description :
+//    Test invalide : Opération d'incrémentation sur une constante
+//
+// Résultats :
+//    Erreur syntaxique
+//    Ligne 11: extraneous input '=' expecting {'(', 'new', 'this', 'readFloat', 'readInt', 'null', 'true', 'false', '-', '!', IDENT, INT, FLOAT, STRING}
+
+
+{
+    int x = 0;
+    x += 1;
+}
+

@@ -1,0 +1,9 @@
+// Description :
+//    Test de l'affichage de la chaîne de caractères "Hello, world!"
+//
+// Résultats :
+//    ok
+
+{
+   printlnx("Hello, world!");
+}

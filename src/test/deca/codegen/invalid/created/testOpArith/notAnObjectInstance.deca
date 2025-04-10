@@ -1,0 +1,17 @@
+// Description:
+//    instance of something not a class
+//
+// Resultats:
+//    Ligne 16: Error: The idenfitifier wasnt declared before
+// 
+
+
+class beta {
+    int x = 3;
+    boolean popo ;
+}
+
+{
+    beta obj = new beta();
+    boolean = obj.x instanceof Integer;
+}

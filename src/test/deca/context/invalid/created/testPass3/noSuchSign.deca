@@ -1,0 +1,16 @@
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 15: IncorrectNumberOfParametersException: The method is called with the wrong number of parameters.
+
+class A{
+    void printOk(boolean ok){
+        if(ok){
+        println("ok");
+        }
+    }
+}
+{
+    A a = new A();
+    int noSuchParam;
+    a.printOk(noSuchParam);
+}

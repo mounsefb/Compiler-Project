@@ -1,0 +1,12 @@
+// Description :
+//    Test des opérations arithmétiques
+//
+// Résultats :
+//    -1.88278e+01
+
+
+{
+    float a = 2.0f, b = 3.0f, x = 4.0f, y = 5.0f;
+    float result = (((a * b + x) / (y - a)) * (a + b * (x + y)) - (a * b)) / ((a + b) * (x - y) + (a / b)) + (a * b - x) / (y + a) * (a - b * (x - y)) + (a / b);
+    println("Résultat de l'expression : ", result);
+}

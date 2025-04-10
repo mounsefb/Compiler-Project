@@ -1,0 +1,16 @@
+// Description : appel de methode sur un objet de type int
+//   
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 11: InvalidObjectClassException: The object on which you're calling a method is not of the expected class type.
+
+class A {
+    int x;
+    void getX(){
+        x.getX();
+    }
+}
+
+
+

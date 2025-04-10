@@ -1,0 +1,11 @@
+// Description :
+//    Test invalide : Opération de négation sur un float
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 10: IncompatibleTypesException: Negation cannot be applied to this type. 
+
+{
+    float a = 1;
+    boolean c = !a;  //  Opération de négation sur un float non autorisée
+}

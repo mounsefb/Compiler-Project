@@ -1,0 +1,17 @@
+class MathOperations {
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    float divide(float x, float y) {
+        return x / y;
+    }
+}
+
+{
+    MathOperations math = new MathOperations();
+    int sum = math.add(5, 7);
+    float result = math.divide(10.0, 2.0);
+    println(sum);
+    println(result);
+}

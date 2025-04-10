@@ -1,0 +1,28 @@
+// Description :
+//    class qui herite d'une autre classe
+//
+// Résultats :
+//    ok
+
+
+class A {
+    int x;
+
+    int y;
+
+    float somme (){
+        return x+y;
+    }
+}
+
+
+
+
+class B extends A{
+
+     int z;
+
+    boolean alpha;
+
+    
+}

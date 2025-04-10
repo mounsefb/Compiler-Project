@@ -1,0 +1,21 @@
+// Description :
+//    Teste de la conversion au type float dans les operations arithmetiques
+//
+// Résultats :
+//     1
+//    -5.00000e+00
+//     6.00000e+00
+
+
+{
+    int a;
+    float b;
+    float c;
+    c = 6.0;
+    a = 1;
+    b = a-c;
+    println(a);
+    println(b);
+    println(c);
+}
+

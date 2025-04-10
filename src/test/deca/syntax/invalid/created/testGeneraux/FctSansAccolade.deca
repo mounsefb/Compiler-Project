@@ -1,0 +1,9 @@
+// Description :
+//    Test invalide : Déclaration de variable en dehors d'un bloc de code
+//
+// Résultats :
+//    Erreur syntaxique
+//    Ligne 8: no viable alternative at input 'int
+
+int x = 5; // Ligne 3: Variable 'x' is declared outside of a code block.
+{}

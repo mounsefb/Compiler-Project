@@ -1,0 +1,14 @@
+// Description :
+//    Test de la racine carrée (_sqrt) avec f = 16.0
+//
+// Résultats attendus :
+//    4.0
+
+#include "Math.decah"
+
+{
+    Math customMath = new Math();
+    float f = 16.0f;
+
+    println("_sqrt(", f, ") = ", customMath._sqrt(f));
+}

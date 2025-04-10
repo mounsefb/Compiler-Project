@@ -1,0 +1,10 @@
+// Description :
+//    Vérification du bon fonctionnement de readInt
+//
+// Résultats :
+//    ok
+
+{
+    int x = readInt();
+    println(x);
+}

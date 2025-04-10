@@ -1,0 +1,12 @@
+// Description :
+//    Test invalide : Tentative de déclaration d'une variable avec un identificateur numérique
+//
+// Résultats :
+//    Erreur Syntaxique
+//    Ligne 10: no viable alternative at input '3'
+
+
+{
+    int 3;
+}
+

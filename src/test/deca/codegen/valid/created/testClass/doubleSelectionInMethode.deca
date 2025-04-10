@@ -1,0 +1,16 @@
+class A {
+     int x ; 
+
+     int getX(){
+        return x;
+     }
+}
+
+class B {
+    boolean y = true ;
+    A lolo;
+
+    int get (){
+        return this.lolo.x;
+    }
+}

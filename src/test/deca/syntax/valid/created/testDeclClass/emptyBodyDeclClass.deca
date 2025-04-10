@@ -1,0 +1,6 @@
+// Description :
+//    Teste de la conversion au type float pour l'affectation
+//
+// Résultats :
+//    ok
+class A{}

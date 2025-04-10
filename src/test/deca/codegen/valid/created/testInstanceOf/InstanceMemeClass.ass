@@ -1,0 +1,93 @@
+	TSTO #8
+	BOV stack_overflow_error
+	ADDSP #21
+; Code de la table des méthodes de Object
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 2(GB)
+; code de la table des méthodes de maclasse
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 4(GB)
+; start main program
+; Main program
+; Beginning of main instructions:
+	NEW #1, R2
+	BOV tas_plein
+	LEA 3(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.maclasse
+	POP R2
+	STORE R2, 5(GB)
+	LEA 1(GB), R2
+	LEA 3(GB), R3
+	LOAD 5(GB), R4
+Chainagedepointeurs2:
+	CMP R3, R4
+	BEQ InstanceOf2
+	LOAD 0(R4), R4
+	CMP R4, R2
+	BEQ notInstanceOf2
+	BRA Chainagedepointeurs2
+InstanceOf2:
+	LOAD #1, R2
+	BRA endInstanceOf2
+notInstanceOf2:
+	LOAD #0, R2
+endInstanceOf2:
+	CMP #1, R2
+	BNE else2
+then2:
+	WSTR "yes"
+	WNL
+	BRA end_If2
+else2:
+end_If2:
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+init.maclasse:
+	RTS
+; code des méthodes
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

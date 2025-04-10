@@ -1,0 +1,11 @@
+// Description :
+//    Test d'une classe sans attributs avec methodes 
+//
+// Résultats :
+//    ok
+
+
+class A{
+    int x;
+}
+

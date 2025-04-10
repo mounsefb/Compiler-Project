@@ -1,0 +1,14 @@
+// Description :
+//   instance of sur meme class
+//
+// Résultats :
+//    oke
+
+class A{}
+
+{
+    Object a = new A() ;
+    if (a instanceof Object) {
+        println("oke");
+    }
+}

@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : Tentative de déclaration d'une variable de type STRING
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 9: TypeDeclarationRequiredException: A type declaration is required for proper initialization.
+
+{
+int x = y + 3; // Error: Variable 'y' is not defined
+}

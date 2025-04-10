@@ -1,0 +1,15 @@
+// Description :
+//    Test d'une classe avec attributs basiques de visibilité PUBLIC implicite
+//
+// Résultats :
+//    ok
+
+
+class S{
+    
+     int a;
+     int b;
+     boolean c;
+     float d;
+    
+}

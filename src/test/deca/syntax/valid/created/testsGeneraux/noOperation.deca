@@ -1,0 +1,9 @@
+// Description :
+//    Test d'un bloc sans opération
+//
+// Résultats :
+//    ok
+
+{
+    ;
+}

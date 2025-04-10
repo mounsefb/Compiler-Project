@@ -1,0 +1,12 @@
+class MyClass {
+    int x ;
+    int y ;
+    int add(int a, int b) {
+        return a + b;
+    }
+}
+{
+MyClass m = new MyClass();
+int result = m.add(3, 7);
+println("Result:", result);
+}

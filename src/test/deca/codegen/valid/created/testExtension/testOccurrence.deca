@@ -1,0 +1,15 @@
+// Description :
+//    Test du nombre d'occurrence de x dans y
+//
+// Resultats :
+//    4
+
+#include "Math.decah"
+
+{
+    Math customMath = new Math();
+    float x = 2.0f;
+    float y = 8.0f;
+
+    println("_occurrence(", x , ", " , y , ") = " , customMath._occurrence(x, y));
+}

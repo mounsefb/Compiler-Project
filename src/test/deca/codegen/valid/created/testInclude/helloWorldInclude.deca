@@ -1,0 +1,10 @@
+// Description :
+//    Inclusion des fichiers "hello.decah" et "world.decah"
+//
+// Résultats :
+//    Helloworld !
+
+#include "hello.decah"
+#include "world.decah"
+
+

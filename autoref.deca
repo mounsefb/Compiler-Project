@@ -1,0 +1,6 @@
+// Attendu : Erreur : x non declare (dans son initialisation)
+// Ligne 5
+
+{
+	int x = x;
+}

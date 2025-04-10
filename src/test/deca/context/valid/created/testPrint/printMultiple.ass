@@ -1,0 +1,48 @@
+; start main program
+	TSTO #0
+	BOV stack_overflow_error
+	ADDSP #0
+; Main program
+; Beginning of main instructions:
+	ADDSP #0
+	WSTR "Hello"
+	WSTR "world"
+	WSTR "!"
+	LOAD #3, R1
+	WINT
+	LOAD #8, R1
+	WINT
+	LOAD #1, R1
+	WINT
+	LOAD #1, R1
+	WINT
+	LOAD #1, R1
+	WINT
+	LOAD #1, R1
+	WINT
+	LOAD #1, R1
+	WINT
+	LOAD #1, R1
+	WINT
+	LOAD #1, R1
+	WINT
+	LOAD #1, R1
+	WINT
+	LOAD #1, R1
+	WINT
+	LOAD #1, R1
+	WINT
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR

@@ -1,0 +1,9 @@
+//    Test d'une simple déclaration sans initialisation d'une variable int
+//
+// Résultats :
+//    OK
+
+{
+    int x;
+}
+

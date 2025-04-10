@@ -1,0 +1,16 @@
+// Description :
+//    Test de plusieurs occurrences de l'opérateur logique "!" (non logique)
+//
+// Résultats :
+//    ok
+
+
+{
+    boolean x = true;
+    boolean z = !!!!x;
+
+    if (z) {
+        println(" -->   Le test est valide");
+    }
+}
+

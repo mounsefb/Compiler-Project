@@ -1,0 +1,12 @@
+class A {
+    int m() { }
+    int p() { }
+}
+class B extends A {
+    int p() { }
+    int q() { }
+}
+class C extends B {
+    int r() { }
+    int q() { }
+}

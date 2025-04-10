@@ -1,0 +1,12 @@
+// Description :
+//    Test d'initialisation d'une variable int avec la valeur 1
+//
+// Résultats :
+//    ok
+
+
+{
+    int x = 1;
+}
+
+

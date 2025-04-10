@@ -1,0 +1,12 @@
+// Description :
+//    Test de l'opérateur de comparaison !=
+//
+// Résultats :
+//    
+
+{
+    int x = 1;
+    int y = 2;
+    boolean z1 = x != y;
+    boolean z2 = x != 10;
+}

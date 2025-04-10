@@ -1,0 +1,1 @@
+./src/test/deca/syntax/invalid/created/ifThenElse/lonelyElseIf.deca:9:4: mismatched input 'else' expecting {'}', '(', ';', 'new', 'this', 'return', 'println', 'print', 'printlnx', 'printx', 'readFloat', 'readInt', 'if', 'while', 'null', 'true', 'false', '-', '!', IDENT, INT, FLOAT, STRING}

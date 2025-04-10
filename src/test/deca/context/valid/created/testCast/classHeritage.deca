@@ -1,0 +1,16 @@
+// Description :
+//    Faire un upcast
+//
+// Résultats :
+//   OK
+
+
+class A{}
+class B extends A{}
+
+
+{
+    A b = new A();
+    B a = new B();
+    b = (A)(a);
+}

@@ -1,0 +1,35 @@
+// Description :
+//    declaration d'une classe et Test du type null 
+//
+// Résultats :
+//    ok
+
+class Personne {
+    protected int age;
+
+    void setAge(int age){
+        this.age = age;
+    }
+
+
+    void presenter() {
+        if (this.age == null) {
+            println("Nom non défini");
+        } else {
+            println(" et j'ai " , this.age , " ans.");
+        }
+    }
+}
+
+{
+        // Test avec une personne ayant un nom défini
+        Personne personne1 = new Personne();
+        Personne personne2 = new Personne();
+        personne1.setAge(10);
+        personne1.presenter();
+
+        // Test avec une personne sans nom défini (null)
+        personne2.setAge();
+        //personne2.presenter();
+}
+

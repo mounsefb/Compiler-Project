@@ -1,0 +1,13 @@
+// Description : Declaration de deux parametres avec le même nom
+//   
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 10:  DoubleParameterDeclarationException: The parameter couldn't be declared because it has already been defined.
+
+class A {
+    int x;
+    void setX(int x, int x){
+        
+    }
+}

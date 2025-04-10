@@ -1,0 +1,15 @@
+// Description :
+//    Teste l'utilisation d'un commentaire multiligne
+//
+// Résultats :
+//    ok
+
+/* 
+
+    Ceci est un test avec un commentaire multiligne
+    il a été fait le 20/12/2023
+    Notre Compilateur 'gl01' est le meilleur compilateur !!!!
+        
+ */
+
+

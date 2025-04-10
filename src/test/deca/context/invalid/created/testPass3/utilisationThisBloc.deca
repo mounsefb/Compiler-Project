@@ -1,0 +1,14 @@
+// Description : Utilisation de this dans un bloc independant
+//   
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 13:  ClassOnlyException: This can only be called within a class and not in the main method.
+
+class A {
+    int x;
+}
+
+{
+    int y = this.x;
+}

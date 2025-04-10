@@ -1,0 +1,73 @@
+	TSTO #9
+	BOV stack_overflow_error
+	ADDSP #22
+; start main program
+; Main program
+; Beginning of main instructions:
+	LOAD #8, R2
+	STORE R2, 1(GB)
+	LOAD #12, R2
+	STORE R2, 2(GB)
+	LOAD 1(GB), R2
+	LOAD 2(GB), R3
+	CMP R3, R2
+	BLT lower1
+	LOAD #0, R2
+	BRA notLower1
+lower1:
+	LOAD #1, R2
+notLower1:
+	STORE R2, 3(GB)
+	LOAD 1(GB), R2
+	LOAD #10, R3
+	CMP R3, R2
+	BLT lower2
+	LOAD #0, R2
+	BRA notLower2
+lower2:
+	LOAD #1, R2
+notLower2:
+	STORE R2, 4(GB)
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+; code des méthodes
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

@@ -1,0 +1,14 @@
+// Description :
+//    Test des opérations arithmétiques
+//
+// Résultats :
+//    ok
+
+{
+    int res = 20 / 5;
+    float res2 = 10.0 / 5;
+    float res3 = 45 / 9.0;
+    float res4 = 50.0 / 25.0;
+}
+
+

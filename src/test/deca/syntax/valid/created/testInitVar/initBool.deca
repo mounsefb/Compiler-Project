@@ -1,0 +1,11 @@
+// Description :
+//    Test de l'initialisation de variables de type booléen
+//
+// Résultats :
+//    Ok
+
+{
+    boolean x = true;
+    boolean y = false;
+    boolean z;
+}

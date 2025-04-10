@@ -1,0 +1,16 @@
+// Description :
+//    Test du modulo de x par y
+//
+// Resultats :
+//    1.0
+
+#include "Math.decah"
+
+{
+    Math customMath = new Math();
+    float x = 10.0f;
+    float y = 3.0f;
+    float res = customMath._mod(x, y);
+    println("Testing _mod function...");
+    println("_mod(", x, ", ", y, ") = ", res);
+}

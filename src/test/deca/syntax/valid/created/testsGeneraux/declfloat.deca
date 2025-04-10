@@ -1,0 +1,11 @@
+// Description :
+//    Test d'initialisation de plusieurs types de variables
+//
+// Résultats :
+//    ok
+
+{
+    float x = 0.5;
+    float y = 1.258;
+    int z = 9;
+}

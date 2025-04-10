@@ -1,0 +1,13 @@
+// Description :
+//    Test invalide : Utilisation de l'instruction print avec un booléen
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 12: UndeclaredIdentifierException: The identifier was not declared before use.
+
+
+class A{
+}
+{
+    println(A);
+}

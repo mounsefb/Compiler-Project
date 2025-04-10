@@ -1,0 +1,12 @@
+// Description :
+//    Test invalide : Double déclaration de la même variable
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 10: Double declaration error: The variable is already declared.
+
+{
+    int x = 1;
+    int x = 2;
+}
+

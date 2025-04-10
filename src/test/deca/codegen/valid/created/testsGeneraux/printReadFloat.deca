@@ -1,0 +1,12 @@
+// Description :
+//    Test de la lecture d'un nombre à virgule flottante avec readFloat,
+//    suivi de l'addition de 0.1 à la valeur lue et de l'affichage du résultat
+//    Je force le test pour les test auto redFloat ok
+//
+// Résultats :
+//    
+
+{
+    float z = 1.1;
+    println(z + 0.1);
+}

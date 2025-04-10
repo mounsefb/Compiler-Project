@@ -1,0 +1,177 @@
+	TSTO #9
+	BOV stack_overflow_error
+	ADDSP #22
+; Code de la table des méthodes de Object
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 2(GB)
+; code de la table des méthodes de DevinettePairImpair
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.DevinettePairImpair.commencerJeu, R0
+	STORE R0, 5(GB)
+; start main program
+; Main program
+; Beginning of main instructions:
+	NEW #1, R2
+	BOV tas_plein
+	LEA 3(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.DevinettePairImpair
+	POP R2
+	STORE R2, 6(GB)
+	ADDSP #1
+	LOAD 6(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #1
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+init.DevinettePairImpair:
+	RTS
+; code des méthodes
+code.DevinettePairImpair.commencerJeu:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD #5, R2
+	STORE R2, 1(LB)
+	LOAD #6, R2
+	STORE R2, 2(LB)
+	WSTR "Bienvenue dans le jeu de devinette pair/impair !"
+	WNL
+	WSTR "Je pense à un nombre. À toi de deviner s'il est pair ou impair."
+	WNL
+	WSTR "Entre ta proposition (1 pour impair, 2 pour pair) : "
+	LOAD 1(LB), R2
+	LOAD #2, R3
+	REM R3, R2
+	LOAD #0, R3
+	CMP R3, R2
+	BEQ eq2
+	LOAD #0, R2
+	BRA not_eq2
+eq2:
+	LOAD #1, R2
+not_eq2:
+	CMP #1, R2
+	BNE else2
+then2:
+	LOAD 2(LB), R2
+	LOAD #2, R3
+	CMP R3, R2
+	BEQ eq4
+	LOAD #0, R2
+	BRA not_eq4
+eq4:
+	LOAD #1, R2
+not_eq4:
+	CMP #1, R2
+	BNE else4
+then4:
+	WSTR "Bravo ! Tu as trouvé !"
+	WNL
+	BRA end_If4
+else4:
+	WSTR "Dommage, ce n'est pas ça. Le nombre est pair."
+	WNL
+end_If4:
+	BRA end_If2
+else2:
+	LOAD 2(LB), R2
+	LOAD #1, R3
+	CMP R3, R2
+	BEQ eq6
+	LOAD #0, R2
+	BRA not_eq6
+eq6:
+	LOAD #1, R2
+not_eq6:
+	CMP #1, R2
+	BNE else6
+then6:
+	WSTR "Bravo ! Tu as trouvé !"
+	WNL
+	BRA end_If6
+else6:
+	WSTR "Dommage, ce n'est pas ça. Le nombre est impair."
+	WNL
+end_If6:
+end_If2:
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

@@ -1,0 +1,9 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 9: DoubleClassDeclarationException: Class names must be unique. You have declared the class A more than once.
+
+class A{}
+class A{}

@@ -1,0 +1,35 @@
+class alpha {
+    int entier;
+}
+class beta extends alpha {
+
+} 
+class sigma {
+    float s = 3.15;
+
+    alpha objectoo;
+}
+
+{
+    alpha a ;
+    beta b ;
+    int x ;
+    float y ;
+    int i=0;
+    beta bb ;
+    //dereferencement
+    sigma obj=new sigma() ;
+    //print(obj.objectoo.entier);
+    //cast 
+    //a = new alpha();
+    //b = (beta) (a);
+    //input output
+    //x = readInt();
+    //arithmetic operation
+    /*y = 10.0 / 0 ;
+    while (i<1000000000){
+        bb=new beta();
+        i=i+1;
+    }*/
+
+}

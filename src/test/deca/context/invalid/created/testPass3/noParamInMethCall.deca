@@ -1,0 +1,17 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 16: IncorrectNumberOfParametersException: The method is called with the wrong number of parameters.
+
+class A{
+    void printOk(){
+        println("ok");
+    }
+}
+{
+    A a = new A();
+    int noSuchParam;
+    a.printOk(noSuchParam);
+}

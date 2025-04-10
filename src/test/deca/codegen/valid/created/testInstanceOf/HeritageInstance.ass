@@ -1,0 +1,260 @@
+	TSTO #20
+	BOV stack_overflow_error
+	ADDSP #33
+; Code de la table des méthodes de Object
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 2(GB)
+; code de la table des méthodes de A
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 4(GB)
+; code de la table des méthodes de B
+	LEA 3(GB), R0
+	STORE R0, 5(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 6(GB)
+; code de la table des méthodes de C
+	LEA 5(GB), R0
+	STORE R0, 7(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 8(GB)
+; code de la table des méthodes de D
+	LEA 3(GB), R0
+	STORE R0, 9(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 10(GB)
+; code de la table des méthodes de E
+	LEA 1(GB), R0
+	STORE R0, 11(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 12(GB)
+; start main program
+; Main program
+; Beginning of main instructions:
+	NEW #1, R2
+	BOV tas_plein
+	LEA 11(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.E
+	POP R2
+	STORE R2, 13(GB)
+	NEW #1, R2
+	BOV tas_plein
+	LEA 9(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.D
+	POP R2
+	STORE R2, 14(GB)
+	NEW #1, R2
+	BOV tas_plein
+	LEA 7(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.C
+	POP R2
+	STORE R2, 15(GB)
+	NEW #1, R2
+	BOV tas_plein
+	LEA 5(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.B
+	POP R2
+	STORE R2, 16(GB)
+	NEW #1, R2
+	BOV tas_plein
+	LEA 3(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.A
+	POP R2
+	STORE R2, 17(GB)
+	LEA 1(GB), R2
+	LEA 7(GB), R3
+	LOAD 13(GB), R4
+Chainagedepointeurs3:
+	CMP R3, R4
+	BEQ InstanceOf3
+	LOAD 0(R4), R4
+	CMP R4, R2
+	BEQ notInstanceOf3
+	BRA Chainagedepointeurs3
+InstanceOf3:
+	LOAD #1, R2
+	BRA endInstanceOf3
+notInstanceOf3:
+	LOAD #0, R2
+endInstanceOf3:
+	CMP #0, R2
+	BEQ debutNot2
+	LOAD #0, R2
+	BRA endnot2
+debutNot2:
+	LOAD #1, R2
+endnot2:
+	CMP #1, R2
+	BNE else3
+then3:
+	WSTR "ob1 is  not instance of C"
+	WNL
+	BRA end_If3
+else3:
+end_If3:
+	LEA 1(GB), R2
+	LEA 5(GB), R3
+	LOAD 14(GB), R4
+Chainagedepointeurs6:
+	CMP R3, R4
+	BEQ InstanceOf6
+	LOAD 0(R4), R4
+	CMP R4, R2
+	BEQ notInstanceOf6
+	BRA Chainagedepointeurs6
+InstanceOf6:
+	LOAD #1, R2
+	BRA endInstanceOf6
+notInstanceOf6:
+	LOAD #0, R2
+endInstanceOf6:
+	CMP #0, R2
+	BEQ debutNot5
+	LOAD #0, R2
+	BRA endnot5
+debutNot5:
+	LOAD #1, R2
+endnot5:
+	CMP #1, R2
+	BNE else6
+then6:
+	WSTR "ob2 is  not instance of B"
+	WNL
+	BRA end_If6
+else6:
+end_If6:
+	LEA 1(GB), R2
+	LEA 3(GB), R3
+	LOAD 15(GB), R4
+Chainagedepointeurs8:
+	CMP R3, R4
+	BEQ InstanceOf8
+	LOAD 0(R4), R4
+	CMP R4, R2
+	BEQ notInstanceOf8
+	BRA Chainagedepointeurs8
+InstanceOf8:
+	LOAD #1, R2
+	BRA endInstanceOf8
+notInstanceOf8:
+	LOAD #0, R2
+endInstanceOf8:
+	CMP #1, R2
+	BNE else8
+then8:
+	WSTR "ob3 is instance of A"
+	WNL
+	BRA end_If8
+else8:
+end_If8:
+	LEA 1(GB), R2
+	LEA 3(GB), R3
+	LOAD 16(GB), R4
+Chainagedepointeurs10:
+	CMP R3, R4
+	BEQ InstanceOf10
+	LOAD 0(R4), R4
+	CMP R4, R2
+	BEQ notInstanceOf10
+	BRA Chainagedepointeurs10
+InstanceOf10:
+	LOAD #1, R2
+	BRA endInstanceOf10
+notInstanceOf10:
+	LOAD #0, R2
+endInstanceOf10:
+	CMP #1, R2
+	BNE else10
+then10:
+	WSTR "ob4 is  instance of A"
+	WNL
+	BRA end_If10
+else10:
+end_If10:
+	LOAD #1, R2
+	CMP #1, R2
+	BNE else12
+then12:
+	WSTR "yess"
+	WNL
+	BRA end_If12
+else12:
+end_If12:
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+init.A:
+	RTS
+init.B:
+	LOAD -2(LB), R1
+	PUSH R1
+	BSR init.A
+	SUBSP #1
+	RTS
+init.C:
+	LOAD -2(LB), R1
+	PUSH R1
+	BSR init.B
+	SUBSP #1
+	RTS
+init.D:
+	LOAD -2(LB), R1
+	PUSH R1
+	BSR init.A
+	SUBSP #1
+	RTS
+init.E:
+	RTS
+; code des méthodes
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

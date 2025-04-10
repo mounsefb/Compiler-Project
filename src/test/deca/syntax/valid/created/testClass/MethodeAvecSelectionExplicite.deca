@@ -1,0 +1,16 @@
+// Description :
+//    Test de selection explicite dans une méthode
+//
+// Résultats :
+//    ok
+
+
+class A  {
+
+     int coordonnee;
+
+    int getX (){
+        return this.coordonnee;
+    }
+    
+}

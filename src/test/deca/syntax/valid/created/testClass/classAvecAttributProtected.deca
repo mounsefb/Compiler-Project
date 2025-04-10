@@ -1,0 +1,15 @@
+// Description :
+//    Test d'une classe avec attributs basiques de visibilité PROTECTED
+//
+// Résultats :
+//    ok
+
+
+class Point{
+    
+    protected int abscisse;
+    protected int ordonee;
+    protected boolean visited;
+    protected float distanceZero;
+    
+}

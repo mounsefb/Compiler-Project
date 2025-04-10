@@ -1,0 +1,20 @@
+class A {
+    float attribut;
+
+    float getF (){
+        return attribut;
+    }
+
+}
+
+class B {
+    A second ;
+
+    float get(){
+        return second.getF();
+    }
+}
+
+
+
+

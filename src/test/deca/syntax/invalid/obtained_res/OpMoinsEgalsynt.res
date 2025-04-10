@@ -1,0 +1,1 @@
+./src/test/deca/syntax/invalid/created/testOpArith/OpMoinsEgal.deca:11:7: extraneous input '=' expecting {'(', 'new', 'this', 'readFloat', 'readInt', 'null', 'true', 'false', '-', '!', IDENT, INT, FLOAT, STRING}

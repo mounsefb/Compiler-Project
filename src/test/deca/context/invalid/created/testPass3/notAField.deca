@@ -1,0 +1,19 @@
+// Description :
+//    Test invalide : Utilisation de l'instruction print avec un booléen
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 14: NotAFieldException: The identifier is not a field; it might be a method or another type.
+
+class A{
+    int x;
+    void setA(int a){
+       this.x = a;
+    }
+    int getX(){
+        return this.setA;
+    }
+}
+
+{ 
+}

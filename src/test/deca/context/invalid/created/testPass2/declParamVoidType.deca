@@ -1,0 +1,13 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 9: VoidParameterTypeException: Void type is not allowed for method parameters.
+
+class A{
+    int x;
+    int getX(void y){
+        return this.x;
+    }
+}

@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : Opération de modulo par zéro
+//
+// Résultats :
+//    Erreur codeGen
+//    Ligne 2: Error: Overflow during arithmetic operation
+
+{
+    int result = 5 % 0;  
+}

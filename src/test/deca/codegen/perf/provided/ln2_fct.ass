@@ -1,0 +1,220 @@
+	TSTO #16
+	BOV stack_overflow_error
+	ADDSP #12
+; Code de la table des méthodes de Object
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 2(GB)
+; code de la table des méthodes de Polyexp
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.Polyexp.pexp, R0
+	STORE R0, 5(GB)
+; start main program
+; Main program
+; Beginning of main instructions:
+	NEW #1, R2
+	BOV tas_plein
+	LEA 3(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Polyexp
+	POP R2
+	STORE R2, 6(GB)
+	LOAD #0x0.0p0, R2
+	STORE R2, 7(GB)
+	LOAD #0x1.0p0, R2
+	STORE R2, 8(GB)
+	LOAD #0x1.0p0, R2
+	OPP R2, R2
+	STORE R2, 9(GB)
+	LOAD #0x1.6fc2ecp-1, R2
+	STORE R2, 10(GB)
+Debut_while1:
+	LOAD 8(GB), R2
+	LOAD 7(GB), R3
+	LOAD #0x1.0p-23, R4
+	ADD R4, R3
+	BOV overflow_error
+	CMP R3, R2
+	BGE greater_or_eq2
+	LOAD #0, R2
+	BRA not_greater_or_eq2
+greater_or_eq2:
+	LOAD #1, R2
+not_greater_or_eq2:
+	CMP #0, R2
+	BEQ Fin_while1
+	ADDSP #2
+	LOAD 6(GB), R2
+	STORE R2, 0(SP)
+	LOAD 7(GB), R3
+	LOAD 8(GB), R4
+	ADD R4, R3
+	BOV overflow_error
+	LOAD #0x1.0p1, R4
+	DIV R4, R3
+	BOV overflow_error
+	STORE R3, 11(GB)
+	LOAD 11(GB), R0
+	STORE R0, -1(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 2(R3)
+	SUBSP #2
+	LOAD R0, R4
+	STORE R4, 12(GB)
+	LOAD #0x0.0p0, R4
+	CMP R4, R3
+	BGT greater4
+	LOAD #0, R3
+	BRA notGreater4
+greater4:
+	LOAD #1, R3
+notGreater4:
+	CMP #1, R3
+	BNE else4
+then4:
+	LOAD 11(GB), R3
+	STORE R3, 8(GB)
+	LOAD 12(GB), R3
+	STORE R3, 10(GB)
+	BRA end_If4
+else4:
+	LOAD 11(GB), R3
+	STORE R3, 7(GB)
+	LOAD 12(GB), R3
+	STORE R3, 9(GB)
+end_If4:
+	BRA Debut_while1
+Fin_while1:
+	LOAD 7(GB), R1
+	WFLOAT
+	WSTR " = "
+	LOAD 7(GB), R1
+	WFLOATX
+	WNL
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+init.Polyexp:
+	RTS
+; code des méthodes
+code.Polyexp.pexp:
+	TSTO #1
+	BOV pile_pleine
+	PUSH R2
+	LOAD -3(LB), R3
+	LOAD -3(LB), R4
+	LOAD -3(LB), R5
+	LOAD -3(LB), R6
+	LOAD -3(LB), R7
+	LOAD -3(LB), R8
+	LOAD -3(LB), R9
+	LOAD #0x1.0p0, R10
+	LOAD #0x1.3bp12, R11
+	DIV R11, R10
+	BOV overflow_error
+	MUL R10, R9
+	BOV overflow_error
+	LOAD #0x1.0p0, R10
+	LOAD #0x1.68p9, R11
+	DIV R11, R10
+	BOV overflow_error
+	ADD R10, R9
+	BOV overflow_error
+	MUL R9, R8
+	BOV overflow_error
+	LOAD #0x1.0p0, R9
+	LOAD #0x1.ep6, R10
+	DIV R10, R9
+	BOV overflow_error
+	ADD R9, R8
+	BOV overflow_error
+	MUL R8, R7
+	BOV overflow_error
+	LOAD #0x1.0p0, R8
+	LOAD #0x1.8p4, R9
+	DIV R9, R8
+	BOV overflow_error
+	ADD R8, R7
+	BOV overflow_error
+	MUL R7, R6
+	BOV overflow_error
+	LOAD #0x1.0p0, R7
+	LOAD #0x1.8p2, R8
+	DIV R8, R7
+	BOV overflow_error
+	ADD R7, R6
+	BOV overflow_error
+	MUL R6, R5
+	BOV overflow_error
+	LOAD #0x1.0p0, R6
+	LOAD #0x1.0p1, R7
+	DIV R7, R6
+	BOV overflow_error
+	ADD R6, R5
+	BOV overflow_error
+	MUL R5, R4
+	BOV overflow_error
+	LOAD #0x1.0p0, R5
+	ADD R5, R4
+	BOV overflow_error
+	MUL R4, R3
+	BOV overflow_error
+	LOAD #1, R4
+	FLOAT R4, R4
+	SUB R4, R3
+	BOV overflow_error
+	LOAD R3, R0
+	BRA fin_methodes
+	BRA etiq_Fincode.Polyexp.pexp
+etiq_Fincode.Polyexp.pexp:
+	WSTR "sortie de la methode pexp sans return"
+	WNL
+	ERROR
+	POP R2
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

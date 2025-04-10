@@ -1,0 +1,10 @@
+// Description :
+//    Code de test Deca avec des instructions if - elseif - else
+//
+// Résultats :
+//    ok
+
+{
+    if(true){}
+}
+

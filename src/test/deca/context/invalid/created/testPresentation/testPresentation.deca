@@ -1,0 +1,90 @@
+// Erreur de déclaration de classe (DoubleClassDeclarationException)
+class MyClass{
+    protected float x;
+
+    void setX(float x){
+        this.x = x;
+    }
+
+    float setX(){
+        return 1.0;
+    }
+
+    float getX(){
+        return x;
+    } 
+}
+
+class MyClass{
+    float z;
+}
+
+class anotherClass extends MyClass{
+
+    MyClass champs; 
+    
+    //erreur surcharge method type de retour
+    float setX(float x){
+        this.x = x;
+    }
+
+    //erreur surcharge method signature
+    float getX(int x){
+        return this.x;
+    }
+
+    
+
+    MyClass setX;
+
+    float x(){}
+
+    MyClass setC(void c){}
+
+
+    MyClass setC(int param, float param){}
+
+}
+
+class thirdIndep{}
+
+
+{
+    int w = undeclaredVar;
+
+    boolean isSame;
+
+    int value;
+
+    thirdIndep o = new thirdIndep();
+
+    anotherClass gr01 = new thirdIndep();
+    
+    anotherClass gr01 = new anotherClass();
+
+    gr01.setX(true);
+    
+    gr01.setX(10);
+
+    println(gr01.x);
+    
+    
+    println(this.x);
+    
+
+    println(gr01.getX());
+
+    isSame = gr01.getX() && gr01.champs;
+    
+    value = true && false;
+
+    if(o instanceof int){
+        gr01.champs = (MyClass) (o);
+    }
+
+    if(o instanceof MyClass){
+        gr01.champs = (MyClass) (o);
+    }
+
+
+}

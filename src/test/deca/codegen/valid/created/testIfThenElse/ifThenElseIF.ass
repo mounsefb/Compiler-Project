@@ -1,0 +1,119 @@
+	TSTO #6
+	BOV stack_overflow_error
+	ADDSP #19
+; start main program
+; Main program
+; Beginning of main instructions:
+	LOAD #1, R2
+	STORE R2, 1(GB)
+	LOAD 1(GB), R2
+	LOAD #1, R3
+	CMP R3, R2
+	BEQ eq2
+	LOAD #0, R2
+	BRA not_eq2
+eq2:
+	LOAD #1, R2
+not_eq2:
+	CMP #1, R2
+	BNE else2
+then2:
+	LOAD 1(GB), R1
+	WINT
+	WNL
+	BRA end_If2
+else2:
+	LOAD 1(GB), R2
+	LOAD #2, R3
+	CMP R3, R2
+	BEQ eq4
+	LOAD #0, R2
+	BRA not_eq4
+eq4:
+	LOAD #1, R2
+not_eq4:
+	CMP #1, R2
+	BNE else4
+then4:
+	LOAD #2, R2
+	LOAD 1(GB), R3
+	MUL R3, R2
+	LOAD R2, R1
+	WINT
+	WSTR "C'est 2"
+	WNL
+	BRA end_If4
+else4:
+	LOAD 1(GB), R2
+	LOAD #3, R3
+	CMP R3, R2
+	BEQ eq6
+	LOAD #0, R2
+	BRA not_eq6
+eq6:
+	LOAD #1, R2
+not_eq6:
+	CMP #1, R2
+	BNE else6
+then6:
+	LOAD #3, R2
+	LOAD 1(GB), R3
+	MUL R3, R2
+	LOAD R2, R1
+	WINT
+	WSTR "C'est 3"
+	WNL
+	BRA end_If6
+else6:
+	LOAD 1(GB), R2
+	LOAD 1(GB), R3
+	MUL R3, R2
+	LOAD R2, R1
+	WINT
+	WNL
+end_If6:
+end_If4:
+end_If2:
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+; code des méthodes
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

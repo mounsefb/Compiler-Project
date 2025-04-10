@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : Opération de modulo par zéro
+//
+// Résultats :
+//    Erreur codeGen
+//    Ligne 2: DivideByZeroException: Modulo by zero is not allowed
+
+{
+    int result = 5 % 0;  // Ligne 2: Opération de modulo par zéro non autorisée
+}

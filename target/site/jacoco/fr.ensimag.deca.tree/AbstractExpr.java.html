@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractExpr.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deca Compiler</a> &gt; <a href="index.source.html" class="el_package">fr.ensimag.deca.tree</a> &gt; <span class="el_source">AbstractExpr.java</span></div><h1>AbstractExpr.java</h1><pre class="source lang-java linenums">package fr.ensimag.deca.tree;
+
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.tools.DecacInternalError;
+import fr.ensimag.deca.tools.IndentPrintStream;
+import java.io.PrintStream;
+import org.apache.commons.lang.Validate;
+
+/**
+ * Expression, i.e. anything that has a value.
+ *
+ * @author gl01
+ * @date 01/01/2024
+ */
+<span class="fc" id="L19">public abstract class AbstractExpr extends AbstractInst {</span>
+    /**
+     * @return true if the expression does not correspond to any concrete token
+     * in the source code (and should be decompiled to the empty string).
+     */
+    boolean isImplicit() {
+<span class="nc" id="L25">        return false;</span>
+    }
+
+    /**
+     * Get the type decoration associated to this expression (i.e. the type computed by contextual verification).
+     */
+    public Type getType() {
+<span class="fc" id="L32">        return type;</span>
+    }
+
+    protected void setType(Type type) {
+<span class="fc" id="L36">        Validate.notNull(type);</span>
+<span class="fc" id="L37">        this.type = type;</span>
+<span class="fc" id="L38">    }</span>
+    private Type type;
+
+    @Override
+    protected void checkDecoration() {
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">        if (getType() == null) {</span>
+<span class="nc" id="L44">            throw new DecacInternalError(&quot;Expression &quot; + decompile() + &quot; has no Type decoration&quot;);</span>
+        }
+<span class="fc" id="L46">    }</span>
+
+    /**
+     * Verify the expression for contextual error.
+     * 
+     * implements non-terminals &quot;expr&quot; and &quot;lvalue&quot; 
+     *    of [SyntaxeContextuelle] in pass 3
+     *
+     * @param compiler  (contains the &quot;env_types&quot; attribute)
+     * @param localEnv
+     *            Environment in which the expression should be checked
+     *            (corresponds to the &quot;env_exp&quot; attribute)
+     * @param currentClass
+     *            Definition of the class containing the expression
+     *            (corresponds to the &quot;class&quot; attribute)
+     *             is null in the main bloc.
+     * @return the Type of the expression
+     *            (corresponds to the &quot;type&quot; attribute)
+     */
+    public abstract Type verifyExpr(DecacCompiler compiler,
+            EnvironmentExp localEnv, ClassDefinition currentClass)
+            throws ContextualError;
+
+    /**
+     * Verify the expression in right hand-side of (implicit) assignments 
+     * 
+     * implements non-terminal &quot;rvalue&quot; of [SyntaxeContextuelle] in pass 3
+     *
+     * @param compiler  contains the &quot;env_types&quot; attribute
+     * @param localEnv corresponds to the &quot;env_exp&quot; attribute
+     * @param currentClass corresponds to the &quot;class&quot; attribute
+     * @param expectedType corresponds to the &quot;type1&quot; attribute            
+     * @return this with an additional ConvFloat if needed...
+     */
+    public AbstractExpr verifyRValue(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type expectedType) throws ContextualError {
+        //throw new UnsupportedOperationException(&quot;not yet implemented&quot;);
+
+        //On verifie l'expression pour recuperer son type
+<span class="fc" id="L84">        Type exprType = this.verifyExpr(compiler, localEnv, currentClass);</span>
+
+
+        //On compare avec le type que l'on attentd
+        //Si le type n'est pas assign_compatible on laive une exception contextuelle
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if(!compiler.environmentType.assignCompatible(expectedType, exprType))throw new ContextualError(&quot;L'initialisation est impossible car l'expression d'initialisation est incompatibles&quot;, getLocation());</span>
+
+        //Si on est dans le cas Float f = (int) il faut transformer le (int) en ConvFloat
+<span class="fc bfc" id="L92" title="All 4 branches covered.">        if(exprType.isInt() &amp;&amp; expectedType.isFloat()){</span>
+<span class="fc" id="L93">            ConvFloat newExprConvFloat = new ConvFloat(this);</span>
+<span class="fc" id="L94">            newExprConvFloat.verifyExpr(compiler, localEnv, currentClass);</span>
+<span class="fc" id="L95">            return newExprConvFloat;</span>
+        }
+
+        //Sinon Le type est bon car c'est soit le meme type soit un subType 
+<span class="fc" id="L99">        return this;</span>
+    }
+    
+
+
+    // added
+    public void codeGenMethodCall(DecacCompiler compiler) {
+<span class="nc" id="L106">        throw new UnsupportedOperationException(&quot;You can't call a method on an  Abstract Expression !!&quot;);</span>
+
+    }
+
+
+    
+    
+    @Override
+    /**
+     * @author boutaley
+     * @param compiler
+     * @param localEnv
+     * @param currentClass
+     * @param returnType
+     */
+    protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
+            ClassDefinition currentClass, Type returnType)
+            throws ContextualError {
+                
+        //throw new UnsupportedOperationException(&quot;not yet implemented&quot;);
+        
+<span class="fc" id="L127">        setType(verifyExpr(compiler, localEnv, currentClass));</span>
+
+<span class="fc" id="L129">    }</span>
+
+    /**
+     * Verify the expression as a condition, i.e. check that the type is
+     * boolean.
+     *
+     * @param localEnv
+     *            Environment in which the condition should be checked.
+     * @param currentClass
+     *            Definition of the class containing the expression, or null in
+     *            the main program.
+     */
+    void verifyCondition(DecacCompiler compiler, EnvironmentExp localEnv,
+            ClassDefinition currentClass) throws ContextualError {
+
+<span class="fc" id="L144">                Type t = verifyExpr(compiler, localEnv, currentClass);</span>
+                
+<span class="fc bfc" id="L146" title="All 2 branches covered.">                if(!t.isBoolean())throw new ContextualError(&quot;IncompatibleTypesException: Expected boolean type. &quot;, getLocation());</span>
+
+<span class="fc" id="L148">                setType(t);</span>
+<span class="fc" id="L149">    }</span>
+
+    /**
+     * Generate code to print the expression
+     *
+     * @param compiler
+     */
+    protected void codeGenPrint(DecacCompiler compiler) {
+<span class="nc" id="L157">        throw new UnsupportedOperationException(&quot;not yet implemented&quot;);</span>
+    }
+
+    protected void codeGenPrintX(DecacCompiler compiler) { //adnane
+<span class="nc" id="L161">        throw new UnsupportedOperationException(&quot;not yet implemented&quot;);</span>
+    }
+
+    @Override
+    protected void codeGenInst(DecacCompiler compiler) {
+<span class="nc" id="L166">        throw new UnsupportedOperationException(&quot;not yet implemented&quot;);</span>
+    }
+    
+
+    @Override
+    protected void decompileInst(IndentPrintStream s) {
+<span class="nc" id="L172">        decompile(s);</span>
+<span class="nc" id="L173">        s.print(&quot;;&quot;);</span>
+<span class="nc" id="L174">    }</span>
+
+    @Override
+    protected void prettyPrintType(PrintStream s, String prefix) {
+<span class="fc" id="L178">        Type t = getType();</span>
+<span class="fc bfc" id="L179" title="All 2 branches covered.">        if (t != null) {</span>
+<span class="fc" id="L180">            s.print(prefix);</span>
+<span class="fc" id="L181">            s.print(&quot;type: &quot;);</span>
+<span class="fc" id="L182">            s.print(t);</span>
+<span class="fc" id="L183">            s.println();</span>
+        }
+<span class="fc" id="L185">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

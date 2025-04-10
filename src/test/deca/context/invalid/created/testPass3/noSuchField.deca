@@ -1,0 +1,16 @@
+// Description :
+//    Test invalide : Utilisation de l'instruction print avec un booléen
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 11: NoSuchFieldException: There is no field with the specified name.
+
+class A{
+    int x;
+    void setA(int a){
+       this.y = a;
+    }
+}
+
+{ 
+}

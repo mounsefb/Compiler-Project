@@ -1,0 +1,26 @@
+class A {
+    void printclass() {
+        println("Class A");
+    }
+}
+
+class B extends A {
+    void printclass() {
+        println("Class B");
+    }
+}
+
+class C extends B {
+    void printclass() {
+        println("Class C");
+    }
+}
+{
+    A b = new B();
+    A c = new C();
+
+
+    b.printclass();
+    c.printclass();
+
+}

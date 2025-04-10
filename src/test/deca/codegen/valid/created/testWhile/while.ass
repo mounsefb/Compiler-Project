@@ -1,0 +1,95 @@
+	TSTO #7
+	BOV stack_overflow_error
+	ADDSP #20
+; start main program
+; Main program
+; Beginning of main instructions:
+	LOAD #2, R2
+	STORE R2, 2(GB)
+	LOAD #2, R2
+	STORE R2, 1(GB)
+Debut_while1:
+	LOAD 1(GB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BGE greater_or_eq2
+	LOAD #0, R2
+	BRA not_greater_or_eq2
+greater_or_eq2:
+	LOAD #1, R2
+not_greater_or_eq2:
+	CMP #0, R2
+	BEQ Fin_while1
+	LOAD 1(GB), R1
+	WINT
+	WNL
+	LOAD 1(GB), R2
+	LOAD #1, R3
+	SUB R3, R2
+	STORE R2, 1(GB)
+	BRA Debut_while1
+Fin_while1:
+Debut_while3:
+	LOAD 2(GB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BGE greater_or_eq4
+	LOAD #0, R2
+	BRA not_greater_or_eq4
+greater_or_eq4:
+	LOAD #1, R2
+not_greater_or_eq4:
+	CMP #0, R2
+	BEQ Fin_while3
+	LOAD 2(GB), R1
+	WINT
+	WNL
+	LOAD 2(GB), R2
+	LOAD #1, R3
+	SUB R3, R2
+	STORE R2, 2(GB)
+	BRA Debut_while3
+Fin_while3:
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+; code des méthodes
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

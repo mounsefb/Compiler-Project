@@ -1,0 +1,14 @@
+// Description :
+//    Test de l'opérateur logique "&&" (ET logique)
+//
+// Résultats :
+//    ok
+
+
+{
+    boolean x = true;
+    boolean y = false;
+    boolean z = x && y;
+}
+
+

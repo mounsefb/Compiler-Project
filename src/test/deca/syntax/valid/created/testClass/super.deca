@@ -1,0 +1,21 @@
+// Description :
+//         Utilisation de super dans le corps d'une méthode
+//
+// Résultats :
+//    ok
+
+
+
+
+class Animal {
+    void manger() {
+        println("L'animal mange .");
+    }
+}
+
+class Chien extends Animal {
+    void manger() {
+        super.manger();
+        println(" de la viande.");
+    }
+}

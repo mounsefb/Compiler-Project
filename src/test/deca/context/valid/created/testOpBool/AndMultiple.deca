@@ -1,0 +1,17 @@
+// Description :
+//    Test de plusieurs occurrences de l'opérateur logique "&&" (ET logique)
+//
+// Résultats :
+//    ok
+
+
+{
+    boolean x = true;
+    boolean y = false;
+    boolean z = x && y && x && y && x && y;
+
+    if (!z) {
+        println(" -->   Le test est valide");
+    }
+}
+

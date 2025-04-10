@@ -1,0 +1,13 @@
+// Description :
+//    Test d'initialisation d'une variable int avec la valeur 1
+//
+// Résultats :
+//    OK
+
+
+{
+    int x = 1;
+    print(3*x);
+}
+
+

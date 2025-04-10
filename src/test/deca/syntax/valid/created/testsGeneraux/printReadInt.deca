@@ -1,0 +1,12 @@
+// Description :
+//    Test de la lecture d'un entier avec readInt,
+//    suivi de l'affichage du double de la valeur lue
+//
+// Résultats :
+//    ok
+
+{
+    int x = readInt();
+    println(2 * x);
+}
+

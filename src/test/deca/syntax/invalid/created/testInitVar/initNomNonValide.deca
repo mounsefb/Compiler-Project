@@ -1,0 +1,11 @@
+// Description:
+//    Test invalide : Utilisation d'un mot-clé réservé comme nom de variable; 
+//    Même resultat pour tous les mots reserves
+//
+// Resultats:
+//    Erreur syntaxique
+//    Ligne 10: no viable alternative at input 'false'
+
+{
+    int false = 1; // Ligne 10: ReservedKeywordException: 'false' is a reserved keyword and cannot be used as an identifier.
+}

@@ -1,0 +1,13 @@
+// Description :
+//    Test d'opérations de somme avec des variables de types différents
+//
+// Résultats :
+//    ok
+
+
+{
+    int somme = 1 + 2;
+    float shesh = 17.48 + 89;
+}
+
+

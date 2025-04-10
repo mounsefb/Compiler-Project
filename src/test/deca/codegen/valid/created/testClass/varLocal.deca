@@ -1,0 +1,20 @@
+class TestLocalVariables {
+    int globalVariable = 10;
+
+    void method1() {
+        int localVar1 = 5;
+        println("Inside method1 - localVar1: ", localVar1);
+        println("Inside method1 - globalVariable: ", globalVariable);
+    }
+
+    void method2() {
+        int localVar2 = 8;
+        println("Inside method2 - localVar2: ", localVar2);
+        println("Inside method2 - globalVariable: ", globalVariable);
+    }
+}
+{
+    TestLocalVariables testObject = new TestLocalVariables();
+    testObject.method1();
+    testObject.method2();
+}

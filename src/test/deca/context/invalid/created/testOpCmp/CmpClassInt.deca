@@ -1,0 +1,9 @@
+class A{
+    int x;
+}
+{
+    A a = new A();
+    if(a == 10){
+        println("Oups");
+    }
+}

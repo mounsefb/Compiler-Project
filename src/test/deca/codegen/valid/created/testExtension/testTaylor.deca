@@ -1,0 +1,16 @@
+// Description :
+//    Test de la série de Taylor (_taylor) avec whichOne = 0, order = 5, et f = 0.5
+//
+// Résultats attendus :
+//    0.47916666
+
+#include "Math.decah"
+
+{
+    Math customMath = new Math();
+    int whichOne = 0;
+    int order = 10;
+    float f = 0.5f;
+
+    println("_taylor(", whichOne, ", ", order, ", ", f, ") = ", customMath._taylor(whichOne, order, f));
+}

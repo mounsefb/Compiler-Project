@@ -1,0 +1,18 @@
+// Description :
+//    Test d'appel a methode avec un convFloat
+//
+// Résultats :
+//    ok
+
+class A{
+    float x;
+    void setX(float x){
+        this.x = x;
+    }
+}
+{
+    int x = 10;
+    A a = new A();
+    a.setX(x);
+    println(a.x);
+}

@@ -1,0 +1,45 @@
+// Description :
+//   instance of sur meme class
+//
+// Résultats :
+//    ob1 is  not instance of C
+//    ob2 is  not instance of B
+//    ob3 is instance of A
+//    ob4 is  instance of A
+//    yess
+
+class A { }
+
+class B extends A {}
+
+class C extends B {}
+
+class D extends A {}
+
+class E {}
+
+{
+    E ob1 = new E();
+    D ob2 = new D();
+    C ob3 = new C();
+    B ob4 = new B();
+    A ob5 = new A();
+    
+
+
+    if ( ! (ob1 instanceof C) ) {
+        println("ob1 is  not instance of C");
+    }
+        if ( !(ob2 instanceof B) ) {
+        println("ob2 is  not instance of B");
+    }
+        if (ob3 instanceof  A) {
+        println("ob3 is instance of A");
+    }
+        if (ob4 instanceof A ) {
+        println("ob4 is  instance of A");
+    }
+        if (ob5 instanceof Object) {
+        println("yess");
+    }
+}

@@ -1,0 +1,12 @@
+// Description :
+//    Test invalide : Opération logique "et" sur des entiers
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 11: IncompatibleTypesException: Cannot perform operation on incompatible types (Not a boolean type). 
+
+{
+    int a = 1;
+    int b = 2;
+    boolean c = a && b;  //  Opération logique "et" sur des entiers non autorisée
+}

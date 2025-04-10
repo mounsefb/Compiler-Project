@@ -1,0 +1,12 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 11: NoSuchFieldException: There is no field with the specified name.
+
+class A{}
+{
+    A a = new A();
+    a.noSuchField;
+}

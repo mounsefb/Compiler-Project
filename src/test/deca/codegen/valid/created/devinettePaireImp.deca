@@ -1,0 +1,39 @@
+// Description :
+//    Le jeu de devinette pair/impair consiste à deviner si un nombre mystère est pair ou impair. 
+//    L'utilisateur entre sa proposition en choisissant 1 pour impair et 2 pour pair.
+//    On peut le rendre interactif en remplacant la ligne 14 par --> int proposition = readInt();
+//
+// Résultats :
+//    OK
+
+class DevinettePairImpair {
+    void commencerJeu(){
+
+        int nombreMystere = 5; // Vous pouvez changer le nombre mystère ici
+        int proposition = 6;
+
+        println("Bienvenue dans le jeu de devinette pair/impair !");
+        println("Je pense à un nombre. À toi de deviner s'il est pair ou impair.");
+        print("Entre ta proposition (1 pour impair, 2 pour pair) : ");
+
+         
+        if (nombreMystere % 2 == 0) {
+            if (proposition == 2) {
+                println("Bravo ! Tu as trouvé !");
+            } else {
+                println("Dommage, ce n'est pas ça. Le nombre est pair.");
+            }
+        } else {
+            if (proposition == 1) {
+                println("Bravo ! Tu as trouvé !");
+            } else {
+                println("Dommage, ce n'est pas ça. Le nombre est impair.");
+            }
+        }
+}
+}
+
+{
+    DevinettePairImpair jeu = new DevinettePairImpair();
+    jeu.commencerJeu();
+}

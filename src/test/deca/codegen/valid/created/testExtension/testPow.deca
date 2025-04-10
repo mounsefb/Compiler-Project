@@ -1,0 +1,15 @@
+// Description :
+//    Test de la fonction puissance (_pow) avec base = 2.0 et exposant = 3
+//
+// Résultats attendus :
+//    8.0
+
+#include "Math.decah"
+
+{
+    Math customMath = new Math();
+    float base = 2.0f;
+    int exponent = 3;
+
+    println("_pow(", base, ", ", exponent, ") = ", customMath._pow(base, exponent));
+}

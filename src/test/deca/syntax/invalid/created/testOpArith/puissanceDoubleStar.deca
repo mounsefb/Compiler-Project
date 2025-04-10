@@ -1,0 +1,12 @@
+// Description :
+//    Test invalide : Utilisation incorrecte de l'opérateur d'exponentiation
+//
+// Résultats :
+//    Erreur syntaxique
+//    Ligne 10: extraneous input '*' expecting {'(', 'new', 'this', 'readFloat', 'readInt', 'null', 'true', 'false', '-', '!', IDENT, INT, FLOAT, STRING}
+
+
+{
+    int x = 2 ** 2;
+}
+

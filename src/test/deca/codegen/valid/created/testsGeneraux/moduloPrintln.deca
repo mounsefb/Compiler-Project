@@ -1,0 +1,10 @@
+// Description :
+//    Test de l'opération arithmétique avec l'opérateur modulo (%)
+//
+// Résultats :
+//    0
+
+{
+    int x = 10 % 2;
+    println(x);
+}

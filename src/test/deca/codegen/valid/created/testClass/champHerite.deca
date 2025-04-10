@@ -1,0 +1,15 @@
+class Parent {
+    int a;
+}
+
+class Child extends Parent {
+    int b;
+}
+
+{
+    Child obj = new Child();
+    obj.a = 10;
+    obj.b = 20;
+    println(obj.a);
+    println(obj.b);
+}

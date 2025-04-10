@@ -1,0 +1,15 @@
+// Description :
+//    Test d'une opération de soustraction successive
+//
+// Résultats :
+//    1
+//    6.20000e+01
+
+
+{
+    int x = -(-1);
+    float y = -(-7*8-8/2-19%7%3);
+    println(x);
+    println(y);
+}
+

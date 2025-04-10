@@ -1,0 +1,15 @@
+// Description:
+//    Affectation et typage
+//
+// Resultats:
+//    Ligne 14: Error: Overflow during arithmetic operation
+// 
+
+
+{
+    int alpha , beta;
+    int gamma;
+    alpha = 15;
+    beta = 0;
+    gamma = alpha/beta ;
+}

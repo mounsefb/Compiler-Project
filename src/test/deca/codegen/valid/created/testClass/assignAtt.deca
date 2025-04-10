@@ -1,0 +1,16 @@
+class MyClass {
+    int x;
+    float y;
+
+    void printValues() {
+        println(x);
+        println(y);
+    }
+}
+
+{
+    MyClass obj = new MyClass();
+    obj.x = 42;
+    obj.y = 3.14;
+    obj.printValues();
+}

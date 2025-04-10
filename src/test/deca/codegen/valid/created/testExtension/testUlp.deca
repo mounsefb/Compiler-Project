@@ -1,0 +1,21 @@
+// Description :
+//    Test de la fonction ulp avec différentes valeurs
+//
+// Résultats attendus :
+//    Résultats de la fonction ulp pour différentes valeurs
+
+#include "Math.decah"
+
+{
+    Math customMath = new Math();
+    
+    float value1 = 3.14f;
+    float value2 = 1.0f;
+    float value3 = 0.0f;
+    float value4 = customMath.floatMaxValue;
+
+    println("ulp(", value1, ") = ", customMath.ulp(value1));
+    println("ulp(", value2, ") = ", customMath.ulp(value2));
+    println("ulp(", value3, ") = ", customMath.ulp(value3));
+    println("ulp(", value4, ") = ", customMath.ulp(value4));
+}

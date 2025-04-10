@@ -1,0 +1,19 @@
+// Description :
+//   instance of sur meme class
+//
+// Résultats :
+//    ok
+
+class A { }
+class B extends A { }
+class C extends B { }
+{
+A a;
+B b;
+a = new A();
+if (a instanceof Object) {
+    println("ok");
+}
+}
+
+

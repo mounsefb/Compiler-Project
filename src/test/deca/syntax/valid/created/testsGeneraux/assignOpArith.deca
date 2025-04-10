@@ -1,0 +1,11 @@
+// Description :
+//    Test d'une affectation avec une expression arithmétique
+//
+// Résultats :
+//    ok
+
+{
+    int x;
+    x = 1 + 2 * 3;
+    println(x);
+}

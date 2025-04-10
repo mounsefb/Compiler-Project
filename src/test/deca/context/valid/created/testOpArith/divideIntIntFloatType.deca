@@ -1,0 +1,11 @@
+// Description :
+//    Test de la division d'un entier par un entier dans des variables de type float
+//
+// Resultats :
+//    Ok
+
+{
+    float x = 10 / 2;
+    float y;
+    y = 10 / 2;
+}

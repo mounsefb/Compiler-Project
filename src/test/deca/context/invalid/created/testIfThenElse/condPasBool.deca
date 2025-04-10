@@ -1,0 +1,12 @@
+// Description :
+//    Test invalide : Utilisation d'une expression non booléenne dans une condition if
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 9: IncompatibleTypesException: Expected boolean type. 
+
+{
+    if (5) {
+        // Error: Condition must be of type boolean
+    }
+}

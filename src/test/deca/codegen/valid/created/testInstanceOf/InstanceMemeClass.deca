@@ -1,0 +1,14 @@
+// Description :
+//   instance of sur meme class
+//
+// Résultats :
+//    yes
+
+class maclasse { }
+
+{
+    maclasse a = new maclasse();
+    if (a instanceof maclasse) {
+        println("yes");
+    }
+}

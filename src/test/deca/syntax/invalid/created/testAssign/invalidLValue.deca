@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : Tentative de déclaration d'une variable de type STRING
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 9: left-hand side of assignment is not an lvalue
+
+{
+    1 = 2;
+}

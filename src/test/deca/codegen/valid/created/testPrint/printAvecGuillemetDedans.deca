@@ -1,0 +1,9 @@
+// Description :
+//    Test de l'affichage d'une chaîne de caractères avec des guillemets
+//
+// Résultats :
+//    Hello World! je suis "Zakaria"
+
+{
+    print("Hello World! je suis \"Zakaria\"");
+}

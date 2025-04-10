@@ -1,0 +1,10 @@
+// Description :
+//    Test de l'affichage de plusieurs chaînes de caractères avec println
+//
+// Résultats :
+//    ok
+
+{
+   print("Hello", "world", "!", 3, -8);
+}
+

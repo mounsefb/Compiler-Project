@@ -1,0 +1,21 @@
+// Description:
+//    dereferencementnull
+//
+// Resultats:
+//
+
+
+class alpha {
+    int entier;
+}
+
+class sigma {
+    float s = 3.15;
+
+    alpha objectoo;
+}
+
+{
+    sigma obj=new sigma() ;
+    print(obj.objectoo.entier);
+}

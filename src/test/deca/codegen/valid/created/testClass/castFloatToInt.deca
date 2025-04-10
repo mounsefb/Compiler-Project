@@ -1,0 +1,5 @@
+{
+    float x = 3.14f;
+    int y = (int)(x);
+    println(y);
+}

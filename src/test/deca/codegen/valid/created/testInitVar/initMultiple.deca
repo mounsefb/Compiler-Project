@@ -1,0 +1,11 @@
+// Description :
+//    Test de la déclaration de plusieurs variables int du même type en même temps
+//
+// Résultats :
+//    OK
+
+
+{
+    int a, b, c, d;
+}
+

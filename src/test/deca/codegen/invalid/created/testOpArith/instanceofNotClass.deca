@@ -1,0 +1,14 @@
+// Description:
+//    instance of something not a class
+//
+// Resultats:
+//    Ligne 13: Error: The idenfitifier wasnt declared before
+// 
+
+
+class alpha {}
+
+{
+    alpha obj = new alpha();
+    boolean = obj instanceof Integer;
+}

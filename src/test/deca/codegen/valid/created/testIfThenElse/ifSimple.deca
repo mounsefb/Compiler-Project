@@ -1,0 +1,13 @@
+// Description :
+//    Test d'une condition "if"
+//
+// Résultats :
+//    1
+
+{
+    int x = 1;
+    if(x == 1){
+        println(x);
+    }
+}
+

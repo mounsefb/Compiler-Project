@@ -1,0 +1,13 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 12: DoubleMethodDeclarationException: The method couldn't be declared in the subclass because it has already been defined in the superclass as a field.
+
+class A{
+    int x;
+}
+class B extends A{
+    float x(){}
+}

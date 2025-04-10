@@ -1,0 +1,13 @@
+// Description:
+//    dereferencement null
+//
+// Resultats:
+//      ok
+
+
+class alpha {
+    int entier;
+}
+{
+    alpha a = null;
+}

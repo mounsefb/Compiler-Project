@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HandleMemory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deca Compiler</a> &gt; <a href="index.source.html" class="el_package">fr.ensimag.deca.codegen</a> &gt; <span class="el_source">HandleMemory.java</span></div><h1>HandleMemory.java</h1><pre class="source lang-java linenums">package fr.ensimag.deca.codegen;
+
+public class HandleMemory {
+    // en cas de bug , pense à static , il se peut qu'elle soit la source du problème
+
+    private  int full ;
+        // the index of the last full register startng from 0 and 1
+    private int pushIndex;
+        // index of how many values did we push in the stack
+    private  int maxFull ;
+
+    private  int lastGB ;
+        // the index of the last full GB memory adress starting from 0
+
+    //private int lastSP ;
+    private int lastLB ;
+
+<span class="fc" id="L18">    public HandleMemory (){</span>
+<span class="fc" id="L19">        full = 1;</span>
+<span class="fc" id="L20">        maxFull = 15;</span>
+<span class="fc" id="L21">        lastGB = 0;</span>
+<span class="fc" id="L22">        pushIndex=1;</span>
+        
+<span class="fc" id="L24">    }</span>
+
+
+    public  int registreToUse (){
+
+<span class="fc" id="L29">            full++;</span>
+<span class="fc" id="L30">            return full;</span>
+        
+     }
+
+    public  void registerLiberate(){
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if (full==1){</span>
+<span class="nc" id="L36">            throw new IllegalArgumentException(&quot; you reached R1 !!which is a scratch registre you should not use it!!&quot;);</span>
+        }
+<span class="fc" id="L38">        full-=1;</span>
+<span class="fc" id="L39">     }</span>
+
+    public  int incrementeGB (){
+        // à gerer plus tard : verifier bien que les GB ne depasse pas le sommet de la pile !!!!
+<span class="nc" id="L43">            lastGB+=1;</span>
+<span class="nc" id="L44">            return lastGB;</span>
+    }
+    public  int incrementeLB (){
+        // à gerer plus tard : verifier bien que les GB ne depasse pas le sommet de la pile !!!!
+<span class="nc" id="L48">            lastLB+=1;</span>
+<span class="nc" id="L49">            return lastLB;</span>
+    }
+    public  int incrementerpush (){
+        // à gerer plus tard : verifier bien que les GB ne depasse pas le sommet de la pile !!!!
+<span class="nc" id="L53">            pushIndex--;</span>
+<span class="nc" id="L54">            return pushIndex;</span>
+     }
+
+    public  int decrementerpush (){
+        // à gerer plus tard : verifier bien que les GB ne depasse pas le sommet de la pile !!!!
+<span class="nc" id="L59">            pushIndex++;</span>
+<span class="nc" id="L60">            return pushIndex;</span>
+    }
+
+
+    public  int getfull(){
+<span class="fc" id="L65">        return full;</span>
+    }
+
+    public  void setMaxFull(int nbrRegistre){
+<span class="nc" id="L69">        maxFull = nbrRegistre;</span>
+<span class="nc" id="L70">    }</span>
+
+    public  int getLastGB(){
+<span class="nc" id="L73">        return lastGB;</span>
+    }
+    public  int getMaxFull(){
+<span class="fc" id="L76">        return maxFull;</span>
+    }
+    public  int getPushIndex(){
+<span class="fc" id="L79">        return pushIndex;</span>
+    }
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

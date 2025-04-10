@@ -1,0 +1,13 @@
+class Test {
+    void printTest() {
+        println("Hello, world!");
+    }
+
+    void run() {
+        this.printTest();
+    }
+}
+{
+Test test = new Test();
+test.run();
+}

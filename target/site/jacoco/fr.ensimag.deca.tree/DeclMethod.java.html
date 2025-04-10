@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeclMethod.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deca Compiler</a> &gt; <a href="index.source.html" class="el_package">fr.ensimag.deca.tree</a> &gt; <span class="el_source">DeclMethod.java</span></div><h1>DeclMethod.java</h1><pre class="source lang-java linenums">package fr.ensimag.deca.tree;
+
+
+
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.EnvironmentExp.DoubleDefException;
+import fr.ensimag.deca.context.ExpDefinition;
+import fr.ensimag.deca.context.MethodDefinition;
+import fr.ensimag.deca.context.Signature;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.ADDSP;
+import fr.ensimag.ima.pseudocode.instructions.BOV;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+import fr.ensimag.ima.pseudocode.instructions.ERROR;
+import fr.ensimag.ima.pseudocode.instructions.POP;
+import fr.ensimag.ima.pseudocode.instructions.PUSH;
+import fr.ensimag.ima.pseudocode.instructions.RTS;
+import fr.ensimag.ima.pseudocode.instructions.TSTO;
+import fr.ensimag.ima.pseudocode.instructions.WNL;
+import fr.ensimag.ima.pseudocode.instructions.WSTR;
+import java.io.PrintStream;
+import java.util.ArrayList;
+
+import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
+
+
+
+
+
+public class DeclMethod extends AbstractDeclMethod{
+<span class="fc" id="L39">    private static final Logger LOG = Logger.getLogger(DeclMethod.class);</span>
+
+    private AbstractIdentifier rType;
+    private AbstractIdentifier methName;
+    private ListDeclParam listParam;
+    private AbstractMethodBody methBody;
+
+<span class="fc" id="L46">    public DeclMethod(AbstractIdentifier t, AbstractIdentifier name,  ListDeclParam listParam, AbstractMethodBody methBody) {</span>
+<span class="fc" id="L47">        Validate.notNull(t);</span>
+<span class="fc" id="L48">        Validate.notNull(name);</span>
+<span class="fc" id="L49">        Validate.notNull(listParam);</span>
+<span class="fc" id="L50">        Validate.notNull(methBody);</span>
+
+<span class="fc" id="L52">        this.rType = t;</span>
+<span class="fc" id="L53">        this.methName = name;</span>
+<span class="fc" id="L54">        this.listParam = listParam;</span>
+<span class="fc" id="L55">        this.methBody = methBody;</span>
+<span class="fc" id="L56">    }</span>
+    public AbstractIdentifier getMethName(){
+<span class="fc" id="L58">        return methName;</span>
+    }
+    @Override
+    public ListDeclParam  getListParam(){
+<span class="nc" id="L62">        return listParam;</span>
+    }
+
+    /**
+     * @author boutaley malyahl
+     * 
+     * @param compiler
+     * @param localEnv
+     * @param superClass
+     * @throws ContextualError
+     */
+
+
+    @Override
+    protected void verifyListDeclMethodDeuxiemePasse(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
+    throws ContextualError{
+<span class="fc" id="L78">        LOG.debug(&quot;verfiying the methode (2eme passe) &quot; + methName.getName());</span>
+        
+        
+        //On verifie que le type de retour de la methode est bien un type definit dans l'environnement des types
+<span class="fc" id="L82">        Type t = rType.verifyType(compiler);  </span>
+        
+<span class="fc" id="L84">        rType.setType(t);</span>
+
+<span class="fc" id="L86">        rType.setDefinition(compiler.environmentType.defOfType(rType.getName()));</span>
+
+<span class="fc" id="L88">        Signature sig = listParam.verifyListDeclParamDeuxiemePasse(compiler);</span>
+
+<span class="fc" id="L90">        ExpDefinition defMethSuperclass = localEnv.getParent().get(methName.getName());</span>
+
+        
+        int index;
+        
+        //Regle (2.7) Si la methode est deja definit dans la super class il faut la redefinir seulement si elle a la meme signature et subType(type de retour)
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        if ( defMethSuperclass != null){</span>
+            
+<span class="fc" id="L98">            MethodDefinition defMethSuperclassAsMeth =  defMethSuperclass.asMethodDefinition(&quot;ce n'etait pas une defintion de methode dans la superClass&quot;, getLocation());</span>
+
+
+            //Les methodes ont la meme signature et meme type de retour
+<span class="fc bfc" id="L102" title="All 2 branches covered.">            if(!(defMethSuperclassAsMeth.getSignature().equals(sig))){</span>
+
+<span class="fc" id="L104">                throw new ContextualError(&quot;Pas de surcharge de methode juste des redefinitions la signature doit etre la meme&quot;, getLocation());</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">            }else if(!(compiler.environmentType.isSubType(rType.getType(), defMethSuperclassAsMeth.getType()))){</span>
+<span class="fc" id="L106">                throw new ContextualError(&quot;Pas de surcharge de methode juste des redefinitions le type de retoure doit etre subtype&quot;, getLocation());</span>
+            }
+            else{
+<span class="fc" id="L109">                index = defMethSuperclassAsMeth.getIndex();</span>
+            }
+<span class="fc" id="L111">        }</span>
+        else{
+<span class="fc" id="L113">            currentClass.incNumberOfMethods();</span>
+<span class="fc" id="L114">            index = currentClass.getNumberOfMethods();</span>
+        }
+        
+<span class="fc" id="L117">        MethodDefinition defMeth = new MethodDefinition(rType.getType(), getLocation(), sig, index);</span>
+        
+        try{
+<span class="fc" id="L120">            localEnv.declare(methName.getName(),defMeth);</span>
+<span class="pc" id="L121">        }catch(DoubleDefException e){throw new ContextualError(&quot;DoubleDef: The method couldnt be declared&quot;, getLocation());}</span>
+
+<span class="fc" id="L123">        this.methName.setDefinition(defMeth);</span>
+
+
+
+<span class="fc" id="L127">    }</span>
+
+
+    @Override
+    protected void verifyDeclMethodTroisiemePasse(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition classe)
+    throws ContextualError{
+        
+<span class="fc" id="L134">        LOG.debug(&quot;verfiying the methode (3eme passe) &quot; + methName.getName());</span>
+        
+        
+        //On verifie que le type de retour de la methode est bien un type definit dans l'environnement des types
+<span class="fc" id="L138">        Type returnType = rType.getType();     </span>
+
+<span class="fc" id="L140">        EnvironmentExp envParam =  listParam.verifyListDeclParamTroisiemePasse(compiler);</span>
+<span class="fc" id="L141">        envParam.setParent(localEnv);</span>
+
+        //On verifie le corps de la methodes
+<span class="fc" id="L144">        methBody.verifyMethodBody(compiler, localEnv, envParam, classe, returnType);</span>
+
+<span class="fc" id="L146">    }</span>
+
+    /* 
+    protected void codeGenDeclMeth(DecacCompiler compiler){
+        throw new UnsupportedOperationException(&quot;Not yet implemented&quot;);
+        
+    } */
+
+
+    //fr.ensimag.deca.tree.DeclMethod.verifyDeclMethodTroisiemePasse // commented
+    @Override
+    public void decompile(IndentPrintStream s) {
+<span class="nc" id="L158">        this.rType.decompile(s);</span>
+<span class="nc" id="L159">        s.print(&quot; &quot;);</span>
+<span class="nc" id="L160">        this.methName.decompile(s);</span>
+<span class="nc" id="L161">        s.print(&quot;(&quot;);</span>
+<span class="nc" id="L162">        this.listParam.decompile(s);</span>
+<span class="nc" id="L163">        s.print(&quot;)&quot;);</span>
+<span class="nc" id="L164">        this.methBody.decompile(s);</span>
+<span class="nc" id="L165">    }</span>
+
+    @Override
+    protected void prettyPrintChildren(PrintStream s, String prefix) {
+<span class="fc" id="L169">        rType.prettyPrint(s, prefix, false);</span>
+<span class="fc" id="L170">        methName.prettyPrint(s, prefix, false);</span>
+<span class="fc" id="L171">        listParam.prettyPrint(s, prefix, false);</span>
+<span class="fc" id="L172">        methBody.prettyPrint(s, prefix, true);</span>
+<span class="fc" id="L173">    }</span>
+
+    @Override
+    protected void iterChildren(TreeFunction f) {
+<span class="nc" id="L177">        rType.iter(f);</span>
+<span class="nc" id="L178">        methName.iter(f);</span>
+<span class="nc" id="L179">        listParam.iter(f);</span>
+<span class="nc" id="L180">        methBody.iter(f);</span>
+<span class="nc" id="L181">    }</span>
+
+    @Override
+    protected void codeGenDeclMethod(DecacCompiler compiler) {
+<span class="nc" id="L185">        int j=-3;</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        for (AbstractDeclParam m : listParam.getList()){</span>
+<span class="nc" id="L187">            m.getName().getExpDefinition().setOperand(new RegisterOffset(j, Register.LB));</span>
+<span class="nc" id="L188">            j--;</span>
+        }
+<span class="nc" id="L190">        compiler.addLabel(methName.getMethodDefinition().getLabel());</span>
+        // a ajouter tsto et modifier getmaxfull
+<span class="nc bnc" id="L192" title="All 2 branches missed.">        int d =compiler.getHandleMemory().getfull()&gt;1?compiler.getHandleMemory().getfull()-1:0;</span>
+<span class="nc" id="L193">        compiler.addInstruction(new TSTO(d));</span>
+<span class="nc" id="L194">        compiler.addInstruction(new BOV(compiler.getPp()));</span>
+<span class="nc" id="L195">        MethodBody myMethodBody = (MethodBody) methBody;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        if (myMethodBody.getListVar().size()!=0){</span>
+<span class="nc" id="L197">        compiler.addInstruction(new ADDSP(myMethodBody.getListVar().size()));</span>
+        }
+<span class="nc" id="L199">        ArrayList &lt;Integer&gt; l = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">        if (compiler.getHandleMemory().getfull()&gt;1){</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            for(int i=2 ; i&lt;=compiler.getHandleMemory().getfull();i++){</span>
+<span class="nc" id="L202">                compiler.addInstruction(new PUSH(Register.getR(i)));</span>
+<span class="nc" id="L203">                l.add(i);</span>
+            }
+        }
+     
+
+<span class="nc" id="L208">        methBody.codeGenMethodBody(compiler);</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">        if (!rType.getType().isVoid()){</span>
+<span class="nc" id="L210">            Label label = new Label(&quot;etiq_Fin&quot;+methName.getMethodDefinition().getLabel().toString());</span>
+<span class="nc" id="L211">            compiler.addInstruction(new BRA(label));</span>
+<span class="nc" id="L212">            compiler.addLabel(label);</span>
+            // il faut vérifier que le type de retour stockée dans R0 est smeblable à rType
+<span class="nc" id="L214">            compiler.addInstruction(new WSTR(&quot;sortie de la methode &quot;+methName.getName().getName()+ &quot; sans return&quot; ));</span>
+<span class="nc" id="L215">            compiler.addInstruction(new WNL());</span>
+<span class="nc" id="L216">            compiler.addInstruction(new ERROR());</span>
+        }
+<span class="nc bnc" id="L218" title="All 2 branches missed.">        if (l.size()!=0){</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            for(int i =l.size()-1 ; i&gt;=0;i--){</span>
+<span class="nc" id="L220">                compiler.addInstruction(new POP(Register.getR(l.get(i))));</span>
+            }
+        }
+<span class="nc bnc" id="L223" title="All 2 branches missed.">        if(rType.getType().isVoid()){</span>
+<span class="nc" id="L224">            compiler.addInstruction(new BRA(compiler.getRts()));</span>
+        }
+
+<span class="nc" id="L227">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

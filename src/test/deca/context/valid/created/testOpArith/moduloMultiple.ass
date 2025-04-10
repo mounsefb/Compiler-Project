@@ -1,0 +1,31 @@
+; start main program
+	TSTO #1
+	BOV stack_overflow_error
+	ADDSP #1
+; Main program
+; Beginning of main instructions:
+	ADDSP #1
+	LOAD #25, R2
+	LOAD #5, R3
+	REM R3, R2
+	BOV overflow_error
+	LOAD #2, R3
+	REM R3, R2
+	BOV overflow_error
+	STORE R2, 1(GB)
+	LOAD 1(GB), R1
+	WINT
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR

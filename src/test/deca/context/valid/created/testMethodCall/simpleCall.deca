@@ -1,0 +1,13 @@
+// Description :
+//    Test simple appel a une methode
+//
+// Résultats :
+//    ok
+
+class A{
+    void setX(){}
+}
+{
+    A a = new A();
+    a.setX();
+}

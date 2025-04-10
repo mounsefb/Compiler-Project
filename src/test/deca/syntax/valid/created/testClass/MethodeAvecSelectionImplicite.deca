@@ -1,0 +1,16 @@
+// Description :
+//    Test de selection implicite dans une méthode
+//
+// Résultats :
+//    ok
+
+
+class explicite  {
+
+     booloean value;
+
+    boolean isFalse (){
+        return value==false;
+    }
+    
+}

@@ -1,0 +1,37 @@
+// Description :
+//    test de l'heritage  
+//
+// Résultats :
+//    ok
+
+
+class Animal {
+    void faireDuBruit() {
+        print("Bruit d'animal");
+    }
+}
+
+class Chien extends Animal {
+
+    void faireDuBruit() {
+        print("Aboyer");
+    }
+}
+
+class Chat extends Animal {
+
+    void faireDuBruit() {
+        print("Miauler");
+    }
+}
+
+class TestObjet {
+     
+    void main() {
+        Animal monAnimal = new Chien();
+        monAnimal.faireDuBruit();  // Doit afficher "Aboyer"
+        
+        monAnimal = new Chat();
+        monAnimal.faireDuBruit();  // Doit afficher "Miauler"
+    }
+}

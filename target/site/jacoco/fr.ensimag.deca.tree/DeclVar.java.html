@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeclVar.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deca Compiler</a> &gt; <a href="index.source.html" class="el_package">fr.ensimag.deca.tree</a> &gt; <span class="el_source">DeclVar.java</span></div><h1>DeclVar.java</h1><pre class="source lang-java linenums">package fr.ensimag.deca.tree;
+
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.EnvironmentExp.DoubleDefException;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.VariableDefinition;
+import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
+import java.io.PrintStream;
+import org.apache.commons.lang.Validate;
+
+
+/**
+ * @author gl01
+ * @date 01/01/2024
+ */
+public class DeclVar extends AbstractDeclVar {
+
+    
+    final private AbstractIdentifier type;
+    final private AbstractIdentifier varName;
+    final private AbstractInitialization initialization;
+
+<span class="fc" id="L29">    public DeclVar(AbstractIdentifier type, AbstractIdentifier varName, AbstractInitialization initialization) {</span>
+<span class="fc" id="L30">        Validate.notNull(type);</span>
+<span class="fc" id="L31">        Validate.notNull(varName);</span>
+<span class="fc" id="L32">        Validate.notNull(initialization);</span>
+<span class="fc" id="L33">        this.type = type;</span>
+<span class="fc" id="L34">        this.varName = varName;</span>
+<span class="fc" id="L35">        this.initialization = initialization;</span>
+<span class="fc" id="L36">    }</span>
+
+    @Override
+    protected void verifyDeclVar(DecacCompiler compiler,
+            EnvironmentExp envParam, ClassDefinition currentClass)
+            throws ContextualError {
+
+            //Verify type de la variable
+<span class="fc" id="L44">            Type t = type.verifyType(compiler); </span>
+
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            if (t.isVoid()) throw new ContextualError(&quot;InvalidTypeDeclarationException: Cannot declare a variable of type void. &quot;, getLocation());</span>
+            
+<span class="fc" id="L48">            this.type.setDefinition(compiler.environmentType.defOfType(type.getName()));</span>
+
+<span class="fc" id="L50">            this.type.setType(t);</span>
+                
+
+
+            //Declaration de la variable names 
+            
+            
+            //Creation de la definitioon de la variable et association au nom
+<span class="fc" id="L58">            VariableDefinition def = new VariableDefinition(t, this.varName.getLocation());</span>
+
+<span class="fc" id="L60">            this.varName.setDefinition(def);</span>
+            
+            //Ajout dans l'environnement
+            try{ 
+<span class="fc" id="L64">                envParam.declare(this.varName.getName(), def);</span>
+
+<span class="fc" id="L66">            } catch (DoubleDefException e){</span>
+<span class="fc" id="L67">                throw new ContextualError(&quot;Double declaration error: The variable is already declared.    &quot;, getLocation());</span>
+            }
+
+            //Verify initialization
+<span class="fc" id="L71">            initialization.verifyInitialization(compiler, t, envParam, currentClass);</span>
+            
+<span class="fc" id="L73">    }</span>
+
+    
+    @Override
+    public void decompile(IndentPrintStream s) {
+        //throw new UnsupportedOperationException(&quot;not yet implemented&quot;);
+<span class="nc" id="L79">        this.type.decompile(s);</span>
+<span class="nc" id="L80">        s.print(&quot; &quot;);</span>
+<span class="nc" id="L81">        this.varName.decompile(s);</span>
+<span class="nc" id="L82">        this.initialization.decompile(s);</span>
+<span class="nc" id="L83">    }</span>
+
+    @Override
+    protected
+    void iterChildren(TreeFunction f) {
+<span class="nc" id="L88">        type.iter(f);</span>
+<span class="nc" id="L89">        varName.iter(f);</span>
+<span class="nc" id="L90">        initialization.iter(f);</span>
+<span class="nc" id="L91">    }</span>
+    
+    @Override
+    protected void prettyPrintChildren(PrintStream s, String prefix) {
+<span class="fc" id="L95">        type.prettyPrint(s, prefix, false);</span>
+<span class="fc" id="L96">        varName.prettyPrint(s, prefix, false);</span>
+<span class="fc" id="L97">        initialization.prettyPrint(s, prefix, true);</span>
+<span class="fc" id="L98">    }</span>
+
+        //added by zak
+    @Override
+    protected void codeGenDeclVar(DecacCompiler compiler) {
+<span class="nc" id="L103">        varName.getExpDefinition().setOperand(new RegisterOffset(compiler.getHandleMemory().incrementeGB(),Register.GB));</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if(initialization.getExpression() != null){</span>
+<span class="nc" id="L105">            initialization.codeGenInst(compiler);</span>
+<span class="nc" id="L106">            compiler.addInstruction(new STORE(Register.getR(compiler.getHandleMemory().getfull()),varName.getExpDefinition().getOperand()));</span>
+<span class="nc" id="L107">            compiler.getHandleMemory().registerLiberate();</span>
+
+        }
+
+<span class="nc" id="L111">    }</span>
+    @Override
+    protected void codeGenDeclVarlocal(DecacCompiler compiler) {
+<span class="nc" id="L114">        varName.getExpDefinition().setOperand(new RegisterOffset(compiler.getHandleMemory().incrementeLB(),Register.LB));</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        if(initialization.getExpression() != null){</span>
+<span class="nc" id="L116">            initialization.codeGenInst(compiler);</span>
+<span class="nc" id="L117">            compiler.addInstruction(new STORE(Register.getR(compiler.getHandleMemory().getfull()),varName.getExpDefinition().getOperand()));</span>
+<span class="nc" id="L118">            compiler.getHandleMemory().registerLiberate();</span>
+
+        }
+
+<span class="nc" id="L122">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

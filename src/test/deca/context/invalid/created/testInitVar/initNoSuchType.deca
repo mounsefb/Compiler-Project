@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 9: UnknownTypeException: The type does not exist in Deca.
+
+{
+    noSuchType x;
+}

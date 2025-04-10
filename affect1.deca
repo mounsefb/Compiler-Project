@@ -1,0 +1,7 @@
+// OK
+{
+   int a, b ;
+   b = 1 + (a = 1);
+   println("Resultat attendu : 2 -> ", b) ; 
+}
+

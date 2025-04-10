@@ -1,0 +1,24 @@
+// Description :
+//    Associer à une classe un attribut d'une autre classe
+//
+// Résultats :
+//    ok
+
+
+class gl01  {
+
+    float x ;
+    void setGl(){
+        x=3.14;
+    }
+}
+
+class gl02 {
+    gl01 prec;
+    boolean zeta;
+
+    void setGl(){
+        prec.setGl();
+        zeta=true;
+    }
+}

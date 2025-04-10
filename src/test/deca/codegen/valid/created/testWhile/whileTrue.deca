@@ -1,0 +1,14 @@
+// Description :
+//    Test d'une boucle while avec une condition toujours vraie (boucle infinie)
+//      J'aim mis un while false pour ne pas blocker les tests auto
+//
+// Résultats :
+//    Ce programme entraînera une boucle infinie, il ne termine pas.
+
+{
+    int x;
+    x = 2;
+    while (false) {
+        x = x - 1;
+    }
+}

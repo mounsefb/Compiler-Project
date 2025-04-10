@@ -1,0 +1,21 @@
+// Description :
+//    Test invalide : Assignation incorrecte à des variables de différents types
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 15: Incompatibilité de type lors de l'assignation. Type attendu : int, Type obtenu : Float
+
+{
+    int x;
+    float y;
+    boolean z;
+    boolean t;
+    int w;
+
+    x = 2.2;      // Ligne 9: Assignation de type incompatible. Attendu : int, Obtenu : float
+    y = true;     // Ligne 10: Assignation de type incompatible. Attendu : float, Obtenu : booléen
+    z = 1;        // Ligne 11: Assignation de type incompatible. Attendu : booléen, Obtenu : int
+    t = 1.1;      // Ligne 12: Assignation de type incompatible. Attendu : booléen, Obtenu : float
+    w = false;    // Ligne 13: Assignation de type incompatible. Attendu : int, Obtenu : booléen
+}
+

@@ -1,0 +1,12 @@
+// Description :
+//    Test invalide : un else sans if
+//
+// Résultats :
+//    Erreur Syntaxique
+//    Ligne 9: mismatched input 'else' expecting {'}', '(', ';', 'new', 'this', 'return', 'println', 'print', 'printlnx', 'printx', 'readFloat', 'readInt', 'if', 'while', 'null', 'true', 'false', '-', '!', IDENT, INT, FLOAT, STRING}
+
+{
+    else if(cond){
+        println("Ohohhhh");
+    }
+}

@@ -1,0 +1,37 @@
+// Description :
+//    plusieurs heritage  successifs
+//
+// Résultats :
+//    ok
+
+
+class A {
+    int eins;
+
+
+    float somme (){
+        return x+y;
+    }
+}
+
+
+class B extends A{
+     float zwei;
+
+    boolean alpha;
+ 
+}
+
+class C extends B{
+     boolean alpha = true ;
+ 
+}
+
+
+class D extends C {
+    boolean alpha;
+
+    int drei;
+
+}
+

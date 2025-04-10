@@ -1,0 +1,21 @@
+// Description :
+//    Declaration de variable dans le corps d'une methode
+//
+// Résultats :
+//    ok
+
+
+class Produit  {
+
+     int a;
+
+    int test (float x ){
+        float inter = x+1 ;
+        if (inter > a){
+            return inter;
+        }else{
+            return a;
+        }
+    }
+    
+}

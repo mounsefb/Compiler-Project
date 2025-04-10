@@ -1,0 +1,56 @@
+// Description :
+//    Programme de test pour le compilateur Deca
+//
+// Resultats :
+//    Ok
+
+{
+    // Déclaration de variables
+    int a, b;
+    boolean condition;
+    float pi;
+
+    // Initialisation de variables
+    a = 5;
+    b = 10;
+    condition = true;
+    pi = 3.14;
+
+    // Affichage de variables
+    println(a);
+    println(b);
+    println(pi);
+
+    // Utilisation de boucle while
+    while (a > 0) {
+        println(a);
+        a = a - 1;
+    }
+
+    // Utilisation de la structure if-then-else
+    if (b > 5) {
+        println("b est supérieur à 5");
+    } else {
+        println("b n'est pas supérieur à 5");
+    }
+
+    // Utilisation de la structure if-then-else
+    if (b < 0) {
+        println("b est inférieur à 0");
+    } else {
+        println("b est positif");
+    }
+
+    // Utilisation de la structure if-then-elseif-else
+    if (b > 17) {
+        println("b est supérieur à 5");
+    } else if (b == 10) {
+        println("b est égale à ", b);
+    } else {
+        println("b n'est pas supérieur à 5");
+    }
+
+    // Fin du programme
+}
+
+

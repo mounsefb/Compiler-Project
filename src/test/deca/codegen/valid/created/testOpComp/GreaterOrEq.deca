@@ -1,0 +1,16 @@
+// Description :
+//    Test de l'opérateur de comparaison >=
+//
+// Résultats :
+//    1
+
+
+{
+    int x = 1;
+    int y = 2;
+    boolean z1 = x >= y;
+    boolean z2 = x < y;
+    if(z2 || z1){
+        println(1);
+    }
+}

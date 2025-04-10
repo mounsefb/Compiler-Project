@@ -1,0 +1,16 @@
+// Description :
+//    test de la methode equals de la classe Object
+//
+// Résultats :
+//    ok
+
+class A{
+    int beta ;
+}
+
+{
+    A premier = new A();
+    A second = new A() ;
+    boolean compar = premier.equals(second);
+
+}

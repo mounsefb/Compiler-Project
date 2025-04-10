@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : un if sans () pour la cond
+//
+// Résultats :
+//    Erreur Syntaxique
+//    Ligne 9: extraneous input '43' expecting ')'
+
+{
+    float x = readInt(43);
+}

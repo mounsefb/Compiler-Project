@@ -1,0 +1,10 @@
+class A {
+    protected int x;
+    int m() { }
+    int p() { }
+}
+class B extends A {
+    protected int y;
+    int p() { }
+    int q() { }
+}

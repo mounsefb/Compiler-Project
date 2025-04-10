@@ -1,0 +1,10 @@
+// Description :
+//    Test invalide : Initialisation d'une variable float avec un nombre trop grand
+//
+// Résultats :
+//    Erreur syntaxique
+//    Ligne 9: InvalidValueException: Float too large
+
+{
+    float x = 111111111111111111111111111111111111111111111111111111111111111111111.1111111111111111111111111111111111111111111111111111111111111111111111111111111111; // Ligne 4: InvalidValueException: Float value exceeds the representable range.
+}

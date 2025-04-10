@@ -1,0 +1,13 @@
+// ligne 12 : Erreur contextuelle attendue
+class A {
+   int x;
+   void m()
+   {
+      x = 1;
+   }
+}
+
+{
+   A a = new A();
+   (void)(a.m());
+}

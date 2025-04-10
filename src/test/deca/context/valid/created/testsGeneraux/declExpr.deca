@@ -1,0 +1,12 @@
+// Description :
+//    Test commenté de l'affectation d'une variable avec une expression arithmétique
+//
+// Résultats :
+//    ok
+
+{
+    /*int x = 1 + 2 + 3 + 5 + 8 ;
+    int y = 5 * 6 ; */
+    int z = 20 / 5;
+    println(z);
+}

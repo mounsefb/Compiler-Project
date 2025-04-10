@@ -1,0 +1,13 @@
+// Description :
+//    Test de la déclaration d'un float sans initialisation
+//
+// Résultats :
+//    ok
+
+
+{
+    float y = 7;
+    println(y);
+}
+
+

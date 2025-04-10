@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractOpArith.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deca Compiler</a> &gt; <a href="index.source.html" class="el_package">fr.ensimag.deca.tree</a> &gt; <span class="el_source">AbstractOpArith.java</span></div><h1>AbstractOpArith.java</h1><pre class="source lang-java linenums">package fr.ensimag.deca.tree;
+
+import fr.ensimag.deca.DecacCompiler;
+ import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+
+/**
+ * Arithmetic binary operations (+, -, /, ...)
+ * 
+ * @author gl01
+ * @date 01/01/2024
+ */
+public abstract class AbstractOpArith extends AbstractBinaryExpr {
+
+    public AbstractOpArith(AbstractExpr leftOperand, AbstractExpr rightOperand) {
+<span class="fc" id="L20">        super(leftOperand, rightOperand);</span>
+<span class="fc" id="L21">    }</span>
+
+    @Override
+    public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
+            ClassDefinition currentClass) throws ContextualError {
+        //throw new UnsupportedOperationException(&quot;not yet implemented&quot;);
+
+
+<span class="fc" id="L29">        Type rightType = this.getRightOperand().verifyExpr(compiler, localEnv, currentClass);</span>
+<span class="fc" id="L30">        Type leftType = this.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);</span>
+
+<span class="pc bpc" id="L32" title="1 of 8 branches missed.">        if (!((rightType.isFloat() || rightType.isInt()) &amp;&amp; (leftType.isFloat() || leftType.isInt()))){</span>
+<span class="fc" id="L33">            throw new ContextualError( &quot;IncompatibleTypesException: Only float or int types are accepted for this operation.&quot;, getLocation());</span>
+        }
+
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if( leftType.sameType(rightType)){</span>
+<span class="fc" id="L37">            this.setType(leftType);</span>
+<span class="fc" id="L38">            return leftType;</span>
+        }
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">        else if( rightType.isFloat() &amp;&amp;  leftType.isInt() ) {</span>
+<span class="fc" id="L41">            ConvFloat convfl = new ConvFloat(this.getLeftOperand());</span>
+<span class="fc" id="L42">            convfl.verifyExpr(compiler, localEnv, currentClass);</span>
+<span class="fc" id="L43">            this.setLeftOperand(convfl); </span>
+<span class="fc" id="L44">            this.setType(rightType);</span>
+<span class="fc" id="L45">        }</span>
+<span class="pc bpc" id="L46" title="2 of 4 branches missed.">        else if( leftType.isFloat() &amp;&amp;  rightType.isInt() ) {</span>
+<span class="fc" id="L47">            this.setRightOperand(new ConvFloat(this.getRightOperand()));</span>
+<span class="fc" id="L48">            this.getRightOperand().verifyExpr(compiler, localEnv, currentClass);</span>
+<span class="fc" id="L49">            this.setType(leftType);</span>
+        }
+<span class="fc" id="L51">        return compiler.environmentType.FLOAT;</span>
+    }
+
+
+    
+    @Override
+    public void codeGenInst(DecacCompiler compiler) {
+<span class="nc" id="L58">        this.getLeftOperand().codeGenInst(compiler);</span>
+<span class="nc" id="L59">        this.getRightOperand().codeGenInst(compiler);</span>
+        
+<span class="nc" id="L61">    }</span>
+    @Override
+    protected void codeGenPrint(DecacCompiler compiler) {
+<span class="nc" id="L64">        this.codeGenInst(compiler);</span>
+<span class="nc" id="L65">        compiler.addInstruction(new LOAD(Register.getR(compiler.getHandleMemory().getfull()), Register.getR(1)));</span>
+<span class="nc" id="L66">        compiler.getHandleMemory().registerLiberate();</span>
+<span class="nc" id="L67">        this.getType().codeGenPrint(compiler);</span>
+
+        
+<span class="nc" id="L70">    }</span>
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

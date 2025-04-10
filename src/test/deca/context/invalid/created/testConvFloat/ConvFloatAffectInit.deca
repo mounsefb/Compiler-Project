@@ -1,0 +1,14 @@
+// Description :
+//    Test invalide : Assignation incorrecte de résultat de multiplication à un int
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 13: Incompatibilité de type lors de l'assignation. Type attendu : int, Type obtenu : float
+
+{
+    int a = 1;
+    int b = 1;
+    float c = 1.2;
+
+    b = b * c;  // Ligne 8: Assignation de type incompatible. Attendu : int, Obtenu : float
+}

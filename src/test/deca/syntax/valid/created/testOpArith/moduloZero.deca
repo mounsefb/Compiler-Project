@@ -1,0 +1,9 @@
+// Description :
+//    Test invalide : Opération de modulo par zéro
+//
+// Résultats :
+//    Ok
+
+{
+    int result = 5 % 0;  // Ligne 2: Opération de modulo par zéro non autorisée
+}

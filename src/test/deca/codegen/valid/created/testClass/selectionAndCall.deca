@@ -1,0 +1,22 @@
+class Point {
+    int x;
+    int y;
+
+    void setX(int value) {
+        this.x = value;
+    }
+
+    void setY(int value) {
+        this.y = value;
+    }
+
+    void printPoint() {
+        println("Point(", this.x, ", ", this.y, ")");
+    }
+}
+{
+Point point = new Point();
+point.setX(5);
+point.setY(10);
+point.printPoint();
+}

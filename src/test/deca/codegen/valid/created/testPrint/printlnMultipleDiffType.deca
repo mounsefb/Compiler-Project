@@ -1,0 +1,11 @@
+// Description :
+//    Test de l'affichage de plusieurs chaînes de caractères et de variables avec println
+//
+// Résultats :
+//    Helloworld!11
+
+
+{
+   int x = 1;
+   println("Hello", "world", "!", x, x * x);
+}

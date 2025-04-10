@@ -1,0 +1,12 @@
+// Description :
+//    Test d'une opération de soustraction successive
+//
+// Résultats :
+//    ok
+
+
+{
+    int x = 1 - 3 - 5 - 8;
+    println(x);
+}
+

@@ -1,0 +1,10 @@
+class MyClass {
+    int x;
+    int getX() {
+        return x;
+        }
+    void setX(int x){
+        x=getX();
+        this.x=x;
+    }
+}

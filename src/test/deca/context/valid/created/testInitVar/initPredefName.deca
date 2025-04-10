@@ -1,0 +1,9 @@
+// Description :
+//    Test initi avec le nom d'un type predef
+//
+// Résultats :
+//    ok
+
+{
+    int int = 10;
+}

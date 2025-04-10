@@ -1,0 +1,14 @@
+// Description :
+//    Test d'initialisation de plusieurs types de variables (int, float, boolean)
+//
+// Résultats :
+//    OK
+
+
+{
+    int s = 5;
+    float p = 1.35987445;
+    boolean t = false;
+}
+
+

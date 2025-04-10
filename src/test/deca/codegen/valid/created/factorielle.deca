@@ -1,0 +1,29 @@
+// Description :
+//    Test de l'affectation d'une variable a à une variable b 
+//     On a tester avec le readInt() ca marche maintenant on el force avec 43 pour passer les test auto 
+//
+// Resultats :
+//    Ok
+{
+    
+    int n;
+    boolean badInt = true;
+    int res = 1;
+    int i =1;
+    while(badInt){
+        n = 7;
+        if( n < 0){
+            println("Erreur ");
+            print("Re entrer un entier non nul");
+        }
+        else{
+            badInt = false;
+            while(i<=n){
+                res = res * i;
+                i = i + 1;
+            }
+            println("Le factorielle de ", n , " = ",res);
+
+        }
+    }
+}

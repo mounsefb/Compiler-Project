@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IntType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deca Compiler</a> &gt; <a href="index.source.html" class="el_package">fr.ensimag.deca.context</a> &gt; <span class="el_source">IntType.java</span></div><h1>IntType.java</h1><pre class="source lang-java linenums">package fr.ensimag.deca.context;
+
+import fr.ensimag.deca.DecacCompiler;
+ import fr.ensimag.deca.tools.SymbolTable;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.POP;
+import fr.ensimag.ima.pseudocode.instructions.PUSH;
+import fr.ensimag.ima.pseudocode.instructions.QUO;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
+
+/**
+ *
+ * @author Ensimag
+ * @date 01/01/2024
+ */
+public class IntType extends Type {
+
+    public IntType(SymbolTable.Symbol name) {
+<span class="fc" id="L21">        super(name);</span>
+<span class="fc" id="L22">    }</span>
+
+    @Override
+    public boolean isInt() {
+<span class="fc" id="L26">        return true;</span>
+    }
+    
+    
+
+    @Override
+    public boolean sameType(Type otherType) {
+        //throw new UnsupportedOperationException(&quot;not yet implemented&quot;);
+<span class="fc" id="L34">        return otherType.isInt();</span>
+    }
+    @Override
+    public void codeGenPrint(DecacCompiler compiler) {
+<span class="nc" id="L38">        compiler.addInstruction(new WINT());</span>
+<span class="nc" id="L39">    }</span>
+    @Override
+    public void codeGenPrintX(DecacCompiler compiler) {
+<span class="nc" id="L42">        compiler.addInstruction(new WINT());</span>
+<span class="nc" id="L43">    }</span>
+    @Override
+    public void codeGenDivide(DecacCompiler compiler){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if(compiler.getHandleMemory().getPushIndex()!=1){</span>
+<span class="nc" id="L47">            RegisterOffset reg= new RegisterOffset(0,Register.SP);</span>
+<span class="nc" id="L48">            RegisterOffset reg1= new RegisterOffset(-1,Register.SP);</span>
+
+<span class="nc" id="L50">            compiler.addInstruction(new PUSH(Register.getR(compiler.getHandleMemory().getfull())));</span>
+<span class="nc" id="L51">            compiler.getHandleMemory().incrementerpush();</span>
+<span class="nc" id="L52">            compiler.addInstruction(new LOAD(reg1,Register.getR(compiler.getHandleMemory().getfull())));</span>
+
+<span class="nc" id="L54">            compiler.addInstruction(new QUO(reg,Register.getR(compiler.getHandleMemory().getfull())));</span>
+
+
+<span class="nc" id="L57">            compiler.addInstruction( new POP(Register.R0));</span>
+<span class="nc" id="L58">            compiler.getHandleMemory().decrementerpush();</span>
+
+<span class="nc" id="L60">            compiler.addInstruction( new POP(Register.R0));</span>
+<span class="nc" id="L61">            compiler.getHandleMemory().decrementerpush();</span>
+
+
+
+<span class="nc" id="L65">        }else{</span>
+<span class="nc" id="L66">            compiler.addInstruction(new QUO(Register.getR(compiler.getHandleMemory().getfull()),Register.getR(compiler.getHandleMemory().getfull()-1)));</span>
+
+<span class="nc" id="L68">            compiler.getHandleMemory().registerLiberate();</span>
+
+        }
+<span class="nc" id="L71">}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

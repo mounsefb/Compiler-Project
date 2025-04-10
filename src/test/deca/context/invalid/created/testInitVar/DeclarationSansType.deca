@@ -1,0 +1,13 @@
+// Description :
+//    Test invalide : Affectation à une variable non déclarée
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 10: TypeDeclarationRequiredException: A type declaration is required for proper initialization. 
+
+
+{
+    x = 1 - 3;
+    println(x);
+}
+

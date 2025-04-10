@@ -1,0 +1,12 @@
+// Description :
+//    Test d'une instruction print avec un nombre entier très long
+//
+// Resultats :
+//    Ligne 9: InvalidValueException: Integer too large 
+
+{
+    print(
+        111111111111111111111111111111111111111
+    );
+}
+

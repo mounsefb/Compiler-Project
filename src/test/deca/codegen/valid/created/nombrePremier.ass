@@ -1,0 +1,3252 @@
+	TSTO #30
+	BOV stack_overflow_error
+	ADDSP #40
+; Code de la table des méthodes de Object
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 2(GB)
+; code de la table des méthodes de Math
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.Math._mod, R0
+	STORE R0, 5(GB)
+	LOAD code.Math._occurrence, R0
+	STORE R0, 6(GB)
+	LOAD code.Math._abs, R0
+	STORE R0, 7(GB)
+	LOAD code.Math._pow, R0
+	STORE R0, 8(GB)
+	LOAD code.Math._sqrt, R0
+	STORE R0, 9(GB)
+	LOAD code.Math._fact, R0
+	STORE R0, 10(GB)
+	LOAD code.Math._taylor, R0
+	STORE R0, 11(GB)
+	LOAD code.Math.sin, R0
+	STORE R0, 12(GB)
+	LOAD code.Math.cos, R0
+	STORE R0, 13(GB)
+	LOAD code.Math.asin, R0
+	STORE R0, 14(GB)
+	LOAD code.Math.atan, R0
+	STORE R0, 15(GB)
+	LOAD code.Math._overOneFloatToBinary, R0
+	STORE R0, 16(GB)
+	LOAD code.Math._belowOneFloatToBinary, R0
+	STORE R0, 17(GB)
+	LOAD code.Math.ulp, R0
+	STORE R0, 18(GB)
+; code de la table des méthodes de Prime
+	LEA 1(GB), R0
+	STORE R0, 19(GB)
+	LOAD code.object.equals, R0
+	STORE R0, 20(GB)
+	LOAD code.Prime.setNum, R0
+	STORE R0, 21(GB)
+	LOAD code.Prime.getNum, R0
+	STORE R0, 22(GB)
+	LOAD code.Prime.isPrime, R0
+	STORE R0, 23(GB)
+; start main program
+; Main program
+; Beginning of main instructions:
+	NEW #3, R2
+	BOV tas_plein
+	LEA 19(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Prime
+	POP R2
+	STORE R2, 24(GB)
+	ADDSP #2
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD #10, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #2
+	ADDSP #1
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #1
+	LOAD R0, R2
+	CMP #1, R2
+	BNE else1
+then1:
+	WSTR "Ohoh "
+	ADDSP #1
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #1
+	LOAD R0, R2
+	LOAD R2, R1
+	WINT
+	WSTR " Is not a prime number"
+	WNL
+	BRA end_If1
+else1:
+	WSTR "Super "
+	ADDSP #1
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #1
+	LOAD R0, R2
+	LOAD R2, R1
+	WINT
+	WSTR " Is not a prime number"
+	WNL
+end_If1:
+	ADDSP #2
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD #2297, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #2
+	ADDSP #1
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #1
+	LOAD R0, R2
+	CMP #0, R2
+	BEQ debutNot3
+	LOAD #0, R2
+	BRA endnot3
+debutNot3:
+	LOAD #1, R2
+endnot3:
+	CMP #1, R2
+	BNE else3
+then3:
+	WSTR "Ohoh "
+	ADDSP #1
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #1
+	LOAD R0, R2
+	LOAD R2, R1
+	WINT
+	WSTR " Is a prime number"
+	WNL
+	BRA end_If3
+else3:
+	WSTR "Super "
+	ADDSP #1
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #1
+	LOAD R0, R2
+	LOAD R2, R1
+	WINT
+	WSTR " Is a prime number"
+	WNL
+end_If3:
+Debut_while4:
+	ADDSP #1
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #1
+	LOAD R0, R2
+	LOAD #0, R3
+	CMP R3, R2
+	BGT greater5
+	LOAD #0, R2
+	BRA notGreater5
+greater5:
+	LOAD #1, R2
+notGreater5:
+	CMP #0, R2
+	BEQ Fin_while4
+	ADDSP #2
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	RINT
+	BOV io_error
+	LOAD R1, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #2
+	ADDSP #1
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #1
+	LOAD R0, R2
+	CMP #0, R2
+	BEQ debutNot7
+	LOAD #0, R2
+	BRA endnot7
+debutNot7:
+	LOAD #1, R2
+endnot7:
+	CMP #1, R2
+	BNE else7
+then7:
+	WSTR "Ohoh "
+	ADDSP #1
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #1
+	LOAD R0, R2
+	LOAD R2, R1
+	WINT
+	WSTR " Is a prime number"
+	WNL
+	BRA end_If7
+else7:
+	WSTR "Super "
+	ADDSP #1
+	LOAD 24(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #1
+	LOAD R0, R2
+	LOAD R2, R1
+	WINT
+	WSTR " Is a prime number"
+	WNL
+end_If7:
+	BRA Debut_while4
+Fin_while4:
+	HALT
+; end main program
+overflow_error:
+	WSTR "Error: Overflow during arithmetic operation"
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR "Error: Stack Overflow "
+	WNL
+	ERROR
+io_error:
+	WSTR "Error: Input/Output error"
+	WNL
+	ERROR
+Dereferencement.null:
+	WSTR "Erreur : dereferencement de null"
+	WNL
+	ERROR
+pile_pleine:
+	WSTR "Erreur : pile pleine"
+	WNL
+	ERROR
+tas_plein:
+	WSTR "Erreur : allocation impossible, tas plein"
+	WNL
+	ERROR
+cast_incorrect:
+	WSTR "la conversion (cast) est incorrecte"
+	WNL
+	ERROR
+; code de l'initialisation des champs
+init.Math:
+	LOAD #0x1.b38fb8p1, R2
+	ADDSP #3
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD #10, R3
+	FLOAT R3, R3
+	STORE R3, -1(SP)
+	LOAD #38, R3
+	STORE R3, -2(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 5(R3)
+	SUBSP #3
+	LOAD R0, R3
+	MUL R3, R2
+	BOV overflow_error
+	LOAD R2, R0
+	LOAD -2(LB), R1
+	STORE R0, 1(R1)
+	LOAD #0x1.921fb6p1, R2
+	LOAD R2, R0
+	LOAD -2(LB), R1
+	STORE R0, 2(R1)
+	LOAD #127, R2
+	LOAD R2, R0
+	LOAD -2(LB), R1
+	STORE R0, 3(R1)
+	LOAD #23, R2
+	LOAD R2, R0
+	LOAD -2(LB), R1
+	STORE R0, 4(R1)
+	RTS
+init.Prime:
+	NEW #5, R2
+	BOV tas_plein
+	LEA 3(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Math
+	POP R2
+	LOAD R2, R0
+	LOAD -2(LB), R1
+	STORE R0, 1(R1)
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 2(R1)
+	RTS
+; code des méthodes
+code.Math._mod:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -4(LB), R2
+	LOAD #0, R3
+	FLOAT R3, R3
+	CMP R3, R2
+	BEQ eq9
+	LOAD #0, R2
+	BRA not_eq9
+eq9:
+	LOAD #1, R2
+not_eq9:
+	CMP #1, R2
+	BNE else9
+then9:
+	WSTR " IllegalArgumentException("" y = 0 impossible "") "
+	WNL
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If9
+else9:
+end_If9:
+	LOAD -3(LB), R2
+	LOAD -4(LB), R3
+	DIV R3, R2
+	BOV overflow_error
+	STORE R2, 1(LB)
+	LOAD -3(LB), R2
+	LOAD 1(LB), R3
+	INT R3, R3
+	FLOAT R3, R3
+	LOAD -4(LB), R4
+	MUL R4, R3
+	BOV overflow_error
+	SUB R3, R2
+	BOV overflow_error
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math._mod
+etiq_Fincode.Math._mod:
+	WSTR "sortie de la methode _mod sans return"
+	WNL
+	ERROR
+code.Math._occurrence:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -4(LB), R2
+	LOAD #0, R3
+	FLOAT R3, R3
+	CMP R3, R2
+	BEQ eq11
+	LOAD #0, R2
+	BRA not_eq11
+eq11:
+	LOAD #1, R2
+not_eq11:
+	CMP #1, R2
+	BNE else11
+then11:
+	WSTR " IllegalArgumentException("" the second argument must be different from y = 0 "") "
+	WNL
+	LOAD #1, R2
+	OPP R2, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If11
+else11:
+end_If11:
+	LOAD -4(LB), R2
+	LOAD -3(LB), R3
+	DIV R3, R2
+	BOV overflow_error
+	INT R2, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math._occurrence
+etiq_Fincode.Math._occurrence:
+	WSTR "sortie de la methode _occurrence sans return"
+	WNL
+	ERROR
+code.Math._abs:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -3(LB), R2
+	LOAD #0, R3
+	FLOAT R3, R3
+	CMP R3, R2
+	BLT lower13
+	LOAD #0, R2
+	BRA notLower13
+lower13:
+	LOAD #1, R2
+notLower13:
+	CMP #1, R2
+	BNE else13
+then13:
+	LOAD -3(LB), R2
+	OPP R2, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If13
+else13:
+end_If13:
+	LOAD -3(LB), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math._abs
+etiq_Fincode.Math._abs:
+	WSTR "sortie de la methode _abs sans return"
+	WNL
+	ERROR
+code.Math._pow:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -4(LB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BEQ eq15
+	LOAD #0, R2
+	BRA not_eq15
+eq15:
+	LOAD #1, R2
+not_eq15:
+	CMP #1, R2
+	BNE else15
+then15:
+	LOAD #1, R2
+	FLOAT R2, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If15
+else15:
+end_If15:
+	LOAD -4(LB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BLT lower17
+	LOAD #0, R2
+	BRA notLower17
+lower17:
+	LOAD #1, R2
+notLower17:
+	CMP #1, R2
+	BNE else17
+then17:
+	LOAD #1, R2
+	FLOAT R2, R2
+	LOAD -3(LB), R3
+	DIV R3, R2
+	BOV overflow_error
+	STORE R2, -3(LB)
+	LOAD -4(LB), R2
+	OPP R2, R2
+	STORE R2, -4(LB)
+	BRA end_If17
+else17:
+end_If17:
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD -4(LB), R2
+	LOAD #2, R3
+	QUO R3, R2
+	STORE R2, -2(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 5(R2)
+	SUBSP #3
+	LOAD R0, R2
+	STORE R2, 2(LB)
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -4(LB), R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD #2, R2
+	FLOAT R2, R2
+	STORE R2, -2(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #3
+	LOAD R0, R2
+	LOAD #0, R3
+	FLOAT R3, R3
+	CMP R3, R2
+	BEQ eq19
+	LOAD #0, R2
+	BRA not_eq19
+eq19:
+	LOAD #1, R2
+not_eq19:
+	CMP #1, R2
+	BNE else19
+then19:
+	LOAD 2(LB), R2
+	LOAD 2(LB), R3
+	MUL R3, R2
+	BOV overflow_error
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If19
+else19:
+	LOAD -3(LB), R2
+	LOAD 2(LB), R3
+	MUL R3, R2
+	BOV overflow_error
+	LOAD 2(LB), R3
+	MUL R3, R2
+	BOV overflow_error
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+end_If19:
+	BRA etiq_Fincode.Math._pow
+etiq_Fincode.Math._pow:
+	WSTR "sortie de la methode _pow sans return"
+	WNL
+	ERROR
+code.Math._sqrt:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -3(LB), R2
+	LOAD #0, R3
+	FLOAT R3, R3
+	CMP R3, R2
+	BLT lower21
+	LOAD #0, R2
+	BRA notLower21
+lower21:
+	LOAD #1, R2
+notLower21:
+	CMP #1, R2
+	BNE else21
+then21:
+	WSTR " IllegalArgumentException("" tout nombre passé à la racine carrée doit être positif "") "
+	WNL
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If21
+else21:
+end_If21:
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD #10, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD #5, R2
+	OPP R2, R2
+	STORE R2, -2(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 5(R2)
+	SUBSP #3
+	LOAD R0, R2
+	STORE R2, 3(LB)
+	LOAD -3(LB), R2
+	LOAD #0x1.0p1, R3
+	DIV R3, R2
+	BOV overflow_error
+	STORE R2, 4(LB)
+	LOAD -3(LB), R2
+	LOAD #0x1.0p1, R3
+	DIV R3, R2
+	BOV overflow_error
+	STORE R2, 5(LB)
+	LOAD 5(LB), R2
+	STORE R2, 4(LB)
+	LOAD 4(LB), R2
+	LOAD -3(LB), R3
+	LOAD 4(LB), R4
+	DIV R4, R3
+	BOV overflow_error
+	ADD R3, R2
+	BOV overflow_error
+	LOAD #0x1.0p1, R3
+	DIV R3, R2
+	BOV overflow_error
+	STORE R2, 5(LB)
+Debut_while22:
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 4(LB), R2
+	LOAD 5(LB), R3
+	SUB R3, R2
+	BOV overflow_error
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD 3(LB), R3
+	CMP R3, R2
+	BGT greater23
+	LOAD #0, R2
+	BRA notGreater23
+greater23:
+	LOAD #1, R2
+notGreater23:
+	CMP #0, R2
+	BEQ Fin_while22
+	LOAD 5(LB), R2
+	STORE R2, 4(LB)
+	LOAD 4(LB), R2
+	LOAD -3(LB), R3
+	LOAD 4(LB), R4
+	DIV R4, R3
+	BOV overflow_error
+	ADD R3, R2
+	BOV overflow_error
+	LOAD #0x1.0p1, R3
+	DIV R3, R2
+	BOV overflow_error
+	STORE R2, 5(LB)
+	BRA Debut_while22
+Fin_while22:
+	LOAD 5(LB), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math._sqrt
+etiq_Fincode.Math._sqrt:
+	WSTR "sortie de la methode _sqrt sans return"
+	WNL
+	ERROR
+code.Math._fact:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -3(LB), R2
+	LOAD #1, R3
+	CMP R3, R2
+	BEQ eq26
+	LOAD #0, R2
+	BRA not_eq26
+eq26:
+	LOAD #1, R2
+not_eq26:
+	LOAD -3(LB), R3
+	LOAD #0, R4
+	CMP R4, R3
+	BEQ eq27
+	LOAD #0, R3
+	BRA not_eq27
+eq27:
+	LOAD #1, R3
+not_eq27:
+	ADD R3, R2
+	CMP #2, R2
+	BEQ equal_or25
+	BRA notequal_or25
+equal_or25:
+	SUB #1, R2
+notequal_or25:
+	CMP #1, R2
+	BNE else27
+then27:
+	LOAD #1, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If27
+else27:
+end_If27:
+	LOAD -3(LB), R2
+	ADDSP #2
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD -3(LB), R3
+	LOAD #1, R4
+	SUB R4, R3
+	STORE R3, -1(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 7(R3)
+	SUBSP #2
+	LOAD R0, R3
+	MUL R3, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math._fact
+etiq_Fincode.Math._fact:
+	WSTR "sortie de la methode _fact sans return"
+	WNL
+	ERROR
+code.Math._taylor:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -5(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD #1, R3
+	FLOAT R3, R3
+	CMP R3, R2
+	BGT greater29
+	LOAD #0, R2
+	BRA notGreater29
+greater29:
+	LOAD #1, R2
+notGreater29:
+	CMP #1, R2
+	BNE else29
+then29:
+	WSTR " IllegalArgumentException("" Taylor Development available only between -1 and 1 strictly "") "
+	WNL
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If29
+else29:
+end_If29:
+	LOAD -4(LB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BLT lower31
+	LOAD #0, R2
+	BRA notLower31
+lower31:
+	LOAD #1, R2
+notLower31:
+	CMP #1, R2
+	BNE else31
+then31:
+	WSTR " IllegalArgumentException("" Order need to be greater than 0 "") "
+	WNL
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If31
+else31:
+end_If31:
+	LOAD -3(LB), R2
+	LOAD #3, R3
+	CMP R3, R2
+	BGT greater34
+	LOAD #0, R2
+	BRA notGreater34
+greater34:
+	LOAD #1, R2
+notGreater34:
+	LOAD -3(LB), R3
+	LOAD #0, R4
+	CMP R4, R3
+	BLT lower35
+	LOAD #0, R3
+	BRA notLower35
+lower35:
+	LOAD #1, R3
+notLower35:
+	ADD R3, R2
+	CMP #2, R2
+	BEQ equal_or33
+	BRA notequal_or33
+equal_or33:
+	SUB #1, R2
+notequal_or33:
+	CMP #1, R2
+	BNE else35
+then35:
+	WSTR " IllegalArgumentException("" WhichOne must be between 0 and 3 "") "
+	WNL
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If35
+else35:
+end_If35:
+	LOAD #0, R2
+	FLOAT R2, R2
+	STORE R2, 6(LB)
+	LOAD #0, R2
+	STORE R2, 7(LB)
+	LOAD -3(LB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BEQ eq37
+	LOAD #0, R2
+	BRA not_eq37
+eq37:
+	LOAD #1, R2
+not_eq37:
+	CMP #1, R2
+	BNE else37
+then37:
+Debut_while38:
+	LOAD #2, R2
+	LOAD 7(LB), R3
+	MUL R3, R2
+	LOAD #1, R3
+	ADD R3, R2
+	LOAD -4(LB), R3
+	CMP R3, R2
+	BLE lower_or_equal39
+	LOAD #0, R2
+	BRA not_lower_or_eq39
+lower_or_equal39:
+	LOAD #1, R2
+not_lower_or_eq39:
+	CMP #0, R2
+	BEQ Fin_while38
+	LOAD 6(LB), R2
+	ADDSP #3
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD #1, R3
+	OPP R3, R3
+	FLOAT R3, R3
+	STORE R3, -1(SP)
+	ADDSP #3
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD 7(LB), R3
+	FLOAT R3, R3
+	STORE R3, -1(SP)
+	LOAD #2, R3
+	FLOAT R3, R3
+	STORE R3, -2(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 2(R3)
+	SUBSP #3
+	LOAD R0, R3
+	INT R3, R3
+	STORE R3, -2(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 5(R3)
+	SUBSP #3
+	LOAD R0, R3
+	ADDSP #3
+	LOAD -2(LB), R4
+	STORE R4, 0(SP)
+	LOAD -5(LB), R4
+	STORE R4, -1(SP)
+	LOAD #2, R4
+	LOAD 7(LB), R5
+	MUL R5, R4
+	LOAD #1, R5
+	ADD R5, R4
+	STORE R4, -2(SP)
+	LOAD 0(SP), R4
+	CMP #null, R4
+	BEQ Dereferencement.null
+	LOAD 0(R4), R4
+	BSR 5(R4)
+	SUBSP #3
+	LOAD R0, R4
+	MUL R4, R3
+	BOV overflow_error
+	ADDSP #2
+	LOAD -2(LB), R4
+	STORE R4, 0(SP)
+	LOAD #2, R4
+	LOAD 7(LB), R5
+	MUL R5, R4
+	LOAD #1, R5
+	ADD R5, R4
+	STORE R4, -1(SP)
+	LOAD 0(SP), R4
+	CMP #null, R4
+	BEQ Dereferencement.null
+	LOAD 0(R4), R4
+	BSR 7(R4)
+	SUBSP #2
+	LOAD R0, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	BOV overflow_error
+	ADD R3, R2
+	BOV overflow_error
+	STORE R2, 6(LB)
+	LOAD 7(LB), R2
+	LOAD #1, R3
+	ADD R3, R2
+	STORE R2, 7(LB)
+	BRA Debut_while38
+Fin_while38:
+	BRA end_If37
+else37:
+	LOAD -3(LB), R2
+	LOAD #1, R3
+	CMP R3, R2
+	BEQ eq41
+	LOAD #0, R2
+	BRA not_eq41
+eq41:
+	LOAD #1, R2
+not_eq41:
+	CMP #1, R2
+	BNE else41
+then41:
+Debut_while42:
+	LOAD #2, R2
+	LOAD 7(LB), R3
+	MUL R3, R2
+	LOAD -4(LB), R3
+	CMP R3, R2
+	BLE lower_or_equal43
+	LOAD #0, R2
+	BRA not_lower_or_eq43
+lower_or_equal43:
+	LOAD #1, R2
+not_lower_or_eq43:
+	CMP #0, R2
+	BEQ Fin_while42
+	LOAD 6(LB), R2
+	ADDSP #3
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD #1, R3
+	OPP R3, R3
+	FLOAT R3, R3
+	STORE R3, -1(SP)
+	ADDSP #3
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD 7(LB), R3
+	FLOAT R3, R3
+	STORE R3, -1(SP)
+	LOAD #2, R3
+	FLOAT R3, R3
+	STORE R3, -2(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 2(R3)
+	SUBSP #3
+	LOAD R0, R3
+	INT R3, R3
+	STORE R3, -2(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 5(R3)
+	SUBSP #3
+	LOAD R0, R3
+	ADDSP #3
+	LOAD -2(LB), R4
+	STORE R4, 0(SP)
+	LOAD -5(LB), R4
+	STORE R4, -1(SP)
+	LOAD #2, R4
+	LOAD 7(LB), R5
+	MUL R5, R4
+	STORE R4, -2(SP)
+	LOAD 0(SP), R4
+	CMP #null, R4
+	BEQ Dereferencement.null
+	LOAD 0(R4), R4
+	BSR 5(R4)
+	SUBSP #3
+	LOAD R0, R4
+	MUL R4, R3
+	BOV overflow_error
+	ADDSP #2
+	LOAD -2(LB), R4
+	STORE R4, 0(SP)
+	LOAD #2, R4
+	LOAD 7(LB), R5
+	MUL R5, R4
+	STORE R4, -1(SP)
+	LOAD 0(SP), R4
+	CMP #null, R4
+	BEQ Dereferencement.null
+	LOAD 0(R4), R4
+	BSR 7(R4)
+	SUBSP #2
+	LOAD R0, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	BOV overflow_error
+	ADD R3, R2
+	BOV overflow_error
+	STORE R2, 6(LB)
+	LOAD 7(LB), R2
+	LOAD #1, R3
+	ADD R3, R2
+	STORE R2, 7(LB)
+	BRA Debut_while42
+Fin_while42:
+	BRA end_If41
+else41:
+	LOAD -3(LB), R2
+	LOAD #2, R3
+	CMP R3, R2
+	BEQ eq45
+	LOAD #0, R2
+	BRA not_eq45
+eq45:
+	LOAD #1, R2
+not_eq45:
+	CMP #1, R2
+	BNE else45
+then45:
+Debut_while46:
+	LOAD #2, R2
+	LOAD 7(LB), R3
+	MUL R3, R2
+	LOAD #1, R3
+	ADD R3, R2
+	LOAD -4(LB), R3
+	CMP R3, R2
+	BLE lower_or_equal47
+	LOAD #0, R2
+	BRA not_lower_or_eq47
+lower_or_equal47:
+	LOAD #1, R2
+not_lower_or_eq47:
+	CMP #0, R2
+	BEQ Fin_while46
+	LOAD 6(LB), R2
+	ADDSP #2
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD #2, R3
+	LOAD 7(LB), R4
+	MUL R4, R3
+	STORE R3, -1(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 7(R3)
+	SUBSP #2
+	LOAD R0, R3
+	FLOAT R3, R3
+	ADDSP #3
+	LOAD -2(LB), R4
+	STORE R4, 0(SP)
+	LOAD -5(LB), R4
+	STORE R4, -1(SP)
+	LOAD #2, R4
+	LOAD 7(LB), R5
+	MUL R5, R4
+	LOAD #1, R5
+	ADD R5, R4
+	STORE R4, -2(SP)
+	LOAD 0(SP), R4
+	CMP #null, R4
+	BEQ Dereferencement.null
+	LOAD 0(R4), R4
+	BSR 5(R4)
+	SUBSP #3
+	LOAD R0, R4
+	MUL R4, R3
+	BOV overflow_error
+	ADDSP #3
+	LOAD -2(LB), R4
+	STORE R4, 0(SP)
+	LOAD #2, R4
+	FLOAT R4, R4
+	STORE R4, -1(SP)
+	LOAD #2, R4
+	LOAD 7(LB), R5
+	MUL R5, R4
+	STORE R4, -2(SP)
+	LOAD 0(SP), R4
+	CMP #null, R4
+	BEQ Dereferencement.null
+	LOAD 0(R4), R4
+	BSR 5(R4)
+	SUBSP #3
+	LOAD R0, R4
+	ADDSP #3
+	LOAD -2(LB), R5
+	STORE R5, 0(SP)
+	ADDSP #2
+	LOAD -2(LB), R5
+	STORE R5, 0(SP)
+	LOAD 7(LB), R5
+	STORE R5, -1(SP)
+	LOAD 0(SP), R5
+	CMP #null, R5
+	BEQ Dereferencement.null
+	LOAD 0(R5), R5
+	BSR 7(R5)
+	SUBSP #2
+	LOAD R0, R5
+	FLOAT R5, R5
+	STORE R5, -1(SP)
+	LOAD #2, R5
+	STORE R5, -2(SP)
+	LOAD 0(SP), R5
+	CMP #null, R5
+	BEQ Dereferencement.null
+	LOAD 0(R5), R5
+	BSR 5(R5)
+	SUBSP #3
+	LOAD R0, R5
+	MUL R5, R4
+	BOV overflow_error
+	LOAD #2, R5
+	LOAD 7(LB), R6
+	MUL R6, R5
+	LOAD #1, R6
+	ADD R6, R5
+	FLOAT R5, R5
+	MUL R5, R4
+	BOV overflow_error
+	DIV R4, R3
+	BOV overflow_error
+	ADD R3, R2
+	BOV overflow_error
+	STORE R2, 6(LB)
+	LOAD 7(LB), R2
+	LOAD #1, R3
+	ADD R3, R2
+	STORE R2, 7(LB)
+	BRA Debut_while46
+Fin_while46:
+	BRA end_If45
+else45:
+	LOAD -3(LB), R2
+	LOAD #3, R3
+	CMP R3, R2
+	BEQ eq49
+	LOAD #0, R2
+	BRA not_eq49
+eq49:
+	LOAD #1, R2
+not_eq49:
+	CMP #1, R2
+	BNE else49
+then49:
+Debut_while50:
+	LOAD #2, R2
+	LOAD 7(LB), R3
+	MUL R3, R2
+	LOAD #1, R3
+	ADD R3, R2
+	LOAD -4(LB), R3
+	CMP R3, R2
+	BLE lower_or_equal51
+	LOAD #0, R2
+	BRA not_lower_or_eq51
+lower_or_equal51:
+	LOAD #1, R2
+not_lower_or_eq51:
+	CMP #0, R2
+	BEQ Fin_while50
+	LOAD 6(LB), R2
+	ADDSP #3
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD #1, R3
+	OPP R3, R3
+	FLOAT R3, R3
+	STORE R3, -1(SP)
+	ADDSP #3
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD 7(LB), R3
+	FLOAT R3, R3
+	STORE R3, -1(SP)
+	LOAD #2, R3
+	FLOAT R3, R3
+	STORE R3, -2(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 2(R3)
+	SUBSP #3
+	LOAD R0, R3
+	INT R3, R3
+	STORE R3, -2(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 5(R3)
+	SUBSP #3
+	LOAD R0, R3
+	ADDSP #3
+	LOAD -2(LB), R4
+	STORE R4, 0(SP)
+	LOAD -5(LB), R4
+	STORE R4, -1(SP)
+	LOAD #2, R4
+	LOAD 7(LB), R5
+	MUL R5, R4
+	LOAD #1, R5
+	ADD R5, R4
+	STORE R4, -2(SP)
+	LOAD 0(SP), R4
+	CMP #null, R4
+	BEQ Dereferencement.null
+	LOAD 0(R4), R4
+	BSR 5(R4)
+	SUBSP #3
+	LOAD R0, R4
+	MUL R4, R3
+	BOV overflow_error
+	LOAD #2, R4
+	LOAD 7(LB), R5
+	MUL R5, R4
+	LOAD #1, R5
+	ADD R5, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	BOV overflow_error
+	ADD R3, R2
+	BOV overflow_error
+	STORE R2, 6(LB)
+	LOAD 7(LB), R2
+	LOAD #1, R3
+	ADD R3, R2
+	STORE R2, 7(LB)
+	BRA Debut_while50
+Fin_while50:
+	BRA end_If49
+else49:
+end_If49:
+end_If45:
+end_If41:
+end_If37:
+	LOAD 6(LB), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math._taylor
+etiq_Fincode.Math._taylor:
+	WSTR "sortie de la methode _taylor sans return"
+	WNL
+	ERROR
+code.Math.sin:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD #0x1.0p-1, R3
+	CMP R3, R2
+	BLT lower53
+	LOAD #0, R2
+	BRA notLower53
+lower53:
+	LOAD #1, R2
+notLower53:
+	CMP #1, R2
+	BNE else53
+then53:
+	ADDSP #4
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD #0, R2
+	STORE R2, -1(SP)
+	LOAD #20, R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -3(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #4
+	LOAD R0, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If53
+else53:
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -2(LB), R0
+	LOAD 2(R0), R2
+	LOAD -3(LB), R3
+	SUB R3, R2
+	BOV overflow_error
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD #0x1.333334p-2, R3
+	CMP R3, R2
+	BLT lower55
+	LOAD #0, R2
+	BRA notLower55
+lower55:
+	LOAD #1, R2
+notLower55:
+	CMP #1, R2
+	BNE else55
+then55:
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	LOAD -2(LB), R0
+	LOAD 2(R0), R3
+	LOAD #2, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	BOV overflow_error
+	SUB R3, R2
+	BOV overflow_error
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 10(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If55
+else55:
+end_If55:
+end_If53:
+	LOAD #2, R2
+	FLOAT R2, R2
+	ADDSP #2
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD -3(LB), R3
+	LOAD #2, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	BOV overflow_error
+	STORE R3, -1(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 9(R3)
+	SUBSP #2
+	LOAD R0, R3
+	MUL R3, R2
+	BOV overflow_error
+	ADDSP #2
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD -3(LB), R3
+	LOAD #2, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	BOV overflow_error
+	STORE R3, -1(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 10(R3)
+	SUBSP #2
+	LOAD R0, R3
+	MUL R3, R2
+	BOV overflow_error
+	STORE R2, 8(LB)
+	LOAD 8(LB), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math.sin
+etiq_Fincode.Math.sin:
+	WSTR "sortie de la methode sin sans return"
+	WNL
+	ERROR
+code.Math.cos:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD #0x1.0p-1, R3
+	CMP R3, R2
+	BLT lower57
+	LOAD #0, R2
+	BRA notLower57
+lower57:
+	LOAD #1, R2
+notLower57:
+	CMP #1, R2
+	BNE else57
+then57:
+	ADDSP #4
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD #1, R2
+	STORE R2, -1(SP)
+	LOAD #20, R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -3(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #4
+	LOAD R0, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If57
+else57:
+end_If57:
+	LOAD #2, R2
+	FLOAT R2, R2
+	ADDSP #3
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	ADDSP #2
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD -3(LB), R3
+	LOAD #2, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	BOV overflow_error
+	STORE R3, -1(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 10(R3)
+	SUBSP #2
+	LOAD R0, R3
+	STORE R3, -1(SP)
+	LOAD #2, R3
+	STORE R3, -2(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 5(R3)
+	SUBSP #3
+	LOAD R0, R3
+	MUL R3, R2
+	BOV overflow_error
+	LOAD #1, R3
+	FLOAT R3, R3
+	SUB R3, R2
+	BOV overflow_error
+	STORE R2, 9(LB)
+	LOAD 9(LB), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math.cos
+etiq_Fincode.Math.cos:
+	WSTR "sortie de la methode cos sans return"
+	WNL
+	ERROR
+code.Math.asin:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD #0x1.333334p-2, R3
+	CMP R3, R2
+	BLT lower59
+	LOAD #0, R2
+	BRA notLower59
+lower59:
+	LOAD #1, R2
+notLower59:
+	CMP #1, R2
+	BNE else59
+then59:
+	ADDSP #4
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD #2, R2
+	STORE R2, -1(SP)
+	LOAD #30, R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -3(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #4
+	LOAD R0, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If59
+else59:
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD #1, R3
+	FLOAT R3, R3
+	CMP R3, R2
+	BLT lower61
+	LOAD #0, R2
+	BRA notLower61
+lower61:
+	LOAD #1, R2
+notLower61:
+	CMP #1, R2
+	BNE else61
+then61:
+	LOAD #2, R2
+	FLOAT R2, R2
+	ADDSP #2
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD -3(LB), R3
+	LOAD #1, R4
+	FLOAT R4, R4
+	ADDSP #2
+	LOAD -2(LB), R5
+	STORE R5, 0(SP)
+	LOAD #1, R5
+	FLOAT R5, R5
+	LOAD -3(LB), R6
+	LOAD -3(LB), R7
+	MUL R7, R6
+	BOV overflow_error
+	SUB R6, R5
+	BOV overflow_error
+	STORE R5, -1(SP)
+	LOAD 0(SP), R5
+	CMP #null, R5
+	BEQ Dereferencement.null
+	LOAD 0(R5), R5
+	BSR 6(R5)
+	SUBSP #2
+	LOAD R0, R5
+	ADD R5, R4
+	BOV overflow_error
+	DIV R4, R3
+	BOV overflow_error
+	STORE R3, -1(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 12(R3)
+	SUBSP #2
+	LOAD R0, R3
+	MUL R3, R2
+	BOV overflow_error
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If61
+else61:
+end_If61:
+end_If59:
+	WSTR " IllegalArgumentException("" Asin definition domain is restricted to ]-1, 1[ "") "
+	WNL
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math.asin
+etiq_Fincode.Math.asin:
+	WSTR "sortie de la methode asin sans return"
+	WNL
+	ERROR
+code.Math.atan:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD #1, R3
+	FLOAT R3, R3
+	SUB R3, R2
+	BOV overflow_error
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD #0x1.333334p-2, R3
+	CMP R3, R2
+	BLE lower_or_equal63
+	LOAD #0, R2
+	BRA not_lower_or_eq63
+lower_or_equal63:
+	LOAD #1, R2
+not_lower_or_eq63:
+	CMP #1, R2
+	BNE else63
+then63:
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	ADDSP #2
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD #1, R3
+	FLOAT R3, R3
+	ADDSP #3
+	LOAD -2(LB), R4
+	STORE R4, 0(SP)
+	LOAD -3(LB), R4
+	STORE R4, -1(SP)
+	LOAD #2, R4
+	STORE R4, -2(SP)
+	LOAD 0(SP), R4
+	CMP #null, R4
+	BEQ Dereferencement.null
+	LOAD 0(R4), R4
+	BSR 5(R4)
+	SUBSP #3
+	LOAD R0, R4
+	ADD R4, R3
+	BOV overflow_error
+	STORE R3, -1(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 6(R3)
+	SUBSP #2
+	LOAD R0, R3
+	DIV R3, R2
+	BOV overflow_error
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 11(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If63
+else63:
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD #1, R3
+	FLOAT R3, R3
+	CMP R3, R2
+	BLE lower_or_equal65
+	LOAD #0, R2
+	BRA not_lower_or_eq65
+lower_or_equal65:
+	LOAD #1, R2
+not_lower_or_eq65:
+	CMP #1, R2
+	BNE else65
+then65:
+	ADDSP #4
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD #3, R2
+	STORE R2, -1(SP)
+	LOAD #50, R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -3(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #4
+	LOAD R0, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If65
+else65:
+end_If65:
+end_If63:
+	LOAD -2(LB), R0
+	LOAD 2(R0), R2
+	LOAD #2, R3
+	FLOAT R3, R3
+	DIV R3, R2
+	BOV overflow_error
+	ADDSP #2
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD #1, R3
+	FLOAT R3, R3
+	LOAD -3(LB), R4
+	DIV R4, R3
+	BOV overflow_error
+	STORE R3, -1(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 12(R3)
+	SUBSP #2
+	LOAD R0, R3
+	SUB R3, R2
+	BOV overflow_error
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math.atan
+etiq_Fincode.Math.atan:
+	WSTR "sortie de la methode atan sans return"
+	WNL
+	ERROR
+code.Math._overOneFloatToBinary:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -3(LB), R2
+	INT R2, R2
+	STORE R2, 10(LB)
+	LOAD #0, R2
+	STORE R2, 11(LB)
+	LOAD #1, R2
+	STORE R2, 12(LB)
+	LOAD #0, R2
+	STORE R2, 13(LB)
+	LOAD #0, R2
+	STORE R2, 14(LB)
+	LOAD 10(LB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BLT lower67
+	LOAD #0, R2
+	BRA notLower67
+lower67:
+	LOAD #1, R2
+notLower67:
+	CMP #1, R2
+	BNE else67
+then67:
+	LOAD #1, R2
+	STORE R2, 14(LB)
+	LOAD 10(LB), R2
+	OPP R2, R2
+	STORE R2, 10(LB)
+	BRA end_If67
+else67:
+end_If67:
+Debut_while68:
+	LOAD 10(LB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BNE not_equal69
+	LOAD #0, R2
+	BRA equal69
+not_equal69:
+	LOAD #1, R2
+equal69:
+	CMP #0, R2
+	BEQ Fin_while68
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 10(LB), R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD #2, R2
+	FLOAT R2, R2
+	STORE R2, -2(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #3
+	LOAD R0, R2
+	LOAD #1, R3
+	FLOAT R3, R3
+	CMP R3, R2
+	BEQ eq71
+	LOAD #0, R2
+	BRA not_eq71
+eq71:
+	LOAD #1, R2
+not_eq71:
+	CMP #1, R2
+	BNE else71
+then71:
+	LOAD 11(LB), R2
+	LOAD 12(LB), R3
+	ADD R3, R2
+	STORE R2, 11(LB)
+	BRA end_If71
+else71:
+end_If71:
+	LOAD 10(LB), R2
+	LOAD #2, R3
+	QUO R3, R2
+	STORE R2, 10(LB)
+	LOAD 12(LB), R2
+	LOAD #2, R3
+	MUL R3, R2
+	STORE R2, 12(LB)
+	LOAD 13(LB), R2
+	LOAD #1, R3
+	ADD R3, R2
+	STORE R2, 13(LB)
+	BRA Debut_while68
+Fin_while68:
+	LOAD 13(LB), R2
+	STORE R2, 15(LB)
+	LOAD #23, R2
+	STORE R2, 16(LB)
+	LOAD #0, R2
+	STORE R2, 17(LB)
+	LOAD 12(LB), R2
+	LOAD #2, R3
+	QUO R3, R2
+	STORE R2, 12(LB)
+	LOAD 13(LB), R2
+	LOAD #1, R3
+	SUB R3, R2
+	STORE R2, 13(LB)
+Debut_while72:
+	LOAD 16(LB), R2
+	LOAD #0, R3
+	CMP R3, R2
+	BNE not_equal73
+	LOAD #0, R2
+	BRA equal73
+not_equal73:
+	LOAD #1, R2
+equal73:
+	LOAD 12(LB), R3
+	LOAD #1, R4
+	CMP R4, R3
+	BNE not_equal74
+	LOAD #0, R3
+	BRA equal74
+not_equal74:
+	LOAD #1, R3
+equal74:
+	MUL R3, R2
+	CMP #0, R2
+	BEQ Fin_while72
+	LOAD 16(LB), R2
+	LOAD #1, R3
+	SUB R3, R2
+	STORE R2, 16(LB)
+	LOAD 13(LB), R2
+	LOAD #1, R3
+	SUB R3, R2
+	STORE R2, 13(LB)
+	LOAD 12(LB), R2
+	LOAD #2, R3
+	QUO R3, R2
+	STORE R2, 12(LB)
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 11(LB), R2
+	LOAD 12(LB), R3
+	QUO R3, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD #2, R2
+	FLOAT R2, R2
+	STORE R2, -2(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #3
+	LOAD R0, R2
+	LOAD #1, R3
+	FLOAT R3, R3
+	CMP R3, R2
+	BEQ eq76
+	LOAD #0, R2
+	BRA not_eq76
+eq76:
+	LOAD #1, R2
+not_eq76:
+	CMP #1, R2
+	BNE else76
+then76:
+	LOAD 17(LB), R2
+	ADDSP #3
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD #2, R3
+	FLOAT R3, R3
+	STORE R3, -1(SP)
+	LOAD 16(LB), R3
+	STORE R3, -2(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 5(R3)
+	SUBSP #3
+	LOAD R0, R3
+	INT R3, R3
+	ADD R3, R2
+	STORE R2, 17(LB)
+	BRA end_If76
+else76:
+end_If76:
+	BRA Debut_while72
+Fin_while72:
+	LOAD 17(LB), R2
+	STORE R2, 11(LB)
+	LOAD #127, R2
+	LOAD 15(LB), R3
+	ADD R3, R2
+	LOAD #1, R3
+	SUB R3, R2
+	STORE R2, 18(LB)
+	LOAD 11(LB), R2
+	LOAD 18(LB), R3
+	FLOAT R3, R3
+	ADDSP #3
+	LOAD -2(LB), R4
+	STORE R4, 0(SP)
+	LOAD #2, R4
+	FLOAT R4, R4
+	STORE R4, -1(SP)
+	LOAD #23, R4
+	STORE R4, -2(SP)
+	LOAD 0(SP), R4
+	CMP #null, R4
+	BEQ Dereferencement.null
+	LOAD 0(R4), R4
+	BSR 5(R4)
+	SUBSP #3
+	LOAD R0, R4
+	MUL R4, R3
+	BOV overflow_error
+	INT R3, R3
+	ADD R3, R2
+	STORE R2, 11(LB)
+	LOAD 11(LB), R2
+	LOAD 14(LB), R3
+	FLOAT R3, R3
+	ADDSP #3
+	LOAD -2(LB), R4
+	STORE R4, 0(SP)
+	LOAD #2, R4
+	FLOAT R4, R4
+	STORE R4, -1(SP)
+	LOAD #32, R4
+	STORE R4, -2(SP)
+	LOAD 0(SP), R4
+	CMP #null, R4
+	BEQ Dereferencement.null
+	LOAD 0(R4), R4
+	BSR 5(R4)
+	SUBSP #3
+	LOAD R0, R4
+	MUL R4, R3
+	BOV overflow_error
+	INT R3, R3
+	ADD R3, R2
+	STORE R2, 11(LB)
+	LOAD 11(LB), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math._overOneFloatToBinary
+etiq_Fincode.Math._overOneFloatToBinary:
+	WSTR "sortie de la methode _overOneFloatToBinary sans return"
+	WNL
+	ERROR
+code.Math._belowOneFloatToBinary:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -3(LB), R2
+	STORE R2, 19(LB)
+	LOAD #1, R2
+	OPP R2, R2
+	STORE R2, 20(LB)
+Debut_while77:
+	LOAD 19(LB), R2
+	LOAD #2, R3
+	FLOAT R3, R3
+	DIV R3, R2
+	BOV overflow_error
+	INT R2, R2
+	LOAD #0, R3
+	CMP R3, R2
+	BEQ eq78
+	LOAD #0, R2
+	BRA not_eq78
+eq78:
+	LOAD #1, R2
+not_eq78:
+	CMP #0, R2
+	BEQ Fin_while77
+	LOAD 19(LB), R2
+	LOAD #2, R3
+	FLOAT R3, R3
+	MUL R3, R2
+	BOV overflow_error
+	STORE R2, 19(LB)
+	LOAD 20(LB), R2
+	LOAD #1, R3
+	ADD R3, R2
+	STORE R2, 20(LB)
+	BRA Debut_while77
+Fin_while77:
+	LOAD 20(LB), R2
+	OPP R2, R2
+	LOAD #127, R3
+	ADD R3, R2
+	ADDSP #3
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD #2, R3
+	FLOAT R3, R3
+	STORE R3, -1(SP)
+	LOAD #23, R3
+	STORE R3, -2(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 5(R3)
+	SUBSP #3
+	LOAD R0, R3
+	INT R3, R3
+	MUL R3, R2
+	STORE R2, 20(LB)
+	LOAD 20(LB), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math._belowOneFloatToBinary
+etiq_Fincode.Math._belowOneFloatToBinary:
+	WSTR "sortie de la methode _belowOneFloatToBinary sans return"
+	WNL
+	ERROR
+code.Math.ulp:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	STORE R2, -3(LB)
+	LOAD -3(LB), R2
+	LOAD -2(LB), R0
+	LOAD 1(R0), R3
+	CMP R3, R2
+	BEQ eq81
+	LOAD #0, R2
+	BRA not_eq81
+eq81:
+	LOAD #1, R2
+not_eq81:
+	LOAD -3(LB), R3
+	LOAD #0, R4
+	FLOAT R4, R4
+	CMP R4, R3
+	BEQ eq82
+	LOAD #0, R3
+	BRA not_eq82
+eq82:
+	LOAD #1, R3
+not_eq82:
+	ADD R3, R2
+	CMP #2, R2
+	BEQ equal_or80
+	BRA notequal_or80
+equal_or80:
+	SUB #1, R2
+notequal_or80:
+	CMP #1, R2
+	BNE else82
+then82:
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #2
+	LOAD R0, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If82
+else82:
+end_If82:
+	LOAD -3(LB), R2
+	LOAD #1, R3
+	FLOAT R3, R3
+	CMP R3, R2
+	BGE greater_or_eq84
+	LOAD #0, R2
+	BRA not_greater_or_eq84
+greater_or_eq84:
+	LOAD #1, R2
+not_greater_or_eq84:
+	CMP #1, R2
+	BNE else84
+then84:
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #2
+	LOAD R0, R2
+	STORE R2, 21(LB)
+	BRA end_If84
+else84:
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 14(R2)
+	SUBSP #2
+	LOAD R0, R2
+	STORE R2, 21(LB)
+end_If84:
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 21(LB), R2
+	FLOAT R2, R2
+	ADDSP #3
+	LOAD -2(LB), R3
+	STORE R3, 0(SP)
+	LOAD #2, R3
+	FLOAT R3, R3
+	STORE R3, -1(SP)
+	LOAD #23, R3
+	STORE R3, -2(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 5(R3)
+	SUBSP #3
+	LOAD R0, R3
+	DIV R3, R2
+	BOV overflow_error
+	INT R2, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD #2, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD #8, R2
+	STORE R2, -2(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 5(R2)
+	SUBSP #3
+	LOAD R0, R2
+	STORE R2, -2(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #3
+	LOAD R0, R2
+	INT R2, R2
+	STORE R2, 22(LB)
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD #2, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 22(LB), R2
+	LOAD -2(LB), R0
+	LOAD 3(R0), R3
+	SUB R3, R2
+	LOAD -2(LB), R0
+	LOAD 4(R0), R3
+	SUB R3, R2
+	STORE R2, -2(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ Dereferencement.null
+	LOAD 0(R2), R2
+	BSR 5(R2)
+	SUBSP #3
+	LOAD R0, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Math.ulp
+etiq_Fincode.Math.ulp:
+	WSTR "sortie de la methode ulp sans return"
+	WNL
+	ERROR
+code.Prime.setNum:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -3(LB), R2
+	LOAD -2(LB), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	STORE R2, 2(R3)
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+code.Prime.getNum:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD -2(LB), R0
+	LOAD 2(R0), R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Prime.getNum
+etiq_Fincode.Prime.getNum:
+	WSTR "sortie de la methode getNum sans return"
+	WNL
+	ERROR
+code.Prime.isPrime:
+	TSTO #0
+	BOV pile_pleine
+	ADDSP #16
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	PUSH R12
+	PUSH R13
+	PUSH R14
+	PUSH R15
+	LOAD #2, R2
+	STORE R2, 23(LB)
+	LOAD -2(LB), R0
+	LOAD 2(R0), R2
+	LOAD #2, R3
+	CMP R3, R2
+	BLT lower86
+	LOAD #0, R2
+	BRA notLower86
+lower86:
+	LOAD #1, R2
+notLower86:
+	CMP #1, R2
+	BNE else86
+then86:
+	LOAD #0, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If86
+else86:
+end_If86:
+Debut_while87:
+	LOAD 23(LB), R2
+	FLOAT R2, R2
+	ADDSP #2
+	LOAD -2(LB), R0
+	LOAD 1(R0), R3
+	STORE R3, 0(SP)
+	LOAD -2(LB), R0
+	LOAD 2(R0), R3
+	FLOAT R3, R3
+	STORE R3, -1(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ Dereferencement.null
+	LOAD 0(R3), R3
+	BSR 6(R3)
+	SUBSP #2
+	LOAD R0, R3
+	CMP R3, R2
+	BLE lower_or_equal88
+	LOAD #0, R2
+	BRA not_lower_or_eq88
+lower_or_equal88:
+	LOAD #1, R2
+not_lower_or_eq88:
+	CMP #0, R2
+	BEQ Fin_while87
+	LOAD -2(LB), R0
+	LOAD 2(R0), R2
+	LOAD 23(LB), R3
+	REM R3, R2
+	LOAD #0, R3
+	CMP R3, R2
+	BEQ eq90
+	LOAD #0, R2
+	BRA not_eq90
+eq90:
+	LOAD #1, R2
+not_eq90:
+	CMP #1, R2
+	BNE else90
+then90:
+	LOAD #0, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA end_If90
+else90:
+end_If90:
+	LOAD 23(LB), R2
+	LOAD #1, R3
+	ADD R3, R2
+	STORE R2, 23(LB)
+	BRA Debut_while87
+Fin_while87:
+	LOAD #1, R2
+	LOAD R2, R0
+	POP R15
+	POP R14
+	POP R13
+	POP R12
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	POP R2
+	BRA fin_methodes
+	BRA etiq_Fincode.Prime.isPrime
+etiq_Fincode.Prime.isPrime:
+	WSTR "sortie de la methode isPrime sans return"
+	WNL
+	ERROR
+code.object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	BEQ if_equal_pour_object.equals
+	LOAD #0, R0
+	BRA fin_methodes
+if_equal_pour_object.equals:
+	LOAD #1, R0
+	BRA fin_methodes
+fin_methodes:
+	RTS

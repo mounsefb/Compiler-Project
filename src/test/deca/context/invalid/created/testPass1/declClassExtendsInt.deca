@@ -1,0 +1,8 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 8: InvalidSuperclassDeclarationException: The superclass you declared is not a valid class.
+
+class A extends int{}

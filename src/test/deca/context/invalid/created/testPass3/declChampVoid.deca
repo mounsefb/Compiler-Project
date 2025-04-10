@@ -1,0 +1,10 @@
+// Description : declaration champ void
+//   
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 9: VoidFieldTypeException: It is not allowed to declare a field with the void type.
+
+class A {
+    void x;
+}

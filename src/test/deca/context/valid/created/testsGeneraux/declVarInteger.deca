@@ -1,0 +1,10 @@
+// Description :
+//    Test de la déclaration de deux variables pour tester la génération de code (ADDSP et gestion des registres)
+//
+// Résultats :
+//    ok
+
+{
+    int x = 1;  
+    int y = 5;
+}

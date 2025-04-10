@@ -1,0 +1,12 @@
+// Description :
+//    Test de l'affectation d'une variable a à une variable b
+//
+// Resultats :
+//    Ok
+
+{
+    int a = 1;
+    int b;
+    b = a;
+    println(b);
+}

@@ -1,0 +1,7 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 7: DoubleClassDeclarationException: Class names must be unique. You have declared the class Object more than once.
+class Object{}

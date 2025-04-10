@@ -1,0 +1,16 @@
+class Circle {
+    int radius;
+
+    void setRadius(int r) {
+        this.radius = r;
+    }
+
+    float calculateArea() {
+        return 3.14 * this.radius * this.radius;
+    }
+}
+{
+Circle circle = new Circle();
+circle.setRadius(5);
+println("Area:", circle.calculateArea());
+}

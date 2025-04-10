@@ -1,0 +1,11 @@
+// Description :
+//    Test invalide : Opération d'addition sur des booléens
+//
+// Résultats :
+//    Erreur contextuelle
+//    Ligne 10: DoubleFieldDeclarationException: The field couldn't be declared because it has already been defined.
+
+class Y{
+    int x;
+    float x;
+}

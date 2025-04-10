@@ -1,0 +1,11 @@
+// Description :
+//    Test des opérations arithmétiques en une seule étape
+//
+// Résultats :
+//    ok
+
+
+{
+    int x = 1 + 2 - 3 * 4;
+    int y = 5 * 4 + 15 % 3 - 2;
+}

@@ -1,0 +1,1 @@
+./src/test/deca/syntax/invalid/created/testOpArith/IncrementationJava.deca:10:6: mismatched input '+' expecting {'(', 'new', 'this', 'readFloat', 'readInt', 'null', 'true', 'false', '-', '!', IDENT, INT, FLOAT, STRING}

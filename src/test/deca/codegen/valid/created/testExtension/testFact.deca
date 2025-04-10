@@ -1,0 +1,14 @@
+// Description :
+//    Test de la fonction factorielle (_fact) avec x = 5
+//
+// Résultats attendus :
+//    120
+
+#include "Math.decah"
+
+{
+    Math customMath = new Math();
+    int x = 5;
+
+    println("_fact(", x, ") = ", customMath._fact(x));
+}

@@ -1,0 +1,12 @@
+// Description :
+//    Test de différentes formes de fonctions d'affichage
+//
+// Resultats :
+//    Ok
+
+{
+    print();
+    println();
+    printx();
+    printlnx();
+}

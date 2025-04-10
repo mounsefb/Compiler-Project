@@ -1,0 +1,21 @@
+// Description :
+//    initialisation d'un object de type statique Object 
+//
+// Résultats :
+//    ok
+
+
+class A {
+    int eins;
+
+
+    void delacer (int tr){
+        eins = eins + tr;
+    }
+}
+
+{
+    Object monObjet = new A();
+}
+
+

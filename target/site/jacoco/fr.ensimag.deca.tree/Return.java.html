@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Return.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deca Compiler</a> &gt; <a href="index.source.html" class="el_package">fr.ensimag.deca.tree</a> &gt; <span class="el_source">Return.java</span></div><h1>Return.java</h1><pre class="source lang-java linenums">package fr.ensimag.deca.tree;
+
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+
+import java.io.PrintStream;
+import org.apache.commons.lang.Validate;
+
+
+
+public class Return extends AbstractInst{
+
+    private AbstractExpr expr;
+    
+<span class="fc" id="L22">    public Return(AbstractExpr rexpr){</span>
+<span class="fc" id="L23">        Validate.notNull(rexpr,&quot;The returned value shouldnt be null&quot;);</span>
+<span class="fc" id="L24">        this.expr = rexpr;</span>
+<span class="fc" id="L25">    }</span>
+    
+    
+    @Override
+    protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType) throws ContextualError {
+        
+        //Il faut que le returnType ne soit pas void (3.24)
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if(returnType.isVoid())throw new ContextualError(&quot;The return type cant be void in the methode&quot;, getLocation());</span>
+
+        
+
+        //Il faut verifier que l'expression que l'on retourne est une rValue
+<span class="fc" id="L37">        this.expr = expr.verifyRValue(compiler, localEnv, currentClass, returnType);</span>
+
+<span class="fc" id="L39">    }</span>
+
+    @Override
+    protected void codeGenInst(DecacCompiler compiler) {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException(&quot;Unimplemented method 'codeGenInst'&quot;);
+<span class="nc" id="L45">        expr.codeGenInst(compiler); // retour de la méthode se fait en R0</span>
+<span class="nc" id="L46">        compiler.addInstruction(new LOAD(Register.getR(compiler.getHandleMemory().getfull()), Register.R0));</span>
+<span class="nc" id="L47">        compiler.addInstruction(new BRA(compiler.getRts()));</span>
+<span class="nc" id="L48">        compiler.getHandleMemory().registerLiberate();</span>
+<span class="nc" id="L49">    }</span>
+
+    @Override
+    public void decompile(IndentPrintStream s) {
+<span class="nc" id="L53">        s.print(&quot;return &quot;);</span>
+<span class="nc" id="L54">        this.expr.decompile(s);</span>
+<span class="nc" id="L55">        s.print(&quot;;&quot;);</span>
+<span class="nc" id="L56">    }</span>
+
+    @Override
+    protected void prettyPrintChildren(PrintStream s, String prefix) {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException(&quot;Unimplemented method 'prettyPrintChildren'&quot;);
+<span class="fc" id="L62">        expr.prettyPrint(s, prefix, true);</span>
+<span class="fc" id="L63">    }</span>
+
+    @Override
+    protected void iterChildren(TreeFunction f) {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException(&quot;Unimplemented method 'iterChildren'&quot;);
+<span class="nc" id="L69">        expr.iter(f);</span>
+<span class="nc" id="L70">    }</span>
+
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

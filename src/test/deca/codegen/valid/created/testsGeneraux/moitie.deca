@@ -1,0 +1,13 @@
+// Description :
+//    Affichage en flottant de la moitié du carré d'un entier
+//      Je force avec une valeur pour test auto
+//
+// Résultats :
+//    24.5
+
+{
+    int x;
+    x = 7;
+    println(0.5 * (x * x));
+}
+

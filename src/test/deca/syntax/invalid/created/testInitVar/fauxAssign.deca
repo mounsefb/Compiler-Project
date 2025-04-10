@@ -1,0 +1,12 @@
+// Description :
+//    Test invalide : Tentative d'associer une affectation à un type autre qu'un identificateur
+//
+// Résultats :
+//    Erreur syntaxique
+//    Ligne 10: left-hand side of assignment is not an lvalue
+
+
+{
+    5 = 9 * 8; // Cette ligne générera une erreur : Expression de gauche invalide dans l'affectation.
+}
+

@@ -1,0 +1,10 @@
+// Description :
+//    Test de l'addition et de la multiplication d'entiers
+//
+// Résultats :
+//    ok
+
+{
+    println(1 + 2 + 3);
+    println(2 * 3 * 4);
+}

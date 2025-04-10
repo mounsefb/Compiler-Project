@@ -1,0 +1,5 @@
+// teste une division sur zero
+{
+    float x = 5/0;
+    print(x);
+}

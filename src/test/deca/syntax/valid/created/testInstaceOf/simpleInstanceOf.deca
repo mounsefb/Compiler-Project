@@ -1,0 +1,15 @@
+// Description:
+//    dereferencement null
+//
+// Resultats:
+//     ok
+
+
+class A{ }
+
+{
+    A a = new A();
+    if(a instanceof A){
+        println("ok");
+    }
+}

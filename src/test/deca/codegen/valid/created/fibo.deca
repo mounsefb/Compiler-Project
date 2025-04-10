@@ -1,0 +1,39 @@
+// Description :
+//    Calcule du nieme terme de la suite fibo avec premiers termes 0 et 1
+//      On met la valeur 7 pour faire passer les test autos possibilite de mettre un readInt
+//
+// Resultats :
+//    Ok
+{
+
+    int n;
+    int previous = 0;
+    int current =  1;
+    int i = 2;
+    int next;
+    boolean badInt = true;
+
+    while(badInt){
+        n = 43;
+        if( n < 0){
+            println("Erreur ");
+            print("Re entrer un entier non nul");
+        }else if( n == 0){
+            println("Le ",n," element de la suite de fibo est 0");
+            badInt = false;
+        }else{
+            badInt = false;
+            while(i<=n){
+                next = previous + current;
+                previous =current;
+                current = next;
+                i = i +1;
+            }
+            println("Le ",n," de la suite de Fibo est: \\n",current);
+
+        }
+    }
+
+
+    
+}

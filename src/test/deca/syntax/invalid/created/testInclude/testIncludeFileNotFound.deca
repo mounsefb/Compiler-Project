@@ -1,0 +1,8 @@
+// Description :
+//    Test invalide : Tentative de faire un include sur un fichier inexistant
+//
+// Résultats :
+//    Erreur syntaxique
+//    Ligne 8: FileNotFound.decah: include file not found
+
+#include "FileNotFound.decah"

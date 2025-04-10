@@ -1,0 +1,11 @@
+// Description :
+//    Test de la lecture d'un nombre à virgule flottante avec readFloat
+//
+// Résultats :
+//    ok
+
+{
+    float x;
+    x = readFloat();
+}
+
