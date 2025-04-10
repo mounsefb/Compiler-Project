@@ -1,0 +1,26 @@
+float _multiplyPI(int k){
+        // System.out.println(PI2*k*_pow(10, -7));
+        // System.out.println(PI1);
+
+        // System.out.println(PI1*k*1000000000*100000 + PI2*k*10000000+ PI3*k + " " + PI2*k*10000000 + " " + PI3*k );
+        // float res = PI1*k*1000000000*100000 + PI2*k*10000000+ PI3*k;
+        float res = 0;
+        // if(k<100){
+            res = PI1*k + (int) (PI2*k)*_pow(10, -7);
+        // }
+        // else if(k<100000){
+        //     res = PI1*k + (int) (PI2*k*10000)*_pow(10, -11);
+        // }
+        // System.out.println(res + " " + _pow(10, -5) + " " + res/1000000000);
+        // res = res / 1000000000;
+        // System.out.println(res);
+        // res = res / 1000000000;
+        // res = res / 100;
+        // System.out.println(res);
+        // System.out.println(Math.PI);
+        return res;
+    }
+    
+        float PI1 = 3.141592f;
+    float PI2 = 6.535897f;
+    float PI3 = 93f;

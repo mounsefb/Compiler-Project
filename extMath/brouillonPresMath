@@ -1,0 +1,82 @@
+float _multiplyPI(int k){
+        // System.out.println(PI2*k*_pow(10, -7));
+        // System.out.println(PI1);
+
+        // System.out.println(PI1*k*1000000000*100000 + PI2*k*10000000+ PI3*k + " " + PI2*k*10000000 + " " + PI3*k );
+        // float res = PI1*k*1000000000*100000 + PI2*k*10000000+ PI3*k;
+        float res = 0;
+        // if(k<100){
+            res = PI1*k + (int) (PI2*k)*_pow(10, -7);
+        // }
+        // else if(k<100000){
+        //     res = PI1*k + (int) (PI2*k*10000)*_pow(10, -11);
+        // }
+        // System.out.println(res + " " + _pow(10, -5) + " " + res/1000000000);
+        // res = res / 1000000000;
+        // System.out.println(res);
+        // res = res / 1000000000;
+        // res = res / 100;
+        // System.out.println(res);
+        // System.out.println(Math.PI);
+        return res;
+    }
+    
+        float PI1 = 3.141592f;
+    float PI2 = 6.535897f;
+    float PI3 = 93f;
+    
+    
+    
+// float atanPow2(int k) {
+    //     return atan(_pow(2, -k));
+    // }
+    
+    // Cordic _cordic(float alpha, int sign1, int sign2, int sign3, int sign4, int signBoth) {
+    //     float x = 1, y = 0;
+    //     int k = 0;
+    
+    //     while (k < 30 && alpha < atanPow2(k)) {
+    //         float factor = (float) _pow(2, -k);
+    //         float x2 = x - y * factor;
+    //         float y2 = y + x * factor;
+    //         x = x2;
+    //         y = y2;
+    //         alpha -= atanPow2(k++);
+    //     }
+    
+    //     int flipSign = 0;
+    //     while (alpha > PI) {
+    //         alpha -= PI;
+    //         flipSign = 1;
+    //     }
+    
+    //     int sign;
+    //     if (alpha < -PI / 2) {
+    //         alpha += PI;
+    //         sign = sign1;
+    //     } else if (alpha < 0) {
+    //         alpha = -alpha;
+    //         sign = sign2;
+    //     } else if (alpha < PI / 2) {
+    //         sign = sign3;
+    //     } else {
+    //         alpha = PI - alpha;
+    //         sign = sign4;
+    //     }
+    
+    //     if (flipSign == 1 && signBoth == 1) {
+    //         sign = -sign;
+    //     }
+    
+    //     Cordic c = new Cordic();
+    //     c.x = sign * x;
+    //     c.y = (signBoth == 1) ? sign * y : y;
+    //     return c;
+    // }
+    
+    
+    
+class Cordic{
+    float x;
+    float y;
+}

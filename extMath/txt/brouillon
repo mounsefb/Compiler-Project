@@ -1,0 +1,143 @@
+function ulp(x):
+    if x is NaN or inf or zero:
+        return abs(x)  // Return the absolute value for these special cases
+
+    bits = convertToBits(x)
+    sign = bits.sign
+    exponent = bits.exponent
+    mantissa = bits.mantissa
+
+    // Handle subnormal numbers
+    if exponent == 0:
+        return 2^(emin - precision)  // emin is the minimum exponent, precision is the mantissa precision
+
+    // Calculate ULP
+    ulp_exponent = exponent - precision + 1
+    ulp_mantissa = 1.0  // The implicit leading bit in normalized numbers
+    ulp = convertFromBits(sign, ulp_exponent, ulp_mantissa)
+
+    return ulp
+
+
+
+
+
+
+// k	10-k	θk = Arctan(10-k)
+    // 0	1	0,78539816339744830962
+    // 1	0,1	0,099668652491162027378
+    // 2	0,01	0,0099996666866652382063
+    // 3	0,001	0,00099999966666686666652
+    // 4	0,0001	0,000099999999666666668667
+    // 5	0,00001	0,0000099999999996666666667
+    // 6	0,000001	0,00000099999999999966666667
+    // float arctan0 = 0,78539816339744830962;
+    // float arctan1 = 0,099668652491162027378;
+    // float arctan2 = 0,0099996666866652382063;
+    // float arctan3 = 0,00099999966666686666652;
+    // float arctan4 = 0,000099999999666666668667;
+    // float arctan5 = 0,0000099999999996666666667;
+    // float arctan6 = 0,00000099999999999966666667;
+    
+    
+    float _taylor(int whichOne, int order, float f){
+        if(_abs(f)>=1) throw new IllegalArgumentException("Taylor Development available only between -1 and 1 strictly");
+        if(order<0)  throw new IllegalArgumentException("Order need to be greater than 0");
+        float res=0;
+        if (whichOne == 0){
+            while (order != 0){
+                res = res + ( _pow(-1, (int)_mod(order,2)) * _pow(f, 2* order + 1) ) / _fact(2 * order + 1);
+                System.out.println(res);
+                order = order - 1;
+            }
+        }
+        return res;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Cordic _cordic(float alpha, int sign1, int sign2, int sign3, int sign4, int signBoth){
+    //     // System.out.println("tan(f) not yet implemented");
+    //     /* PSEUDO CODE :
+    //     constant θ[n] = arctan 10^(-n) // or simply 10^(-n) depending on floating point precision 
+    //     constant epsilon = 10^-12
+
+    //     function tan(alpha)            // 0 < alpha <= π/2 
+    //     x = 1 ; y = 0 ; k = 0
+    //     while epsilon < alpha
+    //         while alpha < θ[k] 
+    //         k++
+    //         end loop
+    //         alpha -= θ[k]
+    //         x2 = x - 10^(-k)*y
+    //         y2 = y + 10^(-k)*x
+    //         x = x2 ; y = y2
+    //     end loop
+    //     return (y/x)
+    //     end function */
+    //     float x = 1, y = 0;
+    //     int k = 1;
+    //     float ten_to_minus_k = 1;
+    //     float epsilon = _pow(10, -12);
+
+    //     while (epsilon < alpha) {
+    //         while (alpha < atan(_pow(10, -k))) {
+    //             k++;
+    //             ten_to_minus_k /= 10;
+    //         }
+    //         alpha -= atan(1 / _pow(10, k));
+    //         float x2 = x - ten_to_minus_k * y;
+    //         float y2 = y + ten_to_minus_k * x;
+    //         x = x2;
+    //         y = y2;
+    //     }
+
+    //     int flipSign = 0;
+    //     while (alpha > PI) {
+    //         alpha -= PI;
+    //         flipSign = 1;
+    //     }
+
+    //     int sign;
+    //     if (alpha < -PI / 2) {
+    //         alpha += PI;
+    //         sign = sign1;
+    //     } else if (alpha < 0) {
+    //         alpha = -alpha;
+    //         sign = sign2;
+    //     } else if (alpha < PI / 2) {
+    //         sign = sign3;
+    //     } else {
+    //         alpha = PI - alpha;
+    //         sign = sign4;
+    //     }
+
+    //     if (flipSign==1 && signBoth==1) {
+    //         sign = -sign;
+    //     }
+
+    //     Cordic c = new Cordic();
+    //     c.x = sign * x;
+    //     if(signBoth==1){
+    //         c.y = sign * y;
+    //     }
+    //     else {
+    //         c.y = y;
+    //     }
+    //     return c;
+    // }
+    
+    
+    
+    
+    
+    
+    
