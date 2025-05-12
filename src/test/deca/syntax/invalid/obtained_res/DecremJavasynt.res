@@ -1,1 +1,0 @@
-./src/test/deca/syntax/invalid/created/testOpArith/DecremJava.deca:10:7: mismatched input ';' expecting {'(', 'new', 'this', 'readFloat', 'readInt', 'null', 'true', 'false', '-', '!', IDENT, INT, FLOAT, STRING}

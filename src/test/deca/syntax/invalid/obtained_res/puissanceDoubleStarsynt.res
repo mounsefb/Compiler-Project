@@ -1,1 +1,0 @@
-./src/test/deca/syntax/invalid/created/testOpArith/puissanceDoubleStar.deca:10:15: extraneous input '*' expecting {'(', 'new', 'this', 'readFloat', 'readInt', 'null', 'true', 'false', '-', '!', IDENT, INT, FLOAT, STRING}
